@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import './SignUpForm.css';
+import googleLogo from '../../assets/googleLogo.png';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -16,12 +18,11 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
       const data = await dispatch(signUp(first_name, last_name, username, email, password));
       if (data) {
         setErrors(data)
+        console.log(errors)
       }
-    }
   };
 
   const updateFirstName = (e) => {
@@ -53,11 +54,20 @@ const SignUpForm = () => {
   }
 
   return (
+    <div className='signup-form-page-container'>
+    <div className='signup-form-outer-wrapper'>
+    <div className='signup-form-wrapper'>
+    <div className='signup-form-header'>
+      <img alt='googleLogo' src={googleLogo} id='google-logo'/>
+      <span id='create-your-google-text'>Create your Google Account</span>
+      <span id='to-continue-to-text'>to continue to YooTube</span>
+    </div>
+    <div className='signup-form-inner-wrapper'>
     <form onSubmit={onSignUp}>
       <div>
-        {errors.map((error, ind) => (
+        {/* {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
-        ))}
+        ))} */}
       </div>
       <div>
         <label>First Name</label>
@@ -104,7 +114,7 @@ const SignUpForm = () => {
           value={password}
         ></input>
       </div>
-      <div>
+      {/* <div>
         <label>Repeat Password</label>
         <input
           type='password'
@@ -113,9 +123,13 @@ const SignUpForm = () => {
           value={repeatPassword}
           required={true}
         ></input>
-      </div>
+      </div> */}
       <button type='submit'>Sign Up</button>
     </form>
+    </div>
+    </div>
+    </div>
+    </div>
   );
 };
 
