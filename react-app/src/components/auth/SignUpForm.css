@@ -23,6 +23,7 @@
     align-items: center;
     justify-content: center;
     min-height: 620px;
+    max-height: 620px;
     height: fit-content;
     width: 100%;
     border-radius: 7px;
@@ -75,7 +76,7 @@
 .signup-form-input-first-last {
     width: 48%;
     height: 54px;
-    margin-bottom: 18px;
+    /* margin-bottom: 18px; */
     border: solid 1px 	#E0E0E0;
     border-radius: 4px;
     box-sizing: border-box;
@@ -87,7 +88,7 @@
 .signup-form-input {
     width: 100%;
     height: 54px;
-    margin-bottom: 18px;
+    margin-top: 18px;
     border: solid 1px 	#E0E0E0;
     border-radius: 4px;
     text-indent: 8px;
@@ -99,7 +100,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-top: 60px;
+    margin-top: 80px;
+    /* border: solid 1px blue; */
 }
 
 #signin-instead {
@@ -114,4 +116,26 @@
     color: white;
     font-size: 14px;
     border-radius: 5px;
+}
+
+.signup-error-message-first-and-last {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 12px;
+    color: rgb(217, 48, 37);
+    margin-bottom: -10px;
+    margin-top: 5px;
+}
+
+#please-enter-first-name, #please-enter-last-name {
+    width: 48%;
+    /* border: solid 1px blue; */
+}
+
+.signup-form-errors {
+    font-size: 12px;
+    color: rgb(217, 48, 37);
+    margin-bottom: -10px;
+    margin-top: 5px;
 }

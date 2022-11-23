@@ -12,7 +12,6 @@ const SignUpForm = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -45,10 +44,6 @@ const SignUpForm = () => {
     setPassword(e.target.value);
   };
 
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
-
   if (user) {
     return <Redirect to='/' />;
   }
@@ -64,11 +59,11 @@ const SignUpForm = () => {
     </div>
     <div className='signup-form-inner-wrapper'>
     <form onSubmit={onSignUp}>
-      <div>
+      {/* <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
-      </div>
+      </div> */}
       <div className='signup-first-and-last'>
         {/* <label>First Name</label> */}
         <input
@@ -89,6 +84,21 @@ const SignUpForm = () => {
           className='signup-form-input-first-last'
         ></input>
       </div>
+      {errors.first_name && errors.last_name && (
+              <div className='signup-error-message-first-and-last'>
+                <span id='please-enter-first-name'>{errors.first_name}</span>
+                <span id='please-enter-last-name'>{errors.last_name}</span>
+              </div>
+            )}
+            {errors.first_name && !errors.last_name && (
+              <div className='signup-error-message'>{errors.first_name}</div>
+            )}
+            {!errors.first_name && errors.last_name && (
+              <div className='signup-error-message-first-and-last'>
+                <span id='please-enter-first-name'></span>
+                <span id='please-enter-last-name'>{errors.last_name}</span>
+              </div>
+            )}
       <div>
         {/* <label>Email</label> */}
         <input
@@ -100,6 +110,7 @@ const SignUpForm = () => {
           className='signup-form-input'
         ></input>
       </div>
+      {errors.email && <div className='signup-form-errors'>{errors.email}</div>}
       <div>
         {/* <label>Username</label> */}
         <input
@@ -111,6 +122,7 @@ const SignUpForm = () => {
           className='signup-form-input'
         ></input>
       </div>
+      {errors.username && <div className='signup-form-errors'>{errors.username}</div>}
       <div>
         {/* <label>Password</label> */}
         <input
@@ -122,6 +134,7 @@ const SignUpForm = () => {
           className='signup-form-input'
         ></input>
       </div>
+      {errors.password && <div className='signup-form-errors'>{errors.password}</div>}
       {/* <div>
         <label>Repeat Password</label>
         <input
