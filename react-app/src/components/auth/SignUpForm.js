@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './SignUpForm.css';
 import googleLogo from '../../assets/googleLogo.png';
@@ -65,53 +65,61 @@ const SignUpForm = () => {
     <div className='signup-form-inner-wrapper'>
     <form onSubmit={onSignUp}>
       <div>
-        {/* {errors.map((error, ind) => (
+        {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
-        ))} */}
+        ))}
       </div>
-      <div>
-        <label>First Name</label>
+      <div className='signup-first-and-last'>
+        {/* <label>First Name</label> */}
         <input
           type='text'
           name='first_name'
           onChange={updateFirstName}
           value={first_name}
+          placeholder='First name'
+          className='signup-form-input-first-last'
         ></input>
-      </div>
-      <div>
-        <label>Last Name</label>
+        {/* <label>Last Name</label> */}
         <input
           type='text'
           name='last_name'
           onChange={updateLastName}
           value={last_name}
+          placeholder='Last name'
+          className='signup-form-input-first-last'
         ></input>
       </div>
       <div>
-        <label>Username</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      <div>
-        <label>Email</label>
+        {/* <label>Email</label> */}
         <input
           type='text'
           name='email'
           onChange={updateEmail}
           value={email}
+          placeholder='Email address'
+          className='signup-form-input'
         ></input>
       </div>
       <div>
-        <label>Password</label>
+        {/* <label>Username</label> */}
+        <input
+          type='text'
+          name='username'
+          onChange={updateUsername}
+          value={username}
+          placeholder='Username'
+          className='signup-form-input'
+        ></input>
+      </div>
+      <div>
+        {/* <label>Password</label> */}
         <input
           type='password'
           name='password'
           onChange={updatePassword}
           value={password}
+          placeholder='Password'
+          className='signup-form-input'
         ></input>
       </div>
       {/* <div>
@@ -124,7 +132,10 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div> */}
-      <button type='submit'>Sign Up</button>
+      <div className='signin-and-signup-button'>
+      <NavLink to='/login'><span id='signin-instead'>Sign in instead</span></NavLink>
+      <button type='submit' id='signup-form-submit'>Create Account</button>
+      </div>
     </form>
     </div>
     </div>
