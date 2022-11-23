@@ -19,7 +19,7 @@ function VideoPage () {
     return (
         <div className='video-page-container'>
             <video width='100%' height='590' controls id='video-box'>
-                <source src=''/>
+                <source src={video.url}/>
             </video>
         </div>
     )
