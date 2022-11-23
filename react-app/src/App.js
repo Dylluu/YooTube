@@ -9,6 +9,8 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import TopNavigation from './components/TopNavigation';
+import Dashboard from './components/Dashboard';
+import VideoPage from './components/VideoPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -28,6 +30,9 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path='/videos/:videoId'>
+          <VideoPage />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -42,6 +47,7 @@ function App() {
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <TopNavigation />
+          <Dashboard />
         </Route>
       </Switch>
     </BrowserRouter>

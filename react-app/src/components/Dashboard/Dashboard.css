@@ -1,0 +1,9 @@
+.dashboard-container {
+    display: flex;
+    /* padding-left: 80px; */
+    margin-top: 56px;
+    height: 100vh;
+    width: 100%;
+    background-color: #0F0F0F;
+    border: solid 1px red;
+}

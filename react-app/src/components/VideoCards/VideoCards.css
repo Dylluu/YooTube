@@ -1,0 +1,44 @@
+.video-cards-container {
+    display: flex;
+    flex-direction: column;
+    height: 270px;
+    width: 300px;
+    border: solid 1px blue;
+}
+
+.video-card-thumbnail {
+    display: flex;
+    height: 60%;
+    margin-bottom: 7px;
+    border: solid 1px green;
+}
+
+.video-card-info {
+    display: flex;
+    flex-direction: row;
+    border: solid 1px red;
+}
+
+.video-card-profile-pic {
+    display: flex;
+    height: 40px;
+    min-width: 40px;
+    margin-right: 7px;
+    border-radius: 75%;
+    border: solid 1px blue;
+}
+
+.video-card-title-and-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: solid 1px purple;
+}
+
+.video-card-title {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Roboto", "Arial", sans-serif;
+    border: solid 1px yellow;
+}

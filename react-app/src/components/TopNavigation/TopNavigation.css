@@ -64,6 +64,11 @@
     height: 25px;
 }
 
+#logo-nav {
+    display: flex;
+    align-items: center;
+}
+
 .signin-button {
     display: flex;
     align-items: center;

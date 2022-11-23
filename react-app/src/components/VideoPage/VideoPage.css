@@ -1,0 +1,8 @@
+.video-page-container {
+    display: flex;
+    /* border: solid 1px red; */
+}
+
+#video-box {
+    background-color: black;
+}

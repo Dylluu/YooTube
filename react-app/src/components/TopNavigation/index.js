@@ -19,7 +19,9 @@ function TopNavigation() {
                         <div id='menu-bars'></div>
                         <div id='menu-bars'></div>
                     </div>
+                    <NavLink to='/' id='logo-nav'>
                     <img alt='logo' src={logo} id='logo'/>
+                    </NavLink>
                 </div>
                 {!user && <NavLink to='/signup' className='signin-button'>
                     <div className='signin-button-inner'>
