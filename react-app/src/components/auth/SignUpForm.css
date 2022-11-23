@@ -150,6 +150,16 @@
     margin-top: 7px;
 }
 
+.signup-error-message-first-only {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    font-size: 12px;
+    color: rgb(217, 48, 37);
+    margin-bottom: -8px;
+    margin-top: 7px;
+}
+
 #please-enter-first-name, #please-enter-last-name {
     width: 48%;
     /* border: solid 1px blue; */
@@ -197,6 +207,28 @@ input {
     background-color: transparent;
 }
 
+.placeholder-with-text {
+    color: #1C65C9;
+    transform: translate(-3px, -22px);
+    font-size: 10.5px;
+    z-index: 1;
+    background-color: white;
+    padding-top: 0;
+    padding-bottom: -16px;
+    padding-left: 4.5px;
+    padding-right: 4.5px;
+}
+
+.placeholder-with-text-first-last {
+    color: #1C65C9;
+    transform: translate(-3px, -22px);
+    font-size: 10.5px;
+    z-index: 1;
+    background-color: white;
+    padding-left: 4.5px;
+    padding-right: 4.5px;
+}
+
 input:focus + .placeholder {
     color: #1C65C9;
     transform: translate(-3px, -22px);
@@ -205,8 +237,8 @@ input:focus + .placeholder {
     background-color: white;
     padding-top: 0;
     padding-bottom: -16px;
-    padding-left: 3.5px;
-    padding-right: 3.5px;
+    padding-left: 4.5px;
+    padding-right: 4.5px;
 }
 
 input:focus + #first-name-label {
@@ -215,8 +247,8 @@ input:focus + #first-name-label {
     font-size: 10.5px;
     z-index: 1;
     background-color: white;
-    padding-left: 3.5px;
-    padding-right: 3.5px;
+    padding-left: 4.5px;
+    padding-right: 4.5px;
 }
 
 input:focus + #last-name-label {
@@ -225,6 +257,10 @@ input:focus + #last-name-label {
     font-size: 10.5px;
     z-index: 1;
     background-color: white;
-    padding-left: 3.5px;
-    padding-right: 3.5px;
+    padding-left: 4.5px;
+    padding-right: 4.5px;
+}
+
+.focus-out-input {
+    color: #5F6369;
 }

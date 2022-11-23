@@ -11,7 +11,7 @@ def user_exists(form, field):
     if not '@' in email or not '.' in email:
         raise ValidationError('Please enter a valid email address.')
     if user:
-        raise ValidationError('Email address is already in use.')
+        raise ValidationError('Email address is already linked to an account.')
 
 
 def username_exists(form, field):
@@ -28,6 +28,6 @@ class SignUpForm(FlaskForm):
     last_name = StringField(
         'last_name', validators=[DataRequired('Please enter your last name.'), Length(min=1, max=20, message='Your last name cannot be greater than 20 characters.')])
     username = StringField(
-        'username', validators=[DataRequired(), username_exists])
-    email = StringField('email', validators=[DataRequired(), user_exists])
-    password = StringField('password', validators=[DataRequired()])
+        'username', validators=[DataRequired('Please enter a username.'), username_exists])
+    email = StringField('email', validators=[DataRequired('Please enter your email.'), user_exists])
+    password = StringField('password', validators=[Length(min=8, message='Your password must be at least 8 characters.')])

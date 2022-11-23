@@ -25,6 +25,67 @@ const SignUpForm = () => {
   };
 
   useEffect(() => {
+    const firstNameLabel = document.getElementById('first-name-label');
+    const lastNameLabel = document.getElementById('last-name-label');
+    const usernameLabel = document.getElementById('username-label');
+    const emailLabel = document.getElementById('email-label');
+    const passwordLabel = document.getElementById('password-label');
+    const firstNameInput = document.getElementById('firstName');
+    const lastNameInput = document.getElementById('lastName');
+    const emailInput = document.getElementById('email');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+
+    firstNameInput.addEventListener('focusout', () => {
+      firstNameLabel.classList.add('focus-out-input')
+    })
+    lastNameInput.addEventListener('focusout', () => {
+      lastNameLabel.classList.add('focus-out-input')
+    })
+    emailInput.addEventListener('focusout', () => {
+      emailLabel.classList.add('focus-out-input')
+    })
+    usernameInput.addEventListener('focusout', () => {
+      usernameLabel.classList.add('focus-out-input')
+    })
+    passwordInput.addEventListener('focusout', () => {
+      passwordLabel.classList.add('focus-out-input')
+    })
+
+    if(first_name.length) {
+      firstNameLabel.classList.add('placeholder-with-text-first-last');
+    }
+    if(!first_name.length) {
+      firstNameLabel.classList.remove('placeholder-with-text-first-last');
+    }
+    if(last_name.length) {
+      lastNameLabel.classList.add('placeholder-with-text-first-last');
+    }
+    if(!last_name.length) {
+      lastNameLabel.classList.remove('placeholder-with-text-first-last');
+    }
+    if(username.length) {
+      usernameLabel.classList.add('placeholder-with-text');
+    }
+    if(!username.length) {
+      usernameLabel.classList.remove('placeholder-with-text');
+    }
+    if(email.length) {
+      emailLabel.classList.add('placeholder-with-text');
+    }
+    if(!email.length) {
+      emailLabel.classList.remove('placeholder-with-text');
+    }
+    if(password.length) {
+      passwordLabel.classList.add('placeholder-with-text');
+    }
+    if(!password.length) {
+      passwordLabel.classList.remove('placeholder-with-text');
+    }
+
+  }, [first_name, last_name, username, email, password])
+
+  useEffect(() => {
     if (errors.first_name) {
       const firstName = document.getElementById('firstName')
       firstName.classList.add('red-border')
@@ -154,7 +215,7 @@ const SignUpForm = () => {
               </div>
             )}
             {errors.first_name && !errors.last_name && (
-              <div className='signup-error-message'><i className="fa-solid fa-circle-exclamation" id='error-exclaimation'/>{errors.first_name}</div>
+              <div className='signup-error-message-first-only'><i className="fa-solid fa-circle-exclamation" id='error-exclaimation'/>{errors.first_name}</div>
             )}
             {!errors.first_name && errors.last_name && (
               <div className='signup-error-message-first-and-last'>
@@ -172,7 +233,7 @@ const SignUpForm = () => {
           className='signup-form-input'
           id='email'
         ></input>
-        <label className='placeholder' for='email'>Email</label>
+        <label className='placeholder' for='email' id='email-label'>Email</label>
       </div>
       {errors.email && <div className='signup-form-errors'><i className="fa-solid fa-circle-exclamation" id='error-exclaimation'/>{errors.email}</div>}
       <div>
@@ -185,7 +246,7 @@ const SignUpForm = () => {
           className='signup-form-input'
           id='username'
         ></input>
-        <label className='placeholder' for='username'>Username</label>
+        <label className='placeholder' for='username' id='username-label'>Username</label>
       </div>
       {errors.username && <div className='signup-form-errors'><i className="fa-solid fa-circle-exclamation" id='error-exclaimation'/>{errors.username}</div>}
       <div>
@@ -198,7 +259,7 @@ const SignUpForm = () => {
           className='signup-form-input'
           id='password'
         ></input>
-        <label className='placeholder' for='password'>Password</label>
+        <label className='placeholder' for='password' id='password-label'>Password</label>
       </div>
       {errors.password && <div className='signup-form-errors'><i className="fa-solid fa-circle-exclamation" id='error-exclaimation'/>{errors.password}</div>}
       {/* <div>
