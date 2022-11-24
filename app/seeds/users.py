@@ -11,14 +11,14 @@ def seed_users():
         first_name='Gordon', last_name='Ramsay', username='Gordon Ramsay', email='gordon@aa.io', profile_pic='https://yt3.ggpht.com/bFpwiiOB_NLCVsIcVQ9UcwBjb1RzipnMmtNfLSWpeIaHboyGkBCq4KBitmovRbStk9WvIWIZOyo=s176-c-k-c0x00ffffff-no-rj', password='password')
     rotten = User(
         first_name='Rotten', last_name='Tomatoes', username='Rotten Tomatoes Trailers', email='rottentomatoes@aa.io', profile_pic='https://yt3.ggpht.com/_XxIsLgks3G7PJ1Yhfq6GWBeDr2PfYIi9xrbz-7AnsaiutSh6pItq4odcQgXRAvCn1KuGqlj4g=s176-c-k-c0x00ffffff-no-rj', password='password')
-    jarrod = User(
-        first_name='Jarrod', last_name='Mishima', username='Jarrod', email='jarrod@aa.io', password='password')
+    espn = User(
+        first_name='ESPN', last_name='Sports', username='ESPN', email='espn@aa.io', profile_pic='https://yt3.ggpht.com/ytc/AMLnZu85lWboVPtYPEZESVzB-KeDb_CntR9GxPYBBdwn7f8=s176-c-k-c0x00ffffff-no-rj', password='password')
 
     db.session.add(demo)
     db.session.add(formula_1)
     db.session.add(gordon)
     db.session.add(rotten)
-    db.session.add(jarrod)
+    db.session.add(espn)
     db.session.commit()
 
 

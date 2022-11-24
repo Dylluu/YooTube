@@ -17,10 +17,15 @@ def seed_videos():
         user_id=4, title='Jiro Dreams of Sushi Official Trailer #1', description='Jiro Dreams of Sushi Official Trailer #1 - Jiro Ono Documentary (2012) HD', category='Food', url='https://yootubetest.s3.amazonaws.com/Jiro+Dreams+of+Sushi+Official+Trailer+%231+-+Jiro+Ono+Documentary+(2012)+HD-M-aGPniFvS0.mp4', thumbnail='https://i3.ytimg.com/vi/M-aGPniFvS0/maxresdefault.jpg'
     )
 
+    wiggins = Video(
+        user_id=5, title='Warriors vs. Clippers Highlights | Wiggins 31 Pts', description='The Warriors take on the Clippers at home and Wiggins goes for a season high 31 points with 6 threes.', category='Sports', url='https://yootubetest.s3.amazonaws.com/Andrew+Wiggins+31+Pts+6+3s+Season+High+vs+Clippers!+2022-23+NBA+Season-_FY-wWtzwF0.mp4', thumbnail='https://i3.ytimg.com/vi/_FY-wWtzwF0/maxresdefault.jpg'
+    )
+
     db.session.add(first_video)
     db.session.add(monaco_gp)
     db.session.add(burger)
     db.session.add(sushi)
+    db.session.add(wiggins)
     db.session.commit()
 
 def undo_videos():
