@@ -20,6 +20,11 @@ const LoginForm = () => {
     }
   };
 
+  const onDemo = async (e) => {
+    e.preventDefault();
+    await dispatch(login('demo@aa.io', 'password'));
+  };
+
   useEffect(() => {
     const loginEmail = document.getElementById('login-email');
     const loginEmailLabel = document.getElementById('login-email-label');
@@ -129,11 +134,17 @@ const LoginForm = () => {
       )}
       </div>
     </form>
+        <div className='demo-user'>
+          <span className='new-user'>New guest? Sign in as</span>
+          <span className='demo-user-button'
+          onClick={onDemo}
+          >Demo User</span>
+        </div>
         <div className='signup-and-signin-button'>
         <NavLink to='/signup'><span id='create-account-instead'>Create Account</span></NavLink>
         <button type='submit' id='login-form-submit'
         onClick={onLogin}
-        >Login</button>
+        >Sign in</button>
         </div>
     </div>
     </div>

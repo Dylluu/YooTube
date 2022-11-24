@@ -81,7 +81,7 @@
     font-size: 14px;
     color: rgb(26, 115, 232);
     padding: 12px;
-    margin-left: -10px;
+    margin-left: -12px;
     border-radius: 5px;
 }
 
@@ -128,4 +128,18 @@ input:focus + .placeholder {
 
 input:focus + .red-text {
     color: rgb(217, 48, 37);
+}
+
+.demo-user {
+    display: flex;
+    width: 100%;
+    font-size: 14px;
+    color: rgb(95, 99, 104);
+    /* border: solid 1px red; */
+}
+
+.demo-user-button {
+    color: rgb(26, 115, 232);
+    margin-left: 4.25px;
+    cursor: pointer;
 }

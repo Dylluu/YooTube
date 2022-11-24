@@ -23,7 +23,7 @@ function TopNavigation() {
                     <img alt='logo' src={logo} id='logo'/>
                     </NavLink>
                 </div>
-                {!user && <NavLink to='/signup' className='signin-button'>
+                {!user && <NavLink to='/login' className='signin-button'>
                     <div className='signin-button-inner'>
                         <i className="fa-regular fa-user" id='user-icon'/>
                         <span id='user-signin-text'>Sign in</span>
