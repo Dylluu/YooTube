@@ -20,7 +20,6 @@ const SignUpForm = () => {
       const data = await dispatch(signUp(first_name, last_name, username, email, password));
       if (data) {
         setErrors(data)
-        console.log(errors)
       }
   };
 

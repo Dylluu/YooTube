@@ -1,0 +1,131 @@
+.login-form-page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    /* border: solid 1px red; */
+}
+
+.login-form-outer-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 530px;
+    width: 460px;
+    /* border: solid 1px blue; */
+}
+
+.login-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+    /* max-height: 620px; */
+    height: fit-content;
+    width: 100%;
+    border-radius: 7px;
+    border: solid 1px #D8D8D8;
+}
+
+.login-form-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 82%;
+    height: 110px;
+    /* border: solid 1px red; */
+}
+
+.login-form-inner-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 82%;
+    height: 63%;
+    /* border: solid 1px red; */
+}
+
+.login-form-input-fields-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 10px;
+    /* border: solid 1px green; */
+}
+
+.login-form-input {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-top: 18px;
+    border: solid 1px 	#E0E0E0;
+    border-radius: 4px;
+    text-indent: 8px;
+    font-size: 15px;
+}
+
+.signup-and-signin-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    /* border: solid 1px blue; */
+}
+
+#create-account-instead {
+    font-size: 14px;
+    color: rgb(26, 115, 232);
+    padding: 12px;
+    margin-left: -10px;
+    border-radius: 5px;
+}
+
+#create-account-instead:hover {
+    color: #164EA6;
+    background-color: #F7F9FE;
+}
+
+#login-form-submit {
+    width: 80px;
+    padding: 10px;
+    background-color: rgb(26, 115, 232);
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+#login-form-submit:hover {
+    background-color: #1C65C9;
+}
+
+.login-form-errors {
+    font-size: 12px;
+    color: rgb(217, 48, 37);
+    margin-bottom: -8px;
+    margin-top: 20px;
+}
+
+.red-outline {
+    outline-color: rgb(217, 48, 37);
+}
+
+input:focus + .placeholder {
+    color: #1C65C9;
+    transform: translate(-3px, -22px);
+    font-size: 10.5px;
+    z-index: 1;
+    background-color: white;
+    padding-top: 0;
+    padding-bottom: -16px;
+    padding-left: 4.5px;
+    padding-right: 4.5px;
+}
+
+input:focus + .red-text {
+    color: rgb(217, 48, 37);
+}

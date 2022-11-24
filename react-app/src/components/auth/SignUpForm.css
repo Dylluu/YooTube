@@ -13,7 +13,7 @@
     justify-content: space-between;
     align-items: center;
     height: 650px;
-    width: 460px;
+    width: 496px;
     /* border: solid 1px blue; */
 }
 
@@ -200,7 +200,7 @@
 }
 
 #last-name-label {
-    left: 206.5px;
+    left: 220.35px;
 }
 
 input {

@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import './LoginForm.css';
+import googleLogo from '../../assets/googleLogo.png';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -18,6 +20,56 @@ const LoginForm = () => {
     }
   };
 
+  useEffect(() => {
+    const loginEmail = document.getElementById('login-email');
+    const loginEmailLabel = document.getElementById('login-email-label');
+    const loginPassword = document.getElementById('login-password');
+    const loginPasswordLabel = document.getElementById('login-password-label');
+
+    loginEmail.addEventListener('focusout', () => {
+      loginEmailLabel.classList.add('focus-out-input');
+    })
+    loginPassword.addEventListener('focusout', () => {
+      loginPasswordLabel.classList.add('focus-out-input');
+    })
+    if(email.length) {
+      loginEmailLabel.classList.add('placeholder-with-text-first-last');
+    }
+    if(!email.length) {
+      loginEmailLabel.classList.remove('placeholder-with-text-first-last');
+    }
+    if(password.length) {
+      loginPasswordLabel.classList.add('placeholder-with-text-first-last');
+    }
+    if(!password.length) {
+      loginPasswordLabel.classList.remove('placeholder-with-text-first-last');
+    }
+  }, [email, password])
+
+  useEffect(() => {
+    const loginEmail = document.getElementById('login-email');
+    const loginPassword = document.getElementById('login-password');
+    if(Object.values(errors).length){
+      loginEmail.classList.add('red-border');
+      // loginEmail.classList.add('red-outline');
+      loginPassword.classList.add('red-border');
+      // loginPassword.classList.add('red-outline');
+    }
+  }, [errors])
+
+  useEffect(() => {
+    if (errors.email) {
+      const loginEmail = document.getElementById('login-email');
+      loginEmail.classList.add('red-border');
+      // loginEmail.classList.add('red-outline');
+    }
+    if (!errors.email) {
+      const loginEmail = document.getElementById('login-email');
+      loginEmail.classList.remove('red-border');
+      // loginEmail.classList.remove('red-outline');
+    }
+  }, [errors.email])
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -31,34 +83,62 @@ const LoginForm = () => {
   }
 
   return (
+    <div className='login-form-page-container'>
+    <div className='login-form-outer-wrapper'>
+    <div className='login-form-wrapper'>
+    <div className='login-form-header'>
+      <img alt='googleLogo' src={googleLogo} id='google-logo'/>
+      <span id='create-your-google-text'>Sign in</span>
+      <span id='to-continue-to-text'>to continue to YooTube</span>
+    </div>
+    <div className='login-form-inner-wrapper'>
     <form onSubmit={onLogin}>
-      <div>
+      <div className='login-form-input-fields-wrapper'>
+      {/* <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
-      </div>
+      </div> */}
       <div>
-        <label htmlFor='email'>Email</label>
         <input
           name='email'
           type='text'
-          placeholder='Email'
           value={email}
           onChange={updateEmail}
+          className='login-form-input'
+          id='login-email'
         />
+        <label htmlFor='email' className='placeholder' id='login-email-label'>Email</label>
       </div>
       <div>
-        <label htmlFor='password'>Password</label>
         <input
           name='password'
           type='password'
-          placeholder='Password'
           value={password}
           onChange={updatePassword}
+          className='login-form-input'
+          id='login-password'
         />
-        <button type='submit'>Login</button>
+        <label htmlFor='password' className='placeholder' id='login-password-label'>Password</label>
+      </div>
+      {/* {(email.length == 0 || password.length == 0) && (
+        <div className='login-form-errors'><i className="fa-solid fa-circle-exclamation" id='error-exclaimation'/>Please enter your email and password</div>
+      )} */}
+      {Object.values(errors).length > 0 && (
+        <div className='login-form-errors'><i className="fa-solid fa-circle-exclamation" id='error-exclaimation'/>Couldn't login with the provided credentials</div>
+      )}
       </div>
     </form>
+        <div className='signup-and-signin-button'>
+        <NavLink to='/signup'><span id='create-account-instead'>Create Account</span></NavLink>
+        <button type='submit' id='login-form-submit'
+        onClick={onLogin}
+        >Login</button>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
   );
 };
 
