@@ -9,7 +9,7 @@ import VideoCards from '../VideoCards';
 function Dashboard() {
 
     const dispatch = useDispatch()
-    const videos = useSelector(state => state.videos.allVideos)
+    const videos = useSelector(state => state.videos.allVideos.videos)
 
     useEffect(async () => {
         await dispatch(getVideosThunk())

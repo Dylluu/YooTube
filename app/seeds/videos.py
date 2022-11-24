@@ -2,7 +2,7 @@ from app.models import db, Video, environment, SCHEMA
 
 def seed_videos():
     first_video = Video(
-        user_id=1, title='Steph Curry vs. Rockets Highlights', description='Steph goes off and hits nasty dagger', category='Sports', url='https://yootubetest.s3.amazonaws.com/Steph+Curry+Night+Night+Dagger!+33+PTS%2C15+AST%2C+7+REB%2C+7+THREES+Full+Highlights+vs+Rockets+%F0%9F%94%A5-XEUsUIFRjrs.mp4'
+        user_id=1, title='Steph Curry vs. Rockets Highlights', description='Steph goes off and hits nasty dagger', category='Sports', url='https://yootubetest.s3.amazonaws.com/Steph+Curry+Night+Night+Dagger!+33+PTS%2C15+AST%2C+7+REB%2C+7+THREES+Full+Highlights+vs+Rockets+%F0%9F%94%A5-XEUsUIFRjrs.mp4', thumbnail='https://i.ytimg.com/an_webp/XEUsUIFRjrs/mqdefault_6s.webp?du=3000&sqp=CODT-5sG&rs=AOn4CLB9ANDQnzp_IJZl6IJqmy2U6aQ3KQ'
     )
 
     db.session.add(first_video)

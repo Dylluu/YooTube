@@ -15,6 +15,7 @@ class Video(db.Model):
     num_views = db.Column(db.Integer, default=0)
     num_likes = db.Column(db.Integer, default=0)
     url = db.Column(db.String(255), nullable=False)
+    thumbnail = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -30,6 +31,7 @@ class Video(db.Model):
             'num_views': self.num_views,
             'num_likes': self.num_likes,
             'url': self.url,
+            'thumbnail': self.thumbnail,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
