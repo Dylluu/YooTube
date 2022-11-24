@@ -22,7 +22,7 @@ const videos = (state = initialState, action) => {
     const newState = {...state}
     switch(action.type) {
         case GET_VIDEOS:
-            newState.allVideos = action.payload
+            newState.allVideos = action.payload.videos
             return newState
         default:
             return state

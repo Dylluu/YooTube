@@ -7,7 +7,7 @@ import { getVideosThunk } from '../../store/videos';
 function VideoPage () {
 
     const dispatch = useDispatch()
-    const videos = useSelector(state => state.videos.allVideos.videos)
+    const videos = useSelector(state => state.videos.allVideos)
     const {videoId} = useParams()
     const video = videos?.find(video => video.id == videoId)
     console.log(video)

@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import TopNavigation from './components/TopNavigation';
+import LeftNavigation from './components/LeftNavigation';
 import Dashboard from './components/Dashboard';
 import VideoPage from './components/VideoPage';
 
@@ -47,6 +48,7 @@ function App() {
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <TopNavigation />
+          <LeftNavigation />
           <Dashboard />
         </Route>
       </Switch>

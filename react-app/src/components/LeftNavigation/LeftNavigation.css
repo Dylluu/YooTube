@@ -1,0 +1,76 @@
+.left-navigation-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    padding-top: 56px;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 240px;
+    /* border: solid 1px blue; */
+}
+
+.left-navigation-wrapper {
+    display: flex;
+    /* margin-top: 56px; */
+    flex-direction: column;
+    width: 90%;
+    height: 100%;
+    /* border: solid 1px red; */
+}
+
+.left-navigation-home-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 143px;
+    padding-bottom: 3px;
+    border-bottom: solid 1px #272727;
+}
+
+.left-nav-home {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 96.5%;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #272727;
+    /* cursor: pointer; */
+}
+
+.left-nav-home:hover {
+    filter: brightness(1.75);
+}
+
+#left-nav-home {
+    cursor: pointer;
+}
+
+#left-nav-subs, #left-nav-shorts {
+    background-color: transparent;
+}
+
+.left-nav-home-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 25%;
+}
+
+.left-nav-home-headers {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    margin-left: 10px;
+    color: white;
+    font-size: 14px;
+}
+
+#nav-left-house-icon {
+    color: white;
+    font-size: 18px;
+}

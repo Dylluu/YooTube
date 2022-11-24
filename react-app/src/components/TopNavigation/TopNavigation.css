@@ -18,7 +18,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 96%;
+    width: 100%;
+    padding-left: 27px;
+    padding-right: 27px;
     height: 40px;
     /* border: solid 1px red; */
 }
