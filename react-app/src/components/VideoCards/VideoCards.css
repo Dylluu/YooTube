@@ -1,8 +1,8 @@
 .video-cards-container {
     display: flex;
     flex-direction: column;
-    height: 270px;
-    width: 300px;
+    /* min-height: 265px; */
+    width: 100%;
     /* border: solid 1px blue; */
 }
 
@@ -38,6 +38,11 @@
     border-radius: 75%;
     background-color: blueviolet;
     /* border: solid 1px blue; */
+}
+
+.video-card-profile-pic-image {
+    width: 40px;
+    border-radius: 75%;
 }
 
 .video-card-title-and-info {

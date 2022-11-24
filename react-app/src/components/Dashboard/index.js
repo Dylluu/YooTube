@@ -19,7 +19,9 @@ function Dashboard() {
     return (
         <div className='dashboard-container'>
             {videos?.map((video) => (
-                <NavLink to={`/videos/${video.id}`}>
+                <NavLink to={`/videos/${video.id}`}
+                className='video-card-nav'
+                >
                     <VideoCards video={video}/>
                 </NavLink>
             ))}

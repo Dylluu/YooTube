@@ -5,19 +5,19 @@ from app.models import db, User, environment, SCHEMA
 def seed_users():
     demo = User(
         first_name='Demo', last_name='User', username='Demo', email='demo@aa.io', password='password')
-    curtis = User(
-        first_name='Curtis', last_name='Chung', username='cc', email='curtis@aa.io', password='password')
-    nhut = User(
-        first_name='Nhut-Linh', last_name='Ngo', username='NHUT', email='nhut@aa.io', password='password')
-    david = User(
-        first_name='David', last_name='Liaw', username='DLiaw', email='david@aa.io', password='password')
+    formula_1 = User(
+        first_name='Formula', last_name='One', username='FORMULA 1', email='f1@aa.io', profile_pic='https://yt3.ggpht.com/PVF4vIcVEtapRrU5SnmbKwK4hTy7n6x_Sfas6ruR_62ZbF2sc5ydQQ0IBPTHvphxcgdBgMcuc_M=s176-c-k-c0x00ffffff-no-rj', password='password')
+    gordon = User(
+        first_name='Gordon', last_name='Ramsay', username='Gordon Ramsay', email='gordon@aa.io', profile_pic='https://yt3.ggpht.com/bFpwiiOB_NLCVsIcVQ9UcwBjb1RzipnMmtNfLSWpeIaHboyGkBCq4KBitmovRbStk9WvIWIZOyo=s176-c-k-c0x00ffffff-no-rj', password='password')
+    rotten = User(
+        first_name='Rotten', last_name='Tomatoes', username='Rotten Tomatoes Trailers', email='rottentomatoes@aa.io', profile_pic='https://yt3.ggpht.com/_XxIsLgks3G7PJ1Yhfq6GWBeDr2PfYIi9xrbz-7AnsaiutSh6pItq4odcQgXRAvCn1KuGqlj4g=s176-c-k-c0x00ffffff-no-rj', password='password')
     jarrod = User(
         first_name='Jarrod', last_name='Mishima', username='Jarrod', email='jarrod@aa.io', password='password')
 
     db.session.add(demo)
-    db.session.add(curtis)
-    db.session.add(nhut)
-    db.session.add(david)
+    db.session.add(formula_1)
+    db.session.add(gordon)
+    db.session.add(rotten)
     db.session.add(jarrod)
     db.session.commit()
 
