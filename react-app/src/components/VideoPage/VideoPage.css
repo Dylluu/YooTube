@@ -13,13 +13,13 @@
     width: 100%;
     padding-left: 24px;
     padding-right: 24px;
-    padding-top: 22px;
+    padding-top: 24px;
 }
 
 .video-page-left-wrapper {
     display: flex;
     flex-direction: column;
-    width: 69%;
+    width: 69.025%;
 }
 
 #video-box {
@@ -188,8 +188,10 @@
 .video-page-description-inner-wrapper {
     display: flex;
     flex-direction: column;
-    height: 77%;
-    width: 97.4%;
+    height: 75%;
+    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
     /* border: solid 1px red; */
 }
 
@@ -209,4 +211,8 @@
     font-size: 14px;
     font-weight: 400;
     margin-top: 4px;
+}
+
+#video-description-header-date {
+    margin-left: 8px;
 }

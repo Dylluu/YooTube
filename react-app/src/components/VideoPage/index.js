@@ -4,6 +4,7 @@ import './VideoPage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getVideosThunk } from '../../store/videos';
 import { getUsersThunk } from '../../store/session';
+import { getCommentsThunk } from '../../store/comments';
 
 function VideoPage () {
 
@@ -13,11 +14,20 @@ function VideoPage () {
     const video = videos?.find(video => video.id == videoId)
     const users = useSelector(state => state.session.allUsers)
     const videoPoster = users?.find(user => user.id == video.user_id)
-    console.log(videoPoster, '----------')
+    // console.log(videoPoster, '----------')
+    // console.log(video?.created_at)
+    // console.log(new Date(video?.created_at), '--------')
+    const date = new Date(video?.created_at);
+
+    function getDate(date) {
+        const split = `${date}`.split(' ');
+        return `${split[1]} ${split[2]}, ${split[3]}`
+    }
 
     useEffect(async () => {
         await dispatch(getVideosThunk());
         await dispatch(getUsersThunk());
+        await dispatch(getCommentsThunk(video?.id));
     }, [dispatch])
 
     if(!video) return null
@@ -54,6 +64,7 @@ function VideoPage () {
                 <div className='video-page-description-inner-wrapper'>
                     <div id='video-description-header'>
                         <span id='video-description-header-num-views'>{video?.num_views} views</span>
+                        <span id='video-description-header-date'>{getDate(date)}</span>
                     </div>
                     <p id='video-description'>{video?.description}</p>
                 </div>
