@@ -53,7 +53,7 @@
     position: absolute;
     height: 41px;
     width: 41px;
-    margin-left: -11.07px;
+    margin-left: -11.2575px;
     border-radius: 75%;
     cursor: pointer;
     /* border: solid 1px red; */
@@ -70,6 +70,8 @@
 #logo-nav {
     display: flex;
     align-items: center;
+    /* margin-bottom: 2px; */
+    /* border: solid 1px red; */
 }
 
 .signin-button {

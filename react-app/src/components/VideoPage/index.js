@@ -3,6 +3,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import './VideoPage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getVideosThunk } from '../../store/videos';
+import { getUsersThunk } from '../../store/session';
 
 function VideoPage () {
 
@@ -10,17 +11,55 @@ function VideoPage () {
     const videos = useSelector(state => state.videos.allVideos.videos)
     const {videoId} = useParams()
     const video = videos?.find(video => video.id == videoId)
-    console.log(video)
+    const users = useSelector(state => state.session.allUsers)
+    const videoPoster = users?.find(user => user.id == video.user_id)
+    console.log(videoPoster, '----------')
 
     useEffect(async () => {
-        await dispatch(getVideosThunk())
+        await dispatch(getVideosThunk());
+        await dispatch(getUsersThunk());
     }, [dispatch])
+
+    if(!video) return null
 
     return (
         <div className='video-page-container'>
-            <video width='100%' height='590' controls id='video-box'>
-                <source src={video.url}/>
+            <div className='video-page-inner-wrapper'>
+            <div className='video-page-left-wrapper'>
+            <video width='100%' height='auto' controls id='video-box'>
+                <source src={video?.url}/>
             </video>
+            <div className='video-title'>{video?.title}</div>
+            <div className='video-user-and-likes'>
+                <div className='video-poster-info'>
+                    {videoPoster?.profile_pic && <img alt={video?.user_id} src={videoPoster?.profile_pic} id='video-poster-profile-pic'/>}
+                    {!videoPoster?.profile_pic && (<div id='video-poster-first-initial'>{videoPoster?.username[0]}</div>)}
+                    <div className='video-poster-name-and-subscribers'>
+                        <span id='video-poster-username'>{videoPoster?.username}</span>
+                        <span id='video-poster-subscribers'>2.2M subscribers</span>
+                    </div>
+                </div>
+                <div className='likes-and-dislikes'>
+                    <div id='likes'>
+                    <i className="fa-regular fa-thumbs-up" id='thumb-up-icon'/>
+                    <span id='num-of-likes'>{video?.num_likes}</span>
+                    </div>
+                    <div id='likes-dislikes-spacer'></div>
+                    <div id='dislikes'>
+                    <i class="fa-regular fa-thumbs-down" id='thumb-down-icon'/>
+                    </div>
+                </div>
+            </div>
+            <div className='video-page-description'>
+                <div className='video-page-description-inner-wrapper'>
+                    <div id='video-description-header'>
+                        <span id='video-description-header-num-views'>{video?.num_views} views</span>
+                    </div>
+                    <p id='video-description'>{video?.description}</p>
+                </div>
+            </div>
+            </div>
+            </div>
         </div>
     )
 }

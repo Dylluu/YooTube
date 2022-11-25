@@ -13,12 +13,15 @@ def seed_users():
         first_name='Rotten', last_name='Tomatoes', username='Rotten Tomatoes Trailers', email='rottentomatoes@aa.io', profile_pic='https://yt3.ggpht.com/_XxIsLgks3G7PJ1Yhfq6GWBeDr2PfYIi9xrbz-7AnsaiutSh6pItq4odcQgXRAvCn1KuGqlj4g=s176-c-k-c0x00ffffff-no-rj', password='password')
     espn = User(
         first_name='ESPN', last_name='Sports', username='ESPN', email='espn@aa.io', profile_pic='https://yt3.ggpht.com/ytc/AMLnZu85lWboVPtYPEZESVzB-KeDb_CntR9GxPYBBdwn7f8=s176-c-k-c0x00ffffff-no-rj', password='password')
+    drake = User(
+        first_name='Aubrey', last_name='Graham', username='Drake', email='drake@aa.io', profile_pic='https://yt3.ggpht.com/ytc/AMLnZu8h3cs9KuwGOH9oNDl3tRyNO7-3yHUuaigEjBDqLg=s176-c-k-c0x00ffffff-no-rj', password='password')
 
     db.session.add(demo)
     db.session.add(formula_1)
     db.session.add(gordon)
     db.session.add(rotten)
     db.session.add(espn)
+    db.session.add(drake)
     db.session.commit()
 
 

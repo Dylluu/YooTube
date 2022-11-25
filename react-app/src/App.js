@@ -32,6 +32,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path='/videos/:videoId'>
+          <TopNavigation />
           <VideoPage />
         </Route>
         <Route path='/login' exact={true}>
