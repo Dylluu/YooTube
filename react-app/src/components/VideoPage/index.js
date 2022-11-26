@@ -57,7 +57,7 @@ function VideoPage () {
         <div className='video-page-container'>
             <div className='video-page-inner-wrapper'>
             <div className='video-page-left-wrapper'>
-            <video width='100%' height='auto' controls id='video-box'>
+            <video width='100%' height='auto' autoPlay controls id='video-box'>
                 <source src={video?.url}/>
             </video>
             <div className='video-title'>{video?.title}</div>

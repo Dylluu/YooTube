@@ -1,5 +1,4 @@
 const GET_COMMENTS = 'comments/GET_COMMENTS';
-const POST_COMMENT = 'comments/POST_COMMENT';
 
 export const postCommentThunk = (videoId, comment) => async (dispatch) => {
     await fetch(`/api/comments/${videoId}/new`, {
@@ -11,6 +10,12 @@ export const postCommentThunk = (videoId, comment) => async (dispatch) => {
             comment
         })
     })
+}
+
+export const deleteCommentThunk = (commentId) => async (dispatch) => {
+    await fetch(`/api/comments/${commentId}/delete`, {
+        method: 'DELETE'
+    });
 }
 
 const getCommentsAction = (payload) => ({

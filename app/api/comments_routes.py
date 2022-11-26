@@ -12,6 +12,7 @@ def get_comments_for_video(id):
     return {'comments': [comment.to_dict() for comment in comments]}
 
 @comments_routes.route('/<int:id>/new', methods=['POST'])
+@login_required
 def post_comment(id):
     """Posts a comment for a video"""
     form = CommentForm()
@@ -26,3 +27,12 @@ def post_comment(id):
         db.session.add(comment)
         db.session.commit()
         return comment.to_dict()
+
+@comments_routes.route('/<int:id>/delete', methods=['DELETE'])
+@login_required
+def delete_comment(id):
+    """Deletes a comment"""
+    comment = Comment.query.get(id)
+    db.session.delete(comment)
+    db.session.commit()
+    return dict(message='Deleted comment')
