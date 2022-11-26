@@ -1,4 +1,21 @@
 const GET_COMMENTS = 'comments/GET_COMMENTS';
+const POST_COMMENT = 'comments/POST_COMMENT';
+
+export const postCommentThunk = (videoId, comment) => async (dispatch) => {
+    const response = await fetch(`/api/comments/${videoId}/new`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            comment
+        })
+    })
+
+    if(response.ok) {
+        await dispatch(getCommentsThunk())
+    }
+}
 
 const getCommentsAction = (payload) => ({
     type: GET_COMMENTS,

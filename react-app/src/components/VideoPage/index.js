@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import './VideoPage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getVideosThunk } from '../../store/videos';
 import { getUsersThunk } from '../../store/session';
 import { getCommentsThunk } from '../../store/comments';
+import { postCommentThunk } from '../../store/comments';
 import CommentCards from '../CommentCards';
 
 function VideoPage () {
 
     const dispatch = useDispatch();
+    const [commentText, setCommentText] = useState('');
+    // console.log(commentText, '###')
     const videos = useSelector(state => state.videos.allVideos.videos);
     const {videoId} = useParams();
     const video = videos?.find(video => video.id == videoId);
@@ -32,6 +35,20 @@ function VideoPage () {
         await dispatch(getUsersThunk());
         await dispatch(getCommentsThunk(video?.id));
     }, [dispatch])
+
+    const postComment = async (e) => {
+        e.preventDefault()
+        await dispatch(postCommentThunk(video?.id, commentText))
+    }
+
+    const resetComment = async (e) => {
+        e.preventDefault()
+        setCommentText('')
+    }
+
+    const updateComment = (e) => {
+        setCommentText(e.target.value)
+    }
 
     if(!video) return null
 
@@ -82,7 +99,19 @@ function VideoPage () {
                         <div id='video-poster-first-initial'>{currUser.username[0]}</div>
                     )}
                     <div className='create-comment-input-div'>
-                    <textarea className='create-comment-input-field' placeholder='Add a comment...' maxLength='255'></textarea>
+                    <textarea className='create-comment-input-field' placeholder='Add a comment...' maxLength='255' value={commentText}
+                    onChange={updateComment}
+                    ></textarea>
+                    {commentText.length > 0 && (
+                        <div className='comment-submit-wrapper'>
+                            <div id='comment-cancel-button'
+                            onClick={resetComment}
+                            >Cancel</div>
+                            <div id='comment-submit-button'
+                            onClick={postComment}
+                            >Comment</div>
+                        </div>
+                    )}
                     </div>
                 </div>}
                 {comments.length > 0 && comments.map((comment) => (

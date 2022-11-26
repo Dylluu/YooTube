@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 function CommentCards ({comment}) {
 
     const users = useSelector(state => state.session.allUsers);
-    console.log(users, '------')
+    // console.log(users, '------')
     const commentor = users?.find(user => user.id == comment.user_id);
 
     return (
