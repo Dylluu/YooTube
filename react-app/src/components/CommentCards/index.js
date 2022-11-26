@@ -13,6 +13,7 @@ function CommentCards ({comment}) {
     // console.log(users, '------')
     const commentor = users?.find(user => user.id == comment.user_id);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [editOpen, setEditOpen] = useState(false);
     const dispatch = useDispatch();
 
     function handleMenuOpen() {
@@ -25,6 +26,10 @@ function CommentCards ({comment}) {
         if(menuOpen) {
             setMenuOpen(false);
         }
+    }
+
+    function handleEditOpen() {
+        setEditOpen(true);
     }
 
     async function handleDeleteComment(e) {
@@ -42,7 +47,7 @@ function CommentCards ({comment}) {
             {!commentor?.profile_pic && (
                 <div id='video-poster-first-initial'>{commentor?.username[0]}</div>
             )}
-            <div className='comment-content-div'>
+            {!editOpen && <div className='comment-content-div'>
                 <div className='comment-content-header'>
                     <span id='comment-content-header-poster'>{commentor?.username}
                     {currUser.id == comment.user_id && (
@@ -54,9 +59,13 @@ function CommentCards ({comment}) {
                     />
                     {menuOpen && (
                         <div className='comments-menu-div'
-                        onClick={(e) => {handleDeleteComment(e)}}
                         >
-                            <span id='delete-button'><i className="fa-solid fa-trash" id='comment-trash-icon'/> Delete Comment</span>
+                            <span id='edit-button'
+                            onClick={() => handleEditOpen()}
+                            ><i className="fa-solid fa-pen" id='comment-pen-icon'/> Edit</span>
+                            <span id='delete-button'
+                            onClick={(e) => {handleDeleteComment(e)}}
+                            ><i className="fa-solid fa-trash" id='comment-trash-icon'/> Delete</span>
                         </div>
                     )}
                     </div>)}
@@ -68,7 +77,22 @@ function CommentCards ({comment}) {
             <span id='comments-num-likes'>{comment?.num_likes}</span>
             <i className="fa-regular fa-thumbs-down" id='comments-thumb-down-icon'/>
             </div>
-            </div>
+            </div>}
+            {editOpen && <div className='create-comment-input-div'>
+                    <textarea className='create-comment-input-field' id='edit-comment-input-field' placeholder='Add a comment...' maxLength='255'
+                    // onChange={updateComment}
+                    ></textarea>
+                    {(
+                        <div className='comment-submit-wrapper'>
+                            <div id='comment-cancel-button'
+                            // onClick={resetComment}
+                            >Cancel</div>
+                            <div id='comment-submit-button'
+                            // onClick={postComment}
+                            >Comment</div>
+                        </div>
+                    )}
+                    </div>}
         </div>
     )
 }
