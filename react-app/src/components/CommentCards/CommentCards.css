@@ -1,0 +1,70 @@
+.comment-cards {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 23px;
+    /* border: solid 1px red; */
+}
+
+.comment-content-div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: -3px;
+    margin-left: 15px;
+    /* border: solid 1px blue; */
+}
+
+#comment-content-header-poster {
+    color: white;
+    font-size: 13px;
+}
+
+.comment-comment-div {
+    margin-top: 4px;
+    font-size: 13.5px;
+    font-weight: 400;
+    color: white;
+}
+
+.comments-likes-dislikes {
+    display: flex;
+    flex-direction: row;
+    margin-top: -7px;
+    align-items: center;
+    width: 80px;
+    /* border: solid 1px blue; */
+}
+
+#comments-num-likes {
+    color: #AAAAAA;
+    font-size: 13px;
+    margin-left: 3px;
+    margin-right: 10px;
+}
+
+#comments-thumb-up-icon {
+    color: #F1F1F1;
+    font-size: 17px;
+    padding: 7px;
+    border-radius: 75%;
+    /* border: solid 1px blue; */
+    cursor: pointer;
+}
+
+#comments-thumb-up-icon:hover {
+    background-color: #272727;
+}
+
+#comments-thumb-down-icon {
+    color: #F1F1F1;
+    font-size: 17px;
+    padding: 7px;
+    border-radius: 75%;
+    /* border: solid 1px blue; */
+    cursor: pointer;
+}
+
+#comments-thumb-down-icon:hover {
+    background-color: #272727;
+}

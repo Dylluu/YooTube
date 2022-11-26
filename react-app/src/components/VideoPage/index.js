@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getVideosThunk } from '../../store/videos';
 import { getUsersThunk } from '../../store/session';
 import { getCommentsThunk } from '../../store/comments';
+import CommentCards from '../CommentCards';
 
 function VideoPage () {
 
@@ -84,6 +85,9 @@ function VideoPage () {
                     <textarea className='create-comment-input-field' placeholder='Add a comment...' maxLength='255'></textarea>
                     </div>
                 </div>}
+                {comments.length > 0 && comments.map((comment) => (
+                <CommentCards key={comment.id} comment={comment}/>
+                ))}
             </div>
             </div>
             </div>
