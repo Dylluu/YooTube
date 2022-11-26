@@ -8,12 +8,14 @@ import { getCommentsThunk } from '../../store/comments';
 
 function VideoPage () {
 
-    const dispatch = useDispatch()
-    const videos = useSelector(state => state.videos.allVideos.videos)
-    const {videoId} = useParams()
-    const video = videos?.find(video => video.id == videoId)
-    const users = useSelector(state => state.session.allUsers)
-    const videoPoster = users?.find(user => user.id == video.user_id)
+    const dispatch = useDispatch();
+    const videos = useSelector(state => state.videos.allVideos.videos);
+    const {videoId} = useParams();
+    const video = videos?.find(video => video.id == videoId);
+    const users = useSelector(state => state.session.allUsers);
+    const videoPoster = users?.find(user => user.id == video.user_id);
+    const comments = useSelector(state => state.comments.comments);
+    const currUser = useSelector(state => state.session.user);
     // console.log(videoPoster, '----------')
     // console.log(video?.created_at)
     // console.log(new Date(video?.created_at), '--------')
@@ -68,6 +70,20 @@ function VideoPage () {
                     </div>
                     <p id='video-description'>{video?.description}</p>
                 </div>
+            </div>
+            <div className='video-page-comments-top-div'>
+                <span id='video-page-num-of-comments'>{comments?.length} {comments?.length !== 1 ? 'Comments' : 'Comment'}</span>
+                {currUser && <div className='video-page-post-comment-form'>
+                    {currUser.profile_pic && (
+                        <img alt={currUser.username} src={currUser.profile_pic} id='video-poster-profile-pic'/>
+                    )}
+                    {!currUser.profile_pic && (
+                        <div id='video-poster-first-initial'>{currUser.username[0]}</div>
+                    )}
+                    <div className='create-comment-input-div'>
+                    <textarea className='create-comment-input-field' placeholder='Add a comment...' maxLength='255'></textarea>
+                    </div>
+                </div>}
             </div>
             </div>
             </div>

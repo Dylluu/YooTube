@@ -59,6 +59,8 @@
 #video-poster-profile-pic {
     border-radius: 75%;
     object-fit: cover;
+    min-height: 40px;
+    min-width: 40px;
 }
 
 #video-poster-first-initial {
@@ -68,8 +70,8 @@
     border-radius: 75%;
     color: white;
     font-size: 20px;
-    height: 40px;
-    width: 40px;
+    min-height: 40px;
+    min-width: 40px;
     background-color: blueviolet;
 }
 
@@ -215,4 +217,54 @@
 
 #video-description-header-date {
     margin-left: 8px;
+}
+
+.video-page-comments-top-div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 25px;
+    /* border: solid 1px red; */
+}
+
+#video-page-num-of-comments {
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.video-page-post-comment-form {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    /* border: solid 1px blue; */
+}
+
+.create-comment-input-div {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+}
+
+.create-comment-input-field {
+    font-family: "Roboto","Arial",sans-serif;
+    resize: none;
+    width: 96%;
+    height: 65.5%;
+    max-height: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: white;
+    border-bottom: solid 1px #272727;
+}
+
+.create-comment-input-field::placeholder {
+    color: #AAAAAA;
 }
