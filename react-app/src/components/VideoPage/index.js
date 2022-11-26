@@ -77,7 +77,7 @@ function VideoPage () {
                     </div>
                     <div id='likes-dislikes-spacer'></div>
                     <div id='dislikes'>
-                    <i class="fa-regular fa-thumbs-down" id='thumb-down-icon'/>
+                    <i className="fa-regular fa-thumbs-down" id='thumb-down-icon'/>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 const GET_COMMENTS = 'comments/GET_COMMENTS';
 
 export const postCommentThunk = (videoId, comment) => async (dispatch) => {
-    await fetch(`/api/comments/${videoId}/new`, {
+    await fetch(`/api/videos/${videoId}/comments/new`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -13,9 +13,10 @@ export const postCommentThunk = (videoId, comment) => async (dispatch) => {
 }
 
 export const deleteCommentThunk = (commentId) => async (dispatch) => {
-    await fetch(`/api/comments/${commentId}/delete`, {
+    await fetch(`/api/comments/${commentId}`, {
         method: 'DELETE'
     });
+
 }
 
 const getCommentsAction = (payload) => ({
@@ -24,7 +25,7 @@ const getCommentsAction = (payload) => ({
 })
 
 export const getCommentsThunk = (videoId) => async (dispatch) => {
-    const response = await fetch(`/api/comments/${videoId}`)
+    const response = await fetch(`/api/videos/${videoId}/comments`)
 
     if(response.ok) {
         const comments = await response.json()

@@ -31,7 +31,7 @@ function CommentCards ({comment}) {
         e.stopPropagation()
         await dispatch(deleteCommentThunk(comment.id));
         await dispatch(getCommentsThunk(videoId));
-        setMenuOpen(false);
+        // setMenuOpen(false);
     }
 
     return (
