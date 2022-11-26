@@ -12,7 +12,6 @@ function VideoPage () {
 
     const dispatch = useDispatch();
     const [commentText, setCommentText] = useState('');
-    // console.log(commentText, '###')
     const videos = useSelector(state => state.videos.allVideos.videos);
     const {videoId} = useParams();
     const video = videos?.find(video => video.id == videoId);
@@ -33,12 +32,14 @@ function VideoPage () {
     useEffect(async () => {
         await dispatch(getVideosThunk());
         await dispatch(getUsersThunk());
-        await dispatch(getCommentsThunk(video?.id));
+        await dispatch(getCommentsThunk(videoId));
     }, [dispatch])
 
     const postComment = async (e) => {
         e.preventDefault()
-        await dispatch(postCommentThunk(video?.id, commentText))
+        await dispatch(postCommentThunk(videoId, commentText))
+        setCommentText('');
+        await dispatch(getCommentsThunk(videoId))
     }
 
     const resetComment = async (e) => {

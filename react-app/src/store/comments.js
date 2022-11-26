@@ -2,7 +2,7 @@ const GET_COMMENTS = 'comments/GET_COMMENTS';
 const POST_COMMENT = 'comments/POST_COMMENT';
 
 export const postCommentThunk = (videoId, comment) => async (dispatch) => {
-    const response = await fetch(`/api/comments/${videoId}/new`, {
+    await fetch(`/api/comments/${videoId}/new`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -11,10 +11,6 @@ export const postCommentThunk = (videoId, comment) => async (dispatch) => {
             comment
         })
     })
-
-    if(response.ok) {
-        await dispatch(getCommentsThunk())
-    }
 }
 
 const getCommentsAction = (payload) => ({
@@ -39,7 +35,7 @@ const comments = (state = initialState, action) => {
     const newState = {...state}
     switch(action.type) {
         case GET_COMMENTS:
-            newState.comments = action.payload.comments
+            newState.comments = action.payload.comments.reverse()
             return newState
         default:
             return state
