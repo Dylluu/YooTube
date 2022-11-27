@@ -33,6 +33,16 @@ export const getCommentsThunk = (videoId) => async (dispatch) => {
     }
 }
 
+export const editCommentsThunk = (data) => async (dispatch) => {
+    await fetch(`/api/comments/${data.id}`, {
+		method: 'put',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(data)
+	});
+}
+
 const initialState = {
     comments: {}
 }

@@ -263,7 +263,7 @@
 .create-comment-input-field {
     font-family: "Roboto","Arial",sans-serif;
     resize: none;
-    white-space: pre-line;
+    /* white-space: pre-line; */
     width: 96%;
     /* height: 65.5%; */
     height: 26px;

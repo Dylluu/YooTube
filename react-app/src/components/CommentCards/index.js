@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import './CommentCards.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteCommentThunk } from '../../store/comments';
+import { deleteCommentThunk, editCommentsThunk } from '../../store/comments';
 import { getCommentsThunk } from '../../store/comments';
 
 function CommentCards ({comment}) {
@@ -14,7 +14,19 @@ function CommentCards ({comment}) {
     const commentor = users?.find(user => user.id == comment.user_id);
     const [menuOpen, setMenuOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
+    const [editedComment, setEditedComment] = useState(comment.comment);
+    const [ogComment, setOgComment] = useState(comment.comment);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        const saveButton = document.getElementById('edit-submit-button');
+        if((editedComment == ogComment) && saveButton) {
+            saveButton.classList.add('disabled-save');
+        }
+        if(saveButton && editedComment !== ogComment) {
+            saveButton.classList.remove('disabled-save');
+        }
+    }, [editOpen])
 
     function handleMenuOpen() {
         if(!menuOpen) {
@@ -37,6 +49,30 @@ function CommentCards ({comment}) {
         await dispatch(deleteCommentThunk(comment.id));
         await dispatch(getCommentsThunk(videoId));
         // setMenuOpen(false);
+    }
+
+    function updatedEditedComment(e) {
+        setEditedComment(e.target.value)
+    }
+
+    function cancelEditComment() {
+        setEditOpen(false);
+        setEditedComment(comment.comment);
+    }
+
+    async function handleEditComment(e) {
+
+        if(editedComment.length){
+            const newComment = {
+                id: comment.id,
+                comment: editedComment
+            }
+
+            e.stopPropagation()
+            await dispatch(editCommentsThunk(newComment));
+            await dispatch(getCommentsThunk(videoId));
+            setEditOpen(false);
+        }
     }
 
     return (
@@ -79,17 +115,18 @@ function CommentCards ({comment}) {
             </div>
             </div>}
             {editOpen && <div className='create-comment-input-div'>
-                    <textarea className='create-comment-input-field' id='edit-comment-input-field' placeholder='Add a comment...' maxLength='255'
-                    // onChange={updateComment}
+                    <textarea className='create-comment-input-field' id='edit-comment-input-field' autoFocus maxLength='255'
+                    value={editedComment}
+                    onChange={updatedEditedComment}
                     ></textarea>
                     {(
-                        <div className='comment-submit-wrapper'>
-                            <div id='comment-cancel-button'
-                            // onClick={resetComment}
+                        <div className='edit-submit-wrapper'>
+                            <div id='edit-cancel-button'
+                            onClick={cancelEditComment}
                             >Cancel</div>
-                            <div id='comment-submit-button'
-                            // onClick={postComment}
-                            >Comment</div>
+                            <div id='edit-submit-button'
+                            onClick={handleEditComment}
+                            >Save</div>
                         </div>
                     )}
                     </div>}

@@ -27,6 +27,15 @@ comments_routes = Blueprint('comments', __name__)
 #         db.session.add(comment)
 #         db.session.commit()
 #         return comment.to_dict()
+@comments_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def edit_comment(id):
+    """Edits a comment"""
+    data = request.get_json()
+    comment = Comment.query.get(id)
+    comment.comment = data['comment']
+    db.session.commit()
+    return comment.to_dict()
 
 @comments_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
