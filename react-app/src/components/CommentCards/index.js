@@ -115,7 +115,7 @@ function CommentCards ({comment}) {
             </div>
             </div>}
             {editOpen && <div className='create-comment-input-div'>
-                    <textarea className='create-comment-input-field' id='edit-comment-input-field' autoFocus maxLength='255'
+                    <textarea className='create-comment-input-field' id='edit-comment-input-field' autoFocus onFocus="this.setSelectionRange(this.value.length,this.value.length);" maxLength='255'
                     value={editedComment}
                     onChange={updatedEditedComment}
                     ></textarea>
