@@ -8,10 +8,10 @@ def seed_comments():
         video_id=1, user_id=6, comment='So inspirational'
     )
     third = Comment(
-        video_id=2, user_id=1, comment='What a great race'
+        video_id=3, user_id=1, comment='What a great race'
     )
     fourth = Comment(
-        video_id=3, user_id=1, comment='That looks bomb'
+        video_id=2, user_id=1, comment='That looks bomb'
     )
     fifth = Comment(
         video_id=4, user_id=1, comment='First'
