@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './TopNavigation.css';
 import logo from '../../assets/logo.png';
-import LogoutButton from '../auth/LogoutButton';
-import { useSelector } from 'react-redux';
+import { logout } from '../../store/session';
+import { useDispatch, useSelector } from 'react-redux';
 
 function TopNavigation() {
 
     const user = useSelector(state => state.session.user);
     const [accountMenuOpen, setAccountMenuOpen] = useState(false);
+    const dispatch = useDispatch();
 
     function handleAccountMenuOpen(e){
         e.stopPropagation()
@@ -22,6 +23,10 @@ function TopNavigation() {
             setAccountMenuOpen(false);
         }
     }
+
+    const onLogout = async (e) => {
+        await dispatch(logout());
+      };
 
     return (
         <div className='top-nav-container'>
@@ -71,10 +76,30 @@ function TopNavigation() {
                                     <div className='account-menu-popout-name-and-username'>
                                         <span id='account-menu-popout-name'>{user?.first_name} {user?.last_name}</span>
                                         <span id='account-menu-popout-username'>@{user?.username}</span>
+                                        <NavLink to='/' id='manage-your-account'>Manage Your Account</NavLink>
                                     </div>
                                 </div>
                             </div>
-                            <div className='account-menu-popout-buttons-div'></div>
+                            <div className='account-menu-popout-buttons-div'>
+                                <div className='account-menu-popout-button'>
+                                    <div className='account-menu-popout-button-inner'>
+                                        <div className='account-menut-popout-button-inner-icon'>
+                                        <i className="fa-solid fa-user" id='account-menu-popout-button-icon'/>
+                                        </div>
+                                        <span className='account-menu-popout-button-text'>Your Channel</span>
+                                    </div>
+                                </div>
+                                <div className='account-menu-popout-button'
+                                onClick={onLogout}
+                                >
+                                    <div className='account-menu-popout-button-inner'>
+                                        <div className='account-menut-popout-button-inner-icon'>
+                                        <i className="fa-solid fa-arrow-right-from-bracket" id='account-menu-popout-button-icon'/>
+                                        </div>
+                                        <span className='account-menu-popout-button-text2'>Sign Out</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>}
                     </div>
                     </div>
