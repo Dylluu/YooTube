@@ -82,7 +82,7 @@ function CommentCards({ comment }) {
             {!editOpen && <div className='comment-content-div'>
                 <div className='comment-content-header'>
                     <span id='comment-content-header-poster'>{commentor?.username}
-                        {currUser.id == comment.user_id && (
+                        {currUser?.id == comment?.user_id && (
                             <div>
                                 <i className="fa-solid fa-ellipsis-vertical" id='comments-menu-dots'
                                     onClick={(e) => {

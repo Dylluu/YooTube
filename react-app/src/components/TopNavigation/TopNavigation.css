@@ -109,3 +109,104 @@
     font-size: 14px;
     font-weight: 650;
 }
+
+.top-nav-right-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.top-nav-account-button {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    width: 32px;
+    border-radius: 75%;
+    cursor: pointer;
+}
+
+#top-nav-user-profile-pic {
+    height: 100%;
+    border-radius: 75%;
+}
+
+#top-nav-user-first-initial {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    min-height: 100%;
+    min-width: 100%;
+    border-radius: 75%;
+    background-color: blueviolet;
+}
+
+.account-menu-popout {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 300px;
+    /* height: 105px; */
+    margin-right: 245px;
+    margin-top: 150px;
+    background-color: #282828;
+    border-radius: 12px;
+    cursor: default;
+}
+
+.account-menu-popout-top-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    width: 100%;
+    border-bottom: solid 1px #3E3E3E;
+}
+
+.account-menu-popout-top-inner-div {
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    width: 268px;
+    /* border: solid 1px red; */
+}
+
+#account-menu-popout-profile-pic {
+    height: 40px;
+    border-radius: 75%;
+    margin-right: 16px;
+}
+
+#account-menu-popout-first-initial {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    margin-right: 16px;
+    border: 75%;
+    color: white;
+    font-size: 20px;
+    border-radius: 75%;
+    background-color: blueviolet;
+}
+
+.account-menu-popout-name-and-username {
+    display: flex;
+    flex-direction: column;
+    max-width: 212px;
+    font-size: 16px;
+    color: #f1f1f1;
+    overflow: hidden;
+}
+
+#account-menu-popout-name {
+    margin-bottom: 2px;
+    cursor: text;
+}
+
+#account-menu-popout-username {
+    font-size: 15px;
+    cursor: text;
+}
