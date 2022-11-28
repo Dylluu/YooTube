@@ -4,6 +4,7 @@ import './CommentCards.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteCommentThunk, editCommentsThunk } from '../../store/comments';
 import { getCommentsThunk } from '../../store/comments';
+import { getOneVideoThunk } from '../../store/videos';
 
 function CommentCards({ comment }) {
 
@@ -43,7 +44,7 @@ function CommentCards({ comment }) {
     async function handleDeleteComment(e) {
         e.stopPropagation()
         await dispatch(deleteCommentThunk(comment.id));
-        await dispatch(getCommentsThunk(videoId));
+        await dispatch(getOneVideoThunk(videoId));
     }
 
     function updateEditedComment(e) {
@@ -65,7 +66,7 @@ function CommentCards({ comment }) {
             }
             e.stopPropagation()
             await dispatch(editCommentsThunk(newComment));
-            await dispatch(getCommentsThunk(videoId));
+            await dispatch(getOneVideoThunk(videoId));
             setEditOpen(false);
             setOgComment(editedComment);
         }

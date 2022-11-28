@@ -12,7 +12,7 @@ function RightVideoCards({video}) {
         <div className='right-video-cards-card-container'
         onClick={() => {
             history.push(`/videos/${video.id}`);
-            history.go(0);
+            // history.go(0);
         }}
         >
             <img alt={video.title} src={video.thumbnail} id='right-video-cards-thumbnail'/>

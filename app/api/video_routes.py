@@ -5,18 +5,6 @@ from flask_login import current_user, login_required
 
 video_routes = Blueprint('videos', __name__)
 
-@video_routes.route('/')
-def videos():
-    """Query for all videos"""
-    videos = Video.query.all()
-    return {'videos': [video.to_dict() for video in videos]}
-
-@video_routes.route('/<int:id>/comments')
-def get_comments_for_video(id):
-    """Gets all comments by video_id"""
-    comments = Comment.query.filter_by(video_id = (id))
-    return {'comments': [comment.to_dict() for comment in comments]}
-
 @video_routes.route('/<int:id>/comments/new', methods=['POST'])
 @login_required
 def post_comment(id):
@@ -33,3 +21,24 @@ def post_comment(id):
         db.session.add(comment)
         db.session.commit()
         return comment.to_dict()
+
+
+@video_routes.route('/<int:id>/comments')
+def get_comments_for_video(id):
+    """Gets all comments by video_id"""
+    comments = Comment.query.filter_by(video_id = (id))
+    return {'comments': [comment.to_dict() for comment in comments]}
+
+
+@video_routes.route('/<int:id>')
+def get_one_video(id):
+    """Query for one video"""
+    video = Video.query.get(id)
+    return video.to_dict()
+
+
+@video_routes.route('/')
+def videos():
+    """Query for all videos"""
+    videos = Video.query.all()
+    return {'videos': [video.to_dict() for video in videos]}

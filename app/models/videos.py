@@ -33,6 +33,14 @@ class Video(db.Model):
             'num_likes': self.num_likes,
             'url': self.url,
             'thumbnail': self.thumbnail,
+            'comments': self.get_video_comments(),
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
+
+    def get_video_comments(self):
+        if self.comments:
+            comments = [comment.to_dict() for comment in self.comments]
+            return comments[::-1]
+        else:
+            return []

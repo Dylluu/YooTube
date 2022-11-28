@@ -6,25 +6,23 @@ import { getVideosThunk } from '../../store/videos';
 import { getUsersThunk } from '../../store/session';
 import { getCommentsThunk } from '../../store/comments';
 import { postCommentThunk } from '../../store/comments';
+import { getOneVideoThunk } from '../../store/videos';
 import CommentCards from '../CommentCards';
 import RightVideoCards from '../RightVideoCards';
 
 function VideoPage () {
 
     const dispatch = useDispatch();
-    const [commentText, setCommentText] = useState('');
-    const videos = useSelector(state => state.videos.allVideos.videos);
     const {videoId} = useParams();
-    const video = videos?.find(video => video.id == videoId);
+    const video = useSelector(state => state.videos.oneVideo);
+    const videos = useSelector(state => state.videos.allVideos.videos);
+    const otherVideos = videos?.filter(vid => vid.id !== videoId);
+    const comments = video?.comments;
     const users = useSelector(state => state.session.allUsers);
-    const videoPoster = users?.find(user => user.id == video.user_id);
-    const comments = useSelector(state => state.comments.comments);
+    const videoPoster = users?.find(user => user.id == video?.user_id);
     const currUser = useSelector(state => state.session.user);
-    const otherVideos = videos?.filter(vid => vid.id !== video.id);
-    // console.log(videoPoster, '----------')
-    // console.log(video?.created_at)
-    // console.log(new Date(video?.created_at), '--------')
     const date = new Date(video?.created_at);
+    const [commentText, setCommentText] = useState('');
 
     function getDate(date) {
         const split = `${date}`.split(' ');
@@ -32,16 +30,17 @@ function VideoPage () {
     }
 
     useEffect(async () => {
+        await dispatch(getOneVideoThunk(videoId));
         await dispatch(getVideosThunk());
         await dispatch(getUsersThunk());
-        await dispatch(getCommentsThunk(videoId));
-    }, [dispatch])
+        // await dispatch(getCommentsThunk(videoId));
+    }, [dispatch, videoId])
 
     const postComment = async (e) => {
         e.preventDefault()
         await dispatch(postCommentThunk(videoId, commentText))
         setCommentText('');
-        await dispatch(getCommentsThunk(videoId))
+        await dispatch(getOneVideoThunk(videoId))
     }
 
     const resetComment = async (e) => {
@@ -53,7 +52,7 @@ function VideoPage () {
         setCommentText(e.target.value)
     }
 
-    if(!video) return null
+    if(!Object.values(video).length) return null
 
     return (
         <div className='video-page-container'>
@@ -117,13 +116,13 @@ function VideoPage () {
                     )}
                     </div>
                 </div>}
-                {comments.length > 0 && comments.map((comment) => (
-                <CommentCards key={comment.id} comment={comment}/>
+                {comments?.length > 0 && comments?.map((comment) => (
+                <CommentCards key={comment?.id} comment={comment}/>
                 ))}
             </div>
             </div>
             <div className='right-video-cards-div'>
-                {otherVideos.map(vid => (
+                {otherVideos?.map(vid => (
                     <RightVideoCards video={vid}/>
                 ))}
             </div>

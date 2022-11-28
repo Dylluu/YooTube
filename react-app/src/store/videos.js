@@ -1,9 +1,24 @@
 const GET_VIDEOS = 'videos/GET_VIDEOS';
+const GET_ONE_VIDEO = 'videos/GET_ONE_VIDEO';
 
 const getVideosAction = (payload) => ({
     type: GET_VIDEOS,
     payload
 })
+
+const getOneVideo = (payload) => ({
+    type: GET_ONE_VIDEO,
+    payload
+})
+
+export const getOneVideoThunk = (videoId) => async (dispatch) => {
+    const response = await fetch(`/api/videos/${videoId}`)
+
+    if(response.ok) {
+        const oneVideo = await response.json()
+        dispatch(getOneVideo(oneVideo))
+    }
+}
 
 export const getVideosThunk = () => async (dispatch) => {
     const response = await fetch('/api/videos')
@@ -15,7 +30,8 @@ export const getVideosThunk = () => async (dispatch) => {
 }
 
 const initialState = {
-    allVideos: {}
+    allVideos: {},
+    oneVideo: {}
 }
 
 const videos = (state = initialState, action) => {
@@ -23,6 +39,9 @@ const videos = (state = initialState, action) => {
     switch(action.type) {
         case GET_VIDEOS:
             newState.allVideos = action.payload
+            return newState
+        case GET_ONE_VIDEO:
+            newState.oneVideo = action.payload
             return newState
         default:
             return state
