@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import './VideoPage.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getVideosThunk } from '../../store/videos';
+import { clearVideoAction, getVideosThunk } from '../../store/videos';
 import { getUsersThunk } from '../../store/session';
 import { getCommentsThunk } from '../../store/comments';
 import { postCommentThunk } from '../../store/comments';
@@ -16,7 +16,7 @@ function VideoPage () {
     const {videoId} = useParams();
     const video = useSelector(state => state.videos.oneVideo);
     const videos = useSelector(state => state.videos.allVideos.videos);
-    const otherVideos = videos?.filter(vid => vid.id !== videoId);
+    const otherVideos = videos?.filter(vid => vid.id !== +videoId);
     const comments = video?.comments;
     const users = useSelector(state => state.session.allUsers);
     const videoPoster = users?.find(user => user.id == video?.user_id);
@@ -30,6 +30,7 @@ function VideoPage () {
     }
 
     useEffect(async () => {
+        await dispatch(clearVideoAction());
         await dispatch(getOneVideoThunk(videoId));
         await dispatch(getVideosThunk());
         await dispatch(getUsersThunk());

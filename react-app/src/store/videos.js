@@ -1,5 +1,10 @@
 const GET_VIDEOS = 'videos/GET_VIDEOS';
 const GET_ONE_VIDEO = 'videos/GET_ONE_VIDEO';
+const CLEAR_VIDEO = 'videos/CLEAR_VIDEO';
+
+export const clearVideoAction = () => ({
+    type: CLEAR_VIDEO
+})
 
 const getVideosAction = (payload) => ({
     type: GET_VIDEOS,
@@ -42,6 +47,9 @@ const videos = (state = initialState, action) => {
             return newState
         case GET_ONE_VIDEO:
             newState.oneVideo = action.payload
+            return newState
+        case CLEAR_VIDEO:
+            newState.oneVideo = {}
             return newState
         default:
             return state
