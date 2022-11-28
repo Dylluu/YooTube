@@ -1,7 +1,7 @@
 .comment-cards {
     display: flex;
     flex-direction: row;
-    width: 96%;
+    width: 98%;
     margin-bottom: 23px;
     /* border: solid 1px red; */
 }
@@ -203,14 +203,14 @@
     background-color: #272727;
 }
 
-#edit-submit-button:hover {
-    background-color: #65B8FF;
-}
-
 .disabled-save {
     background-color: #272727;
 }
 
 .enabled-save {
     background-color: #3EA6FF;
+}
+
+.enabled-save:hover {
+    background-color: #65B8FF;
 }

@@ -7,6 +7,7 @@ import { getUsersThunk } from '../../store/session';
 import { getCommentsThunk } from '../../store/comments';
 import { postCommentThunk } from '../../store/comments';
 import CommentCards from '../CommentCards';
+import RightVideoCards from '../RightVideoCards';
 
 function VideoPage () {
 
@@ -19,6 +20,7 @@ function VideoPage () {
     const videoPoster = users?.find(user => user.id == video.user_id);
     const comments = useSelector(state => state.comments.comments);
     const currUser = useSelector(state => state.session.user);
+    const otherVideos = videos?.filter(vid => vid.id !== video.id);
     // console.log(videoPoster, '----------')
     // console.log(video?.created_at)
     // console.log(new Date(video?.created_at), '--------')
@@ -119,6 +121,11 @@ function VideoPage () {
                 <CommentCards key={comment.id} comment={comment}/>
                 ))}
             </div>
+            </div>
+            <div className='right-video-cards-div'>
+                {otherVideos.map(vid => (
+                    <RightVideoCards video={vid}/>
+                ))}
             </div>
             </div>
         </div>

@@ -1,0 +1,49 @@
+.right-video-cards-card-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 94px;
+    margin-bottom: 8px;
+    /* border: solid 1px blue; */
+}
+
+#right-video-cards-thumbnail {
+    width: 168px;
+    border-radius: 8px;
+}
+
+.right-video-cards-details {
+    display: flex;
+    flex-direction: column;
+    width: 202px;
+    height: 100%;
+    margin-left: 8px;
+    /* border: solid 1px green; */
+}
+
+#right-video-cards-title {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    max-height: 36px;
+    margin-bottom: 6px;
+    overflow: hidden;
+}
+
+#right-video-cards-poster {
+    color: #AAAAAA;
+    font-size: 12px;
+    font-weight: 400;
+    max-width: 200px;
+    overflow: hidden;
+}
+
+#right-video-cards-num-views {
+    color: #AAAAAA;
+    font-size: 12px;
+    font-weight: 400;
+    max-width: 200px;
+    margin-top: 3px;
+    overflow: hidden;
+}

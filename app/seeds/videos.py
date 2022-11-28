@@ -25,11 +25,17 @@ def seed_videos():
         user_id=6, title='Drake - Headlines (Explicit)', description='Music video by Drake performing Headlines. (C) 2011 Cash Money Records Inc.', category='Music', url='https://yootubetest.s3.amazonaws.com/Drake+-+Headlines+(Explicit)-cimoNqiulUE.mp4', thumbnail='https://i3.ytimg.com/vi/cimoNqiulUE/maxresdefault.jpg'
     )
 
+    chiefs = Video(
+        user_id=7, title='Los Angeles Rams vs. Kansas City Chiefs Preview', description='The 8-2 Chiefs take on the 3-7 Rams at home. Tune in for an exciting Sunday Night Football matchup!', category='Sports', url='https://yootubetest.s3.amazonaws.com/Los+Angeles+Rams+vs.+Kansas+City+Chiefs+_+2022+Week+12+Game+Preview-mVJRzOFC0oE.mp4', thumbnail='https://i3.ytimg.com/vi/mVJRzOFC0oE/maxresdefault.jpg'
+    )
+
+
     db.session.add(first_video)
-    db.session.add(monaco_gp)
     db.session.add(burger)
+    db.session.add(monaco_gp)
     db.session.add(sushi)
     db.session.add(wiggins)
+    db.session.add(chiefs)
     db.session.add(drake)
     db.session.commit()
 

@@ -15,6 +15,8 @@ def seed_users():
         first_name='ESPN', last_name='Sports', username='ESPN', email='espn@aa.io', profile_pic='https://yt3.ggpht.com/ytc/AMLnZu85lWboVPtYPEZESVzB-KeDb_CntR9GxPYBBdwn7f8=s176-c-k-c0x00ffffff-no-rj', password='password')
     drake = User(
         first_name='Aubrey', last_name='Graham', username='Drake', email='drake@aa.io', profile_pic='https://yt3.ggpht.com/ytc/AMLnZu8h3cs9KuwGOH9oNDl3tRyNO7-3yHUuaigEjBDqLg=s176-c-k-c0x00ffffff-no-rj', password='password')
+    nfl = User(
+        first_name='NFL', last_name='Football', username='NFL', email='nfl@aa.io', profile_pic='https://yt3.ggpht.com/ytc/AMLnZu8tOlovKPswBTvH6bT6UGVCwCsEZhxK2nJatGKKY9g=s176-c-k-c0x00ffffff-no-rj', password='password')
 
     db.session.add(demo)
     db.session.add(formula_1)
@@ -22,6 +24,7 @@ def seed_users():
     db.session.add(rotten)
     db.session.add(espn)
     db.session.add(drake)
+    db.session.add(nfl)
     db.session.commit()
 
 

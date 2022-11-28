@@ -264,7 +264,7 @@
     font-family: "Roboto","Arial",sans-serif;
     resize: none;
     /* white-space: pre-line; */
-    width: 96%;
+    width: 98%;
     /* height: 65.5%; */
     height: 26px;
     /* max-height: 100%; */
@@ -290,7 +290,7 @@
     flex-direction: row;
     justify-content: flex-end;
     margin-top: 7px;
-    width: 96%;
+    width: 98%;
     /* border: solid 1px blue; */
 }
 
@@ -327,4 +327,13 @@
 
 #comment-submit-button:hover {
     background-color: #65B8FF;
+}
+
+.right-video-cards-div {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    width: 402px;
+    margin-left: 24px;
+    /* border: solid 1px red; */
 }
