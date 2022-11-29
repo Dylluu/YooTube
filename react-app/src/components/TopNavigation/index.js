@@ -4,6 +4,7 @@ import './TopNavigation.css';
 import logo from '../../assets/logo.png';
 import { logout } from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
+import UploadVideoModal from '../UploadVideoModal';
 
 function TopNavigation() {
 
@@ -51,6 +52,7 @@ function TopNavigation() {
                 {user && (
                     <div className='top-nav-right-buttons'>
                         {/* <LogoutButton /> */}
+                        <UploadVideoModal />
                     <div className='top-nav-account-button'
                     onClick={(e) => handleAccountMenuOpen(e)}
                     >

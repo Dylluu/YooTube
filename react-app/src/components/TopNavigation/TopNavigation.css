@@ -112,6 +112,7 @@
 
 .top-nav-right-buttons {
     display: flex;
+    align-items: center;
     flex-direction: row;
 }
 

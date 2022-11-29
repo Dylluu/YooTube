@@ -53,7 +53,9 @@ function VideoPage () {
         setCommentText(e.target.value)
     }
 
-    if(!Object.values(video).length) return null
+    if(!Object.values(video).length) return (
+        <div className='video-page-container'></div>
+    )
 
     return (
         <div className='video-page-container'>
