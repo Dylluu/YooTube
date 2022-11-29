@@ -21,7 +21,6 @@ function UploadVideoModalPage({setShowModal}) {
     }, [])
 
     function handleVideoDropped() {
-        console.log('HANDLEVIDEODROP')
         const firstUploadForm = document.getElementsByClassName('upload-video-page-body');
         const secondUploadForm = document.getElementsByClassName('upload-video-details-form');
         if(!videoDropped) {

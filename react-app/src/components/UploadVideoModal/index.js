@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import './UploadVideoModalPage.css';
+import addVid from '../../assets/youtubeAddVid.png';
 import UploadVideoModalPage from './UploadVideoModalPage';
 
 function UploadVideoModal() {
@@ -10,7 +11,7 @@ function UploadVideoModal() {
         <div className='add-video-button-wrapper'>
             <div id='add-video-button'
             onClick={() => setShowModal(true)}
-            ><i className='fa-solid fa-file-video' id='video-add-icon'/></div>
+            ><img alt='addVideo' src={addVid} id='video-add-icon'/></div>
             {showModal && (
             <Modal onClose={() => setShowModal(false)}>
                 <UploadVideoModalPage setShowModal={setShowModal}/>
