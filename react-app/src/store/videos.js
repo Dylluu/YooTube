@@ -22,6 +22,12 @@ const getUserVideos = (payload) => ({
     payload
 })
 
+export const deleteVideoThunk = (videoId) => async (dispatch) => {
+    await fetch(`/api/videos/${videoId}`, {
+        method: 'DELETE'
+    });
+}
+
 export const getUserVideosThunk = () => async (dispatch) => {
     const response = await fetch('/api/users/videos')
 

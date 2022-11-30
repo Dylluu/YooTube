@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { deleteVideoThunk, getUserVideosThunk } from '../../store/videos';
 
 function YourVideosCards({ userVid }) {
     const history = useHistory();
+    const dispatch = useDispatch();
     const [menuOpen, setMenuOpen] = useState(false);
 
     function handleMenuOpen() {
@@ -43,7 +45,11 @@ function YourVideosCards({ userVid }) {
 
                                 ><i className="fa-solid fa-pen" id='comment-pen-icon' /> Edit</span>
                                 <span id='delete-button'
-
+                                onClick={async (e) => {
+                                    e.stopPropagation()
+                                    await dispatch(deleteVideoThunk(userVid.id))
+                                    await dispatch(getUserVideosThunk())
+                                }}
                                 ><i className="fa-solid fa-trash" id='comment-trash-icon' /> Delete</span>
                             </div>
                         )}

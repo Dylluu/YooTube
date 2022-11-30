@@ -39,6 +39,15 @@ def get_one_video(id):
     video = Video.query.get(id)
     return video.to_dict()
 
+@video_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_video(id):
+    """Delete video by id"""
+    video = Video.query.get(id)
+    db.session.delete(video)
+    db.session.commit()
+    return dict(mesage='Deleted video')
+
 @video_routes.route('/')
 def videos():
     """Query for all videos"""
