@@ -15,7 +15,12 @@ function RightVideoCards({video}) {
             // history.go(0);
         }}
         >
-            <img alt={video.title} src={video.thumbnail} id='right-video-cards-thumbnail'/>
+            <img alt={video.title} src={video.thumbnail} id='right-video-cards-thumbnail'
+            onError={({ currentTarget }) => {
+                currentTarget.onerror = null;
+                currentTarget.src="https://assets.entrepreneur.com/content/3x2/2000/20180117155526-youtube.jpeg?crop=16:9";
+              }}
+            />
             <div className='right-video-cards-details'>
                 <span id='right-video-cards-title'>{video?.title}</span>
                 <span id='right-video-cards-poster'>{user?.username}</span>

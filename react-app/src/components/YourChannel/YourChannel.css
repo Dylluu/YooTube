@@ -114,3 +114,49 @@
     color: rgb(241, 241, 241);
     font-size: 20px;
 }
+
+.your-channel-user-videos-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 50px;
+    /* border: solid 1px red; */
+}
+
+.your-channel-user-video-card {
+    display: flex;
+    flex-direction: row;
+    min-width: 862px;
+    max-height: 138px;
+    margin-bottom: 30px;
+    /* border: solid 1px blue; */
+}
+
+#your-channel-user-video-card-thumbnail {
+    width: 246px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.your-channel-user-video-card-details {
+    display: flex;
+    flex-direction: column;
+    min-width: 600px;
+    max-width: 600px;
+    margin-left: 12px;
+    /* border: solid 1px blue; */
+}
+
+#your-channel-user-video-card-details-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 18px;
+    color: #f1f1f1;
+}
+
+#your-channel-user-video-card-details-views {
+    color: #AAAAAA;
+    font-size: 12px;
+    margin-top: -1px;
+}
