@@ -1,8 +1,15 @@
 from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import User
+from flask_login import login_required, current_user
+from app.models import User, Video
 
 user_routes = Blueprint('users', __name__)
+
+@user_routes.route('/videos')
+@login_required
+def get_user_videos():
+    """Gets all videos by current user"""
+    videos = Video.query.filter_by(user_id = (current_user.id))
+    return {'user_videos': [video.to_dict() for video in videos]}
 
 
 @user_routes.route('/')
