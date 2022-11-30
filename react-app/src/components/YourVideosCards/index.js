@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteVideoThunk, getUserVideosThunk } from '../../store/videos';
+import { deleteVideoThunk, getUserVideosThunk, getVideosThunk } from '../../store/videos';
 
 function YourVideosCards({ userVid }) {
     const history = useHistory();
@@ -49,6 +49,7 @@ function YourVideosCards({ userVid }) {
                                     e.stopPropagation()
                                     await dispatch(deleteVideoThunk(userVid.id))
                                     await dispatch(getUserVideosThunk())
+                                    await dispatch(getVideosThunk())
                                 }}
                                 ><i className="fa-solid fa-trash" id='comment-trash-icon' /> Delete</span>
                             </div>
