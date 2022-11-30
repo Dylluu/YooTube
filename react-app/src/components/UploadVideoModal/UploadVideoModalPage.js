@@ -1,24 +1,65 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import './UploadVideoModalPage.css';
 import { useDispatch, useSelector } from 'react-redux';
 
 function UploadVideoModalPage({setShowModal}) {
-
+    const history = useHistory();
+    const [video, setVideo] = useState(null);
     const [videoDropped, setVideoDropped] = useState(false);
-    const [videoTitle, setVideoTitle] = useState('');
-    const [videoDescription, setVideoDescription] = useState('');
-    const [videoThumbnail, setVideoThumbnail] = useState('');
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [category, setCategory] = useState('Videos');
+    const [thumbnail, setThumbnail] = useState('');
 
     useEffect(() => {
         const videoUpload = document.getElementById('file-upload');
         videoUpload.addEventListener('change', async (e) => {
             e.preventDefault();
-            const video = videoUpload.files[0];
-            setVideoTitle(video?.name);
+            const vid = videoUpload.files[0];
+            setTitle(vid?.name);
             handleVideoDropped();
         })
     }, [])
+
+    const updateVideo = (e) => {
+        const file = e.target.files[0];
+        setVideo(file);
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const form = document.getElementById('form');
+        const formData = new FormData(form);
+        // formData.append('title', title)
+        // formData.append('description', description)
+        // formData.append('category', category)
+        // formData.append('thumbnail', thumbnail)
+        formData.append("video", video);
+        // console.log(video)
+        // console.log(formData)
+
+        // aws uploads can be a bit slow—displaying
+        // some sort of loading message is a good idea
+        // setImageLoading(true);
+
+        const res = await fetch('/api/videos', {
+            method: "POST",
+            body: formData
+        });
+        if (res.ok) {
+            await res.json();
+            // setImageLoading(false);
+            history.push("/");
+        }
+        else {
+            // setImageLoading(false);
+            // a real app would probably use more advanced
+            // error handling
+            // console.log("error");
+            console.log(res)
+        }
+    }
 
     function handleVideoDropped() {
         const firstUploadForm = document.getElementsByClassName('upload-video-page-body');
@@ -36,19 +77,19 @@ function UploadVideoModalPage({setShowModal}) {
     }
 
     function handleUpdateTitle(e) {
-        setVideoTitle(e.target.value);
+        setTitle(e.target.value);
     }
 
     function handleUpdateDescription(e) {
-        setVideoDescription(e.target.value);
+        setDescription(e.target.value);
     }
 
     function handleUpdateThumbnail(e) {
-        setVideoThumbnail(e.target.value);
+        setThumbnail(e.target.value);
     }
 
     return (
-        <div className='upload-video-page-container'>
+        <form className='upload-video-page-container' id='form'>
             <div className='upload-video-page-top'>
                 <div className='upload-video-page-top-inner'>
                     <span id='upload-video-page-top-text'>Upload videos</span>
@@ -65,7 +106,10 @@ function UploadVideoModalPage({setShowModal}) {
                         <span id='drag-and-drop'>Drag and drop video files to upload</span>
                         <span id='videos-private'>Your videos must be uploaded as .mp4 files</span>
                             <label htmlFor='file-upload' id='select-files-button'>
-                            <input id='file-upload' type='file' accept="video/mp4,video/x-m4v,video/*"/>
+                            <input id='file-upload' type='file' accept="video/mp4,video/x-m4v,video/*"
+                            onChange={updateVideo}
+                            encType="multipart/form-data"
+                            />
                                 SELECT FILES</label>
                     </div>
                     <div className='upload-video-page-bottom'>
@@ -83,7 +127,8 @@ function UploadVideoModalPage({setShowModal}) {
                                 type='text'
                                 id='upload-video-details-title-input-field'
                                 placeholder='Please enter a title...'
-                                value={videoTitle}
+                                value={title}
+                                name='title'
                                 onChange={handleUpdateTitle}
                                 ></input>
                             </div>
@@ -93,7 +138,8 @@ function UploadVideoModalPage({setShowModal}) {
                                 type='text'
                                 id='upload-video-details-description-textarea-field'
                                 placeholder='Add a description...'
-                                value={videoDescription}
+                                value={description}
+                                name='description'
                                 onChange={handleUpdateDescription}
                                 ></textarea>
                             </div>
@@ -101,7 +147,8 @@ function UploadVideoModalPage({setShowModal}) {
                             <input
                             type='text'
                             id='upload-video-details-thumbnail-input-field'
-                            value={videoThumbnail}
+                            value={thumbnail}
+                            name='thumbnail'
                             onChange={handleUpdateThumbnail}
                             placeholder='Add a thumbnail...'
                             ></input>
@@ -111,12 +158,14 @@ function UploadVideoModalPage({setShowModal}) {
                                 <div id='upload-cancel-button'
                                 onClick={() => handleVideoDropped()}
                                 >Cancel</div>
-                                <div id='upload-video-details-submit-button'>Upload</div>
+                                <div id='upload-video-details-submit-button'
+                                onClick={handleSubmit}
+                                >Upload</div>
                             </div>
                         </div>
                     </div>
                 </div>
-        </div>
+        </form>
     )
 }
 
