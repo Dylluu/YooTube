@@ -2,14 +2,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 40px;
-    height: fit-content;
+    margin-right: 30px;
+    height: 40px;
+    width: 40px;
+    margin-top: 2px;
+    border-radius: 75%;
     /* border: solid 1px blue; */
     cursor: pointer;
 }
 
+.add-video-button-wrapper:hover {
+    background-color: #272727;
+}
+
+.add-video-button-wrapper:active {
+    background-color: #3C3C3C;
+}
+
 #video-add-icon {
-    margin-top: 5px;
+    margin-top: 4px;
+    /* margin-left: .5px; */
     width: 23px;
 }
 
@@ -48,7 +60,7 @@
 
 #upload-video-page-top-x {
     color: #AAAAAA;
-    font-size: 17px;
+    font-size: 15px;
     cursor: pointer;
     padding: 8px;
     margin-right: -8px;

@@ -288,10 +288,22 @@
 .comment-submit-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
     margin-top: 7px;
     width: 98%;
     /* border: solid 1px blue; */
+}
+
+.comment-submit-cancel-and-submit {
+    display: flex;
+    flex-direction: row;
+}
+
+#comment-character-count {
+    margin-top: -15px;
+    color: #AAAAAA;
+    font-size: 12px;
 }
 
 #comment-submit-button {

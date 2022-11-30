@@ -167,7 +167,8 @@
 .edit-submit-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
     margin-top: 7px;
     width: 100%;
     /* border: solid 1px blue; */

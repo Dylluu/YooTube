@@ -114,15 +114,7 @@ function UploadVideoModalPage({setShowModal}) {
     }
 
     function handleCancel(e) {
-        // const videoUpload = document.getElementById('file-upload');
-        // videoUpload.value = '';
-        // videoUpload.addEventListener('change', async (e) => {
-        //     e.preventDefault();
-        //     const vid = videoUpload.files[0];
-        //     setTitle(vid?.name);
-        //     handleVideoDropped()
-        // })
-        // handleVideoDropped();
+        e.stopPropagation();
         setShowModal(false);
     }
 
@@ -132,7 +124,9 @@ function UploadVideoModalPage({setShowModal}) {
                 <div className='upload-video-page-top-inner'>
                     <span id='upload-video-page-top-text'>Upload videos</span>
                     <i className='fa-solid fa-x' id='upload-video-page-top-x'
-                    onClick={() => setShowModal(false)}
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        setShowModal(false)}}
                     />
                 </div>
             </div>

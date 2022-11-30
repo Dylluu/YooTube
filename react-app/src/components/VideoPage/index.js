@@ -109,12 +109,15 @@ function VideoPage () {
                     ></textarea>
                     {commentText.length > 0 && (
                         <div className='comment-submit-wrapper'>
+                            <span id='comment-character-count'>characters: {commentText.length}/255</span>
+                            <div className='comment-submit-cancel-and-submit'>
                             <div id='comment-cancel-button'
                             onClick={resetComment}
                             >Cancel</div>
                             <div id='comment-submit-button'
                             onClick={postComment}
                             >Comment</div>
+                            </div>
                         </div>
                     )}
                     </div>

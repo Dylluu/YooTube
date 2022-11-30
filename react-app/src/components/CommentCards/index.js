@@ -122,6 +122,8 @@ function CommentCards({ comment }) {
                 ></textarea>
                 {(
                     <div className='edit-submit-wrapper'>
+                        <span id='comment-character-count'>characters: {editedComment.length}/255</span>
+                        <div className='comment-submit-cancel-and-submit'>
                         <div id='edit-cancel-button'
                             onClick={cancelEditComment}
                         >Cancel</div>
@@ -129,6 +131,7 @@ function CommentCards({ comment }) {
                             onClick={handleEditComment}
                             className='disabled-save'
                         >Save</div>
+                        </div>
                     </div>
                 )}
             </div>}
