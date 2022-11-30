@@ -22,7 +22,7 @@ function UploadVideoModalPage({setShowModal}) {
         videoUpload.addEventListener('change', async (e) => {
             e.preventDefault();
             const vid = videoUpload.files[0];
-            setTitle(vid?.name);
+            // setTitle(vid?.name);
             handleVideoDropped();
         })
     }, [])
@@ -158,11 +158,14 @@ function UploadVideoModalPage({setShowModal}) {
                                 <input
                                 type='text'
                                 id='upload-video-details-title-input-field'
-                                placeholder='Please enter a title...'
+                                // placeholder='Please enter a title...'
                                 value={title}
                                 name='title'
                                 onChange={handleUpdateTitle}
+                                maxLength='70'
+                                autoFocus
                                 ></input>
+                                {title.length > 0 && <span className='upload-video-form-character-count' id='title-cc'>characters: {title.length}/70</span>}
                             </div>
                                 {titleErrors && <span className='upload-form-title-errors'>
                                 <i className="fa-solid fa-circle-exclamation" id='error-exclaimation'/>{titleErrors}</span>}
@@ -171,21 +174,23 @@ function UploadVideoModalPage({setShowModal}) {
                                 <textarea
                                 type='text'
                                 id='upload-video-details-description-textarea-field'
-                                placeholder='Add a description...'
+                                // placeholder='Add a description...'
                                 value={description}
                                 name='description'
                                 onChange={handleUpdateDescription}
+                                maxLength='255'
                                 ></textarea>
+                                {description.length > 0 && <span className='upload-video-form-character-count' id='description-cc'>characters: {description.length}/255</span>}
                             </div>
                                 {descriptionErrors && <span className='upload-form-title-errors'><i className="fa-solid fa-circle-exclamation" id='error-exclaimation'/>{descriptionErrors}</span>}
-                            <span id='upload-video-details-thumbnail-header'>Thumbnail</span>
+                            <span id='upload-video-details-thumbnail-header'>Thumbnail URL</span>
                             <input
                             type='text'
                             id='upload-video-details-thumbnail-input-field'
                             value={thumbnail}
                             name='thumbnail'
                             onChange={handleUpdateThumbnail}
-                            placeholder='Add a thumbnail...'
+                            // placeholder='Add a thumbnail...'
                             ></input>
                                 {thumbnailErrors && <span className='upload-form-thumbnail-errors'>
                                 <i className="fa-solid fa-circle-exclamation" id='error-exclaimation'/>{thumbnailErrors}</span>}

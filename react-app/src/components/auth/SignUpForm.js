@@ -171,14 +171,14 @@ const SignUpForm = () => {
   return (
     <div className='signup-form-page-container'>
     <div className='signup-form-outer-wrapper'>
-    <div className='signup-form-wrapper'>
+    <form className='signup-form-wrapper' onSubmit={onSignUp}>
     <div className='signup-form-header'>
       <img alt='googleLogo' src={googleLogo} id='google-logo'/>
       <span id='create-your-google-text'>Create your Google Account</span>
       <span id='to-continue-to-text'>to continue to YooTube</span>
     </div>
     <div className='signup-form-inner-wrapper'>
-    <form onSubmit={onSignUp}>
+    <div>
       <div className='signup-form-input-fields-wrapper'>
       {/* <div>
         {errors.map((error, ind) => (
@@ -194,6 +194,7 @@ const SignUpForm = () => {
           // placeholder='First name'
           className='signup-form-input-first-last'
           id='firstName'
+          autoFocus
         ></input>
         <label for='first_name' className='placeholder' id='first-name-label'>First Name</label>
         <input
@@ -272,15 +273,14 @@ const SignUpForm = () => {
         ></input>
       </div> */}
       </div>
-    </form>
+    </div>
       <div className='signin-and-signup-button'>
       <NavLink to='/login'><span id='signin-instead'>Sign in instead</span></NavLink>
       <button type='submit' id='signup-form-submit'
-      onClick={onSignUp}
       >Create Account</button>
       </div>
     </div>
-    </div>
+    </form>
     </div>
     </div>
   );

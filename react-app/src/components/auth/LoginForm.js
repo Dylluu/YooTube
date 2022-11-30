@@ -90,14 +90,14 @@ const LoginForm = () => {
   return (
     <div className='login-form-page-container'>
     <div className='login-form-outer-wrapper'>
-    <div className='login-form-wrapper'>
+    <form className='login-form-wrapper' onSubmit={onLogin}>
     <div className='login-form-header'>
       <img alt='googleLogo' src={googleLogo} id='google-logo'/>
       <span id='create-your-google-text'>Sign in</span>
       <span id='to-continue-to-text'>to continue to YooTube</span>
     </div>
     <div className='login-form-inner-wrapper'>
-    <form onSubmit={onLogin}>
+    <div>
       <div className='login-form-input-fields-wrapper'>
       {/* <div>
         {errors.map((error, ind) => (
@@ -112,6 +112,7 @@ const LoginForm = () => {
           onChange={updateEmail}
           className='login-form-input'
           id='login-email'
+          autoFocus
         />
         <label htmlFor='email' className='placeholder' id='login-email-label'>Email</label>
       </div>
@@ -133,7 +134,7 @@ const LoginForm = () => {
         <div className='login-form-errors'><i className="fa-solid fa-circle-exclamation" id='error-exclaimation'/>Couldn't login with the provided credentials</div>
       )}
       </div>
-    </form>
+    </div>
         <div className='demo-user'>
           <span className='new-user'>New guest? Sign in as</span>
           <span className='demo-user-button'
@@ -143,11 +144,10 @@ const LoginForm = () => {
         <div className='signup-and-signin-button'>
         <NavLink to='/signup'><span id='create-account-instead'>Create Account</span></NavLink>
         <button type='submit' id='login-form-submit'
-        onClick={onLogin}
         >Sign in</button>
         </div>
     </div>
-    </div>
+    </form>
     </div>
     </div>
   );
