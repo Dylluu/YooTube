@@ -83,15 +83,17 @@ function TopNavigation() {
                                 </div>
                             </div>
                             <div className='account-menu-popout-buttons-div'>
-                                <div className='account-menu-popout-button'>
+                                <NavLink to='/channel' className='account-menu-popout-button'
+                                onClick={handleAccountMenuOpen}
+                                >
                                     <div className='account-menu-popout-button-inner'>
                                         <div className='account-menut-popout-button-inner-icon'>
                                         <i className="fa-solid fa-user" id='account-menu-popout-button-icon'/>
                                         </div>
                                         <span className='account-menu-popout-button-text'>Your Channel</span>
                                     </div>
-                                </div>
-                                <div className='account-menu-popout-button'
+                                </NavLink>
+                                <NavLink to='/' className='account-menu-popout-button'
                                 onClick={onLogout}
                                 >
                                     <div className='account-menu-popout-button-inner'>
@@ -100,7 +102,7 @@ function TopNavigation() {
                                         </div>
                                         <span className='account-menu-popout-button-text2'>Sign Out</span>
                                     </div>
-                                </div>
+                                </NavLink>
                             </div>
                         </div>}
                     </div>

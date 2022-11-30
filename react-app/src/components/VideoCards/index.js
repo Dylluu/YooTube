@@ -7,12 +7,14 @@ function VideoCards({video}) {
 
     const users = useSelector(state => state.session.allUsers);
     const videoUser = users?.find(user => user.id == video.user_id);
-    // console.log(videoUser,'-----------')
 
     return (
         <div className='video-cards-container'>
             <div className='video-card-thumbnail'>
-                <img alt={video?.title} src={video?.thumbnail} className='video-card-thumbnail-image'/>
+                <img alt={video?.title} src={video?.thumbnail} className='video-card-thumbnail-image' onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src="https://assets.entrepreneur.com/content/3x2/2000/20180117155526-youtube.jpeg?crop=16:9";
+                }}/>
             </div>
             <div className='video-card-info'>
                 <div className='video-card-profile-pic'>

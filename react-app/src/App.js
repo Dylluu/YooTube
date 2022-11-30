@@ -12,6 +12,7 @@ import TopNavigation from './components/TopNavigation';
 import LeftNavigation from './components/LeftNavigation';
 import Dashboard from './components/Dashboard';
 import VideoPage from './components/VideoPage';
+import YourChannel from './components/YourChannel';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,6 +41,11 @@ function App() {
         </Route>
         <Route path='/signup' exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path='/channel' exact={true}>
+          <TopNavigation />
+          <LeftNavigation />
+          <YourChannel />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
