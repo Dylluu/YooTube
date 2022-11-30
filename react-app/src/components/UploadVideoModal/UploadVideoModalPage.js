@@ -163,7 +163,6 @@ function UploadVideoModalPage({setShowModal}) {
                                 name='title'
                                 onChange={handleUpdateTitle}
                                 maxLength='70'
-                                autoFocus
                                 ></input>
                                 {title.length > 0 && <span className='upload-video-form-character-count' id='title-cc'>characters: {title.length}/70</span>}
                             </div>
