@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import './UploadVideoModalPage.css';
 import { useDispatch, useSelector } from 'react-redux';
+import loadingCircle from '../../assets/loadingCircle.gif';
 
 function UploadVideoModalPage({setShowModal}) {
     const history = useHistory();
@@ -14,6 +15,7 @@ function UploadVideoModalPage({setShowModal}) {
     const [titleErrors, setTitleErrors] = useState('');
     const [descriptionErrors, setDescriptionErrors] = useState('');
     const [thumbnailErrors, setThumbnailErrors] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const videoUpload = document.getElementById('file-upload');
@@ -24,6 +26,20 @@ function UploadVideoModalPage({setShowModal}) {
             handleVideoDropped();
         })
     }, [])
+
+    useEffect(() => {
+        const uploadButtonText = document.getElementById('upload-video-details-submit-inner-text');
+        const loadingAnimation = document.getElementById('loading');
+        if(isLoading) {
+            uploadButtonText.classList.add('display-none');
+            loadingAnimation.classList.remove('display-none');
+            loadingAnimation.classList.add('display-flex')
+        } else {
+            uploadButtonText.classList.remove('display-none');
+            loadingAnimation.classList.remove('display-flex');
+            loadingAnimation.classList.add('display-none');
+        }
+    }, [isLoading])
 
     const updateVideo = (e) => {
         const file = e.target.files[0];
@@ -36,6 +52,7 @@ function UploadVideoModalPage({setShowModal}) {
         setThumbnailErrors('');
         if(title.length && description.length && thumbnail.length && (thumbnail.match(/\.(jpeg|jpg|gif|png)$/) != null)) {
             e.preventDefault();
+            setIsLoading(true);
             const form = document.getElementById('form');
             const formData = new FormData(form);
             formData.append("video", video);
@@ -44,12 +61,14 @@ function UploadVideoModalPage({setShowModal}) {
                 method: "POST",
                 body: formData
             });
+
             if (res.ok) {
                 await res.json();
                 setShowModal(false);
                 history.go(0);
             }
             else {
+                setIsLoading(false);
                 console.log(res)
             }
         }
@@ -184,7 +203,12 @@ function UploadVideoModalPage({setShowModal}) {
                                 >Cancel</div>
                                 <div id='upload-video-details-submit-button'
                                 onClick={handleSubmit}
-                                >Upload</div>
+                                ><span id='upload-video-details-submit-inner-text'>Upload</span><img
+								alt="loading"
+								id="loading"
+								className="display-none"
+								src={loadingCircle}
+							/></div>
                             </div>
                         </div>
                     </div>

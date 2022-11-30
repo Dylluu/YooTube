@@ -317,6 +317,11 @@ input[type="file"] {
     text-decoration: underline;
 }
 
+#loading {
+    /* display: flex; */
+    height: 15px;
+}
+
 .display-none {
     display: none;
 }
