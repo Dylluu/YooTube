@@ -18,8 +18,20 @@ function LeftNavigation () {
                     </div>
                     <div className='left-nav-home-headers'>Home</div>
                     </div>
-                    <div className='left-nav-home' id='left-nav-shorts'></div>
-                    <div className='left-nav-home' id='left-nav-subs'></div>
+                    <a href='https://github.com/Dylluu' target="_blank">
+                    <div className='left-nav-home' id='left-nav-shorts'>
+                    <div className='left-nav-home-icons'>
+                    <i className="fa-brands fa-github" id='nav-left-github-icon'/>
+                    </div>
+                    <div className='left-nav-home-headers'>GitHub</div>
+                    </div></a>
+                    <a href='https://www.linkedin.com/in/dylan-luu-0a869b1b8/' target="_blank">
+                    <div className='left-nav-home' id='left-nav-subs'>
+                    <div className='left-nav-home-icons'>
+                    <i className="fa-brands fa-linkedin" id='nav-left-linkedin-icon'/>
+                    </div>
+                    <div className='left-nav-home-headers'>LinkedIn</div>
+                    </div></a>
                 </div>
             </div>
         </div>
