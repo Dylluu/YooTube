@@ -31,14 +31,30 @@ def seed_videos():
     avatar = Video(
         user_id=8, title='Avatar: The Way of Water | Official Trailer', description='Directed by James Cameron and produced by Cameron and Jon Landau. Screenplay by James Cameron & Rick Jaffa & Amanda Silver.', category='Movies', url='https://yootubetest.s3.amazonaws.com/Avatar+-+The+Way+of+Water+_+Official+Trailer-d9MyW72ELq0.mp4', thumbnail='https://i3.ytimg.com/vi/d9MyW72ELq0/maxresdefault.jpg'
     )
+    best_day = Video(
+        user_id=9, title='Best Day Ever', description='Best Day Ever ℗ 2016 Rostrum Records, LLC', category='Music', url='https://yootubetest.s3.amazonaws.com/Mac+Miller+-+Best+Day+Ever-AbV-Q6tz4B8.mp4', thumbnail='https://i3.ytimg.com/vi/vykXjvO0xMk/maxresdefault.jpg'
+    )
+    batb = Video(
+        user_id=10, title='Nyjah Huston Vs Mike Mo Capaldi: BATB7', description='Nyjah Huston and Mike Mo Capaldi battle it out in a game of S.K.A.T.E. during the second round of Battle at The Berrics 7 - Pros vs Joes.', category='Sports', url='https://yootubetest.s3.amazonaws.com/Nyjah+Huston+Vs+Mike+Mo+Capaldi+-+BATB7+-+Round+2-qNP76LyJGhA.mp4', thumbnail='https://i3.ytimg.com/vi/XzkEgqp_agI/maxresdefault.jpg'
+    )
+    kong = Video(
+        user_id=11, title='Godzilla vs. Kong - Official Trailer', description='In theaters and streaming exclusively on @HBOMax* March 26.', category='Movies', url='https://yootubetest.s3.amazonaws.com/Godzilla+vs.+Kong+%E2%80%93+Official+Trailer-odM92ap8_c0.mp4', thumbnail='https://i3.ytimg.com/vi/odM92ap8_c0/maxresdefault.jpg'
+    )
+    baby_driver = Video(
+        user_id=4, title='Baby Driver Opening Scene (2017)', description='Baby Driver Opening Scene (2017): Check out the new clip starring Ansel Elgort, Jon Hamm, and Eiza González! Be the first to watch, comment, and share clips and behind the scenes dropping @MovieclipsComingSoon.', category='Movies', url='https://yootubetest.s3.amazonaws.com/Baby+Driver+Opening+Scene+(2017)+_+Movieclips+Coming+Soon-7ARFyrM6gVs.mp4', thumbnail='https://i3.ytimg.com/vi/7ARFyrM6gVs/maxresdefault.jpg'
+    )
 
 
     db.session.add(first_video)
     db.session.add(burger)
     db.session.add(monaco_gp)
-    db.session.add(sushi)
+    db.session.add(best_day)
     db.session.add(wiggins)
     db.session.add(chiefs)
+    db.session.add(batb)
+    db.session.add(kong)
+    db.session.add(baby_driver)
+    db.session.add(sushi)
     db.session.add(drake)
     db.session.add(avatar)
     db.session.commit()

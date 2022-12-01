@@ -21,6 +21,16 @@ def seed_users():
         first_name='Avatar', last_name='Official', username='Avatar', email='avatar@aa.io',
         profile_pic='https://yt3.ggpht.com/ytc/AMLnZu-qPHlOU8j2gApNMNDn0NPBxTZyrDovuamHV3jh_Q=s176-c-k-c0x00ffffff-no-rj', password='password'
     )
+    mac = User(
+        first_name='Mac', last_name='Miller', username='Mac Miller', email='macmiller@aa.io', profile_pic='https://yt3.ggpht.com/ytc/AMLnZu-MQWOf9ADAGTecKvv7TfWAH-qqKnMn6rHt5BQS1g=s176-c-k-c0x00ffffff-no-rj',
+        password='password'
+    )
+    berrics = User(
+        first_name='Berrics', last_name='Official', username='The Berrics', email='berrics@aa.io', profile_pic='https://yt3.ggpht.com/ytc/AMLnZu8XIsDmkPv10C8Z-ckFK2pXoul_RULZhxxyvoUVCg=s176-c-k-c0x00ffffff-no-rj', password='password'
+    )
+    warner = User(
+        first_name='Warner', last_name='Bros', username='Warner Bros. Pictures', email='warner@aa.io', profile_pic='https://yt3.ggpht.com/Dd84-7pxMM5DvXGwsEoLv5NMdyeEJnGxhe0rtDuJslFN3YUKCOhN5R7n8--B6g33kPNV2Pv8Q28=s176-c-k-c0x00ffffff-no-rj', password='password'
+    )
 
     db.session.add(demo)
     db.session.add(formula_1)
@@ -30,6 +40,9 @@ def seed_users():
     db.session.add(drake)
     db.session.add(nfl)
     db.session.add(avatar)
+    db.session.add(mac)
+    db.session.add(berrics)
+    db.session.add(warner)
     db.session.commit()
 
 
