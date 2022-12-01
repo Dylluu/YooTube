@@ -143,3 +143,10 @@ input:focus + .red-text {
     margin-left: 4.25px;
     cursor: pointer;
 }
+
+#circleCross {
+    position: absolute;
+    height: 20.75px;
+    margin-top: -38.70px;
+    margin-left: -30px;
+}

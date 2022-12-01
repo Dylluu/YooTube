@@ -160,3 +160,16 @@
     font-size: 12px;
     margin-top: -1px;
 }
+
+.your-channel-left-nav-home {
+    background-color: transparent;
+}
+
+.your-channel-left-nav-home:hover {
+    background-color: #272727;
+    filter: brightness(1);
+}
+
+.your-channel-left-nav-home:active {
+    filter: brightness(1.75);
+}

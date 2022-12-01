@@ -11,6 +11,11 @@ function YourChannel() {
     const userVideos = useSelector(state => state.videos.userVideos.user_videos);
     const [menuOpen, setMenuOpen] = useState(false);
 
+    useEffect(() => {
+        const homeButton = document.getElementById('left-nav-home');
+        if(homeButton) homeButton.classList.add('your-channel-left-nav-home');
+    }, [])
+
     useEffect(async () => {
         await dispatch(getUserVideosThunk());
     }, [dispatch])

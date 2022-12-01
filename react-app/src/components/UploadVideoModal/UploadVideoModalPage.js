@@ -3,9 +3,11 @@ import { NavLink, useHistory } from 'react-router-dom';
 import './UploadVideoModalPage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import loadingCircle from '../../assets/loadingCircle.gif';
+import { getVideosThunk } from '../../store/videos';
 
 function UploadVideoModalPage({setShowModal}) {
     const history = useHistory();
+    const dispatch = useDispatch();
     const [video, setVideo] = useState(null);
     const [videoDropped, setVideoDropped] = useState(false);
     const [title, setTitle] = useState('');
@@ -64,8 +66,10 @@ function UploadVideoModalPage({setShowModal}) {
 
             if (res.ok) {
                 await res.json();
+                await dispatch(getVideosThunk());
                 setShowModal(false);
-                history.go(0);
+                history.push('/')
+                // history.go(0);
             }
             else {
                 setIsLoading(false);
@@ -146,7 +150,7 @@ function UploadVideoModalPage({setShowModal}) {
                     </div>
                     <div className='upload-video-page-bottom'>
                         <span id='dont-have-video'>Don't have a video? Download a demo video</span>
-                        <span id='download-demo-here'>here</span>
+                        <a href='https://yootubetest.s3.us-east-1.amazonaws.com/YooTubeDemo.mp4?response-content-disposition=attachment&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEGgaCXVzLWVhc3QtMSJGMEQCIEcfHiAp6ICml7NwRKryP67pwukvri1Bmuhzuq%2FMP9SIAiBodJzqrXvoqXcB7XTlMIH0ZcUiReFmq%2F7ZI7jJD97szSrtAgiB%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDcwNzA3NDY1NTY4NyIMoNaGzxiXnv4jA14pKsECZtD1jRSyOwBXi0NxJQK0jYykX2usapk3E05Tt0UEdFzKqhA3rBlbkswYVU%2BV5ZZc%2BYG5iHdLT66ieDmlBXcYFWCNR1qRAuR6pm2CW8c8glVfBMo6YCOcLQ2iGLM329cWFENgyHUjril9%2FoboDA3Fr1HJ%2FbXFKlSkvGOlJ2TGnGpN%2Fd8oMHzdTcV39tAwA0cGStP2Knjr5%2Bl%2FmHUzbVEwHyp9wFuPTYrzWtA9maRP9oJRiGX7bbL2J0q9Aifdd1pR2dF0e1UeMqXZnPLhnSGDAmBE%2BQ3FJqx57he1fwAwtb5asAjlhElXz5V1EmZ%2BAWBsDdJN6tlY%2FEvotc4vR7KV6C4MgvxXrolHEJz%2FRfUG104dnCD9EL%2Beya3CzEOeh2uYxvgZg0%2FFeYYNL%2FQfh1dSgFinbCJO9sLOuPh5TL7NGfFfMOjNn5wGOrQC%2Bl6CHc8JRd8OzLDx1mpEHYGARIPX4D32liKQsgQpr7kvXjNHMjEFFVNaOYZeCawb%2Be7PqAwRAtzOfUN8SvJeHo283s3UIp%2FlZ7Z%2BkLLifW%2FN%2B2CS6r7Kgu18LiJaecDus2WmsuwVMospZI8xXLzYoWjXKVzCkHZPjZr9mWt0IG96U%2BogpUXJVmsbt4MGdewOcrU8y%2F24k63DyylHbiYzgp6G2fSDTOsMcYH4wtuUCxjuXCBy80N0B%2FF5p3V%2FB%2BnOUtyiWbUNhBc5qjTVfP2znEmQEoPHmJIAVRRdFTFtNE4LHwMKspxfDZlkrJkD%2BkkiD6X8jIQ%2FH1sch%2Btuh8dGFR%2FYv2hLfKettV5%2FwwT0A1Wuv%2FGU21IDyg4krUJ4q%2Fmkg%2FS15yfg5hWQplgnYYJqKZgieL4%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20221201T051409Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIA2JIHPAXDXF4H4FCP%2F20221201%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=b95753a9f78b80ed15f4c9ccc78f39906aab4ab221333a68eff025ab8c3a652a'><span id='download-demo-here'>here</span></a>
                     </div>
                 </div>
                 <div className='upload-video-details-form'>

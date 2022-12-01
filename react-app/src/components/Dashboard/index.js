@@ -16,6 +16,11 @@ function Dashboard() {
         await dispatch(getUsersThunk())
     }, [dispatch])
 
+    useEffect(() => {
+        const homeButton = document.getElementById('left-nav-home');
+        if(homeButton) homeButton.classList.remove('your-channel-left-nav-home');
+    }, [])
+
     return (
         <div className='dashboard-container'>
             {videos?.map((video) => (
