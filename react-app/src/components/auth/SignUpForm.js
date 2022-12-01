@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink, Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './SignUpForm.css';
 import googleLogo from '../../assets/googleLogo.png';
@@ -15,10 +15,12 @@ const SignUpForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onSignUp = async (e) => {
     e.preventDefault();
       const data = await dispatch(signUp(first_name, last_name, username, email, password));
+      history.push('/')
       if (data) {
         setErrors(data)
       }
@@ -99,44 +101,44 @@ const SignUpForm = () => {
   useEffect(() => {
     if (errors.last_name) {
       const lastName = document.getElementById('lastName')
-      lastName.classList.add('red-border')
+      if(lastName) lastName.classList.add('red-border')
     }
     if (!errors.last_name) {
       const lastName = document.getElementById('lastName')
-      lastName.classList.remove('red-border')
+      if(lastName) lastName.classList.remove('red-border')
     }
   }, [errors.last_name])
 
   useEffect(() => {
     if (errors.email) {
       const emailInput = document.getElementById('email')
-      emailInput.classList.add('red-border')
+      if(emailInput) emailInput.classList.add('red-border')
     }
     if (!errors.email) {
       const emailInput = document.getElementById('email')
-      emailInput.classList.remove('red-border')
+      if(emailInput) emailInput.classList.remove('red-border')
     }
   }, [errors.email])
 
   useEffect(() => {
     if (errors.username) {
       const username = document.getElementById('username')
-      username.classList.add('red-border')
+      if(username) username.classList.add('red-border')
     }
     if(!errors.username) {
       const username = document.getElementById('username')
-      username.classList.remove('red-border')
+      if(username) username.classList.remove('red-border')
     }
   })
 
   useEffect(() => {
     if (errors.password) {
       const password = document.getElementById('password')
-      password.classList.add('red-border')
+      if(password) password.classList.add('red-border')
     }
     if(!errors.password) {
       const password = document.getElementById('password')
-      password.classList.remove('red-border')
+      if(password) password.classList.remove('red-border')
     }
   })
 
