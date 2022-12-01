@@ -20,7 +20,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
       const data = await dispatch(signUp(first_name, last_name, username, email, password));
-      history.push('/')
+      // history.push('/')
       if (data) {
         setErrors(data)
       }
