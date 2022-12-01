@@ -78,7 +78,7 @@ function TopNavigation() {
                                     <div className='account-menu-popout-name-and-username'>
                                         <span id='account-menu-popout-name'>{user?.first_name} {user?.last_name}</span>
                                         <span id='account-menu-popout-username'>@{user?.username}</span>
-                                        <NavLink to='/' id='manage-your-account'>Manage Your Account</NavLink>
+                                        <span id='manage-your-account'>Manage Your Account</span>
                                     </div>
                                 </div>
                             </div>

@@ -115,7 +115,7 @@
     height: 36px;
     background-color: #272727;
     border-radius: 18px;
-    cursor: pointer;
+    cursor: not-allowed;
     /* border: solid 1px blue; */
 }
 
