@@ -37,6 +37,10 @@ function VideoPage () {
         // await dispatch(getCommentsThunk(videoId));
     }, [dispatch, videoId])
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
     const postComment = async (e) => {
         e.preventDefault()
         await dispatch(postCommentThunk(videoId, commentText))

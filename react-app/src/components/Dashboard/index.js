@@ -17,6 +17,10 @@ function Dashboard() {
     }, [dispatch])
 
     useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
+    useEffect(() => {
         const homeButton = document.getElementById('left-nav-home');
         if(homeButton) homeButton.classList.remove('your-channel-left-nav-home');
     }, [])

@@ -20,6 +20,10 @@ function YourChannel() {
         await dispatch(getUserVideosThunk());
     }, [dispatch])
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
     if (!userVideos) return <div className='video-page-container'></div>;
 
     return (

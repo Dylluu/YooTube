@@ -12,6 +12,7 @@ function RightVideoCards({video}) {
         <div className='right-video-cards-card-container'
         onClick={() => {
             history.push(`/videos/${video.id}`);
+            window.scrollTo(0, 0)
             // history.go(0);
         }}
         >
