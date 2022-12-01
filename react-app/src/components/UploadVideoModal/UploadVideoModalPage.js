@@ -135,8 +135,8 @@ function UploadVideoModalPage({setShowModal}) {
                         <div className='upload-video-page-icon-wrapper'>
                             <i className='fa-solid fa-upload' id='upload-video-page-body-icon'/>
                         </div>
-                        <span id='drag-and-drop'>Drag and drop video files to upload</span>
-                        <span id='videos-private'>Your videos must be uploaded as .mp4 files</span>
+                        <span id='drag-and-drop'>Select video file to upload</span>
+                        <span id='videos-private'>Your video must be uploaded as an .mp4 file</span>
                             <label htmlFor='file-upload' id='select-files-button'>
                             <input id='file-upload' type='file' accept="video/mp4,video/x-m4v,video/*"
                             onChange={updateVideo}
@@ -189,10 +189,17 @@ function UploadVideoModalPage({setShowModal}) {
                             value={thumbnail}
                             name='thumbnail'
                             onChange={handleUpdateThumbnail}
+                            maxLength='255'
                             // placeholder='Add a thumbnail...'
                             ></input>
+                            <div id='thumbnail-cc-and-errors'>
+                                {!thumbnailErrors && <div></div>}
                                 {thumbnailErrors && <span className='upload-form-thumbnail-errors'>
                                 <i className="fa-solid fa-circle-exclamation" id='error-exclaimation'/>{thumbnailErrors}</span>}
+                                {thumbnail.length > 0 && (
+                                    <span className='upload-video-form-character-count' id='thumbnail-cc'>characters: {thumbnail.length}/255</span>
+                                )}
+                                </div>
                         </div>
                         <div className='upload-video-details-form-footer'>
                             <div className='upload-video-details-form-footer-inner'>

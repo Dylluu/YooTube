@@ -72,7 +72,7 @@ function YourVideosCards({ userVid }) {
                         )}
                     </div>
                 </span>
-                <span id='your-channel-user-video-card-details-views'>2.2M views</span>
+                <span id='your-channel-user-video-card-details-views'>{userVid.num_views} views</span>
             </div>
         </div>
 

@@ -15,7 +15,7 @@ function YourChannel() {
         await dispatch(getUserVideosThunk());
     }, [dispatch])
 
-    if (!userVideos) return null;
+    if (!userVideos) return <div className='video-page-container'></div>;
 
     return (
         <div className='your-channel-container'>
