@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteVideoThunk, getUserVideosThunk, getVideosThunk } from '../../store/videos';
+import EditVideoModal from '../EditVideoModal';
+import EditVideoModalPage from '../EditVideoModal/EditVideoModalPage';
+import { Modal } from '../../context/Modal';
 
 function YourVideosCards({ userVid }) {
     const history = useHistory();
     const dispatch = useDispatch();
     const [menuOpen, setMenuOpen] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
 
     function handleMenuOpen() {
         if (!menuOpen) {
@@ -42,17 +46,29 @@ function YourVideosCards({ userVid }) {
                             <div className='comments-menu-div'
                             >
                                 <span id='edit-button'
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        setShowEditModal(true)
+                                        setMenuOpen(false)
+                                    }}
+                                >
+                                    <i className="fa-solid fa-pen" id='comment-pen-icon' /> Edit
 
-                                ><i className="fa-solid fa-pen" id='comment-pen-icon' /> Edit</span>
+                                </span>
                                 <span id='delete-button'
-                                onClick={async (e) => {
-                                    e.stopPropagation()
-                                    await dispatch(deleteVideoThunk(userVid.id))
-                                    await dispatch(getUserVideosThunk())
-                                    await dispatch(getVideosThunk())
-                                }}
+                                    onClick={async (e) => {
+                                        e.stopPropagation()
+                                        await dispatch(deleteVideoThunk(userVid.id))
+                                        await dispatch(getUserVideosThunk())
+                                        await dispatch(getVideosThunk())
+                                    }}
                                 ><i className="fa-solid fa-trash" id='comment-trash-icon' /> Delete</span>
                             </div>
+                        )}
+                        {showEditModal && (
+                            <Modal onClose={() => setShowEditModal(false)}>
+                                <EditVideoModalPage setShowEditModal={setShowEditModal} setMenuOpen={setMenuOpen} userVid={userVid}/>
+                            </Modal>
                         )}
                     </div>
                 </span>

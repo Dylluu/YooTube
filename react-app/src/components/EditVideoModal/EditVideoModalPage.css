@@ -1,0 +1,20 @@
+#edit-video-details-form {
+    display: flex;
+}
+
+#thumbnail-cc-and-errors {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#thumbnail-cc {
+    justify-self: flex-end;
+    margin-top: 7.9px;
+    width: fit-content;
+}
+
+#edit-thumbnail-errors {
+    width: fit-content;
+}

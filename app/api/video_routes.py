@@ -39,6 +39,18 @@ def get_one_video(id):
     video = Video.query.get(id)
     return video.to_dict()
 
+@video_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def edit_video(id):
+    """Edits a video"""
+    data = request.get_json()
+    video = Video.query.get(id)
+    video.title = data['title']
+    video.description = data['description']
+    video.thumbnail = data['thumbnail']
+    db.session.commit()
+    return video.to_dict()
+
 @video_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_video(id):

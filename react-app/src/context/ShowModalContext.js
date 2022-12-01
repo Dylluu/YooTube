@@ -4,11 +4,12 @@ export const ShowModalContext = React.createContext();
 
 export function ShowModalProvider({children}){
     const [showModal, setShowModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
 
     return (
         <ShowModalContext.Provider
             value={{
-                showModal, setShowModal
+                showModal, setShowModal, showEditModal, setShowEditModal
             }}
             >
                 {children}

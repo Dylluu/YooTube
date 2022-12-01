@@ -22,6 +22,16 @@ const getUserVideos = (payload) => ({
     payload
 })
 
+export const editVideoThunk = (data) => async (dispatch) => {
+    await fetch(`/api/videos/${data.id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+}
+
 export const deleteVideoThunk = (videoId) => async (dispatch) => {
     await fetch(`/api/videos/${videoId}`, {
         method: 'DELETE'
