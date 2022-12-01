@@ -16,7 +16,11 @@ def seed_users():
     drake = User(
         first_name='Aubrey', last_name='Graham', username='Drake', email='drake@aa.io', profile_pic='https://yt3.ggpht.com/ytc/AMLnZu8h3cs9KuwGOH9oNDl3tRyNO7-3yHUuaigEjBDqLg=s176-c-k-c0x00ffffff-no-rj', password='password')
     nfl = User(
-        first_name='NFL', last_name='Football', username='NFL', email='nfl@aa.io', profile_pic='https://yt3.ggpht.com/ytc/AMLnZu8tOlovKPswBTvH6bT6UGVCwCsEZhxK2nJatGKKY9g=s176-c-k-c0x00ffffff-no-rj', password='password')
+        first_name='NFL', last_name='Official', username='NFL', email='nfl@aa.io', profile_pic='https://yt3.ggpht.com/ytc/AMLnZu8tOlovKPswBTvH6bT6UGVCwCsEZhxK2nJatGKKY9g=s176-c-k-c0x00ffffff-no-rj', password='password')
+    avatar = User(
+        first_name='Avatar', last_name='Official', username='Avatar', email='avatar@aa.io',
+        profile_pic='https://yt3.ggpht.com/ytc/AMLnZu-qPHlOU8j2gApNMNDn0NPBxTZyrDovuamHV3jh_Q=s176-c-k-c0x00ffffff-no-rj', password='password'
+    )
 
     db.session.add(demo)
     db.session.add(formula_1)
@@ -25,6 +29,7 @@ def seed_users():
     db.session.add(espn)
     db.session.add(drake)
     db.session.add(nfl)
+    db.session.add(avatar)
     db.session.commit()
 
 

@@ -28,6 +28,9 @@ def seed_videos():
     chiefs = Video(
         user_id=7, title='Los Angeles Rams vs. Kansas City Chiefs Preview', description='The 8-2 Chiefs take on the 3-7 Rams at home. Tune in for an exciting Sunday Night Football matchup!', category='Sports', url='https://yootubetest.s3.amazonaws.com/Los+Angeles+Rams+vs.+Kansas+City+Chiefs+_+2022+Week+12+Game+Preview-mVJRzOFC0oE.mp4', thumbnail='https://i3.ytimg.com/vi/mVJRzOFC0oE/maxresdefault.jpg'
     )
+    avatar = Video(
+        user_id=8, title='Avatar: The Way of Water | Official Trailer', description='Directed by James Cameron and produced by Cameron and Jon Landau. Screenplay by James Cameron & Rick Jaffa & Amanda Silver.', category='Movies', url='https://yootubetest.s3.amazonaws.com/Avatar+-+The+Way+of+Water+_+Official+Trailer-d9MyW72ELq0.mp4', thumbnail='https://i3.ytimg.com/vi/d9MyW72ELq0/maxresdefault.jpg'
+    )
 
 
     db.session.add(first_video)
@@ -37,6 +40,7 @@ def seed_videos():
     db.session.add(wiggins)
     db.session.add(chiefs)
     db.session.add(drake)
+    db.session.add(avatar)
     db.session.commit()
 
 def undo_videos():
