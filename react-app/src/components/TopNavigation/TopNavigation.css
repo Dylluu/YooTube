@@ -41,7 +41,7 @@
     justify-content: space-between;
     height: 13px;
     cursor: pointer;
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 
 #menu-bars {
@@ -56,13 +56,13 @@
     width: 41px;
     margin-left: -11.25775px;
     border-radius: 75%;
-    cursor: default;
+    cursor: not-allowed;
     /* border: solid 1px red; */
 }
 
-/* #menu-hover:hover {
+#menu-hover:hover {
     background-color: rgba(255, 255, 255, 0.165);
-} */
+}
 
 #logo {
     height: 25px;
@@ -73,6 +73,13 @@
     align-items: center;
     /* margin-bottom: 2px; */
     /* border: solid 1px red; */
+}
+
+#crossCircle {
+    position: absolute;
+    height: 15px;
+    margin-left: 49px;
+    margin-top: 6px;
 }
 
 .signin-button {

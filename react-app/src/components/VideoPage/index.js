@@ -78,7 +78,7 @@ function VideoPage () {
                         <span id='video-poster-subscribers'>2.2M subscribers</span>
                     </div>
                 </div>
-                {/* <div className='likes-and-dislikes'>
+                <div className='likes-and-dislikes'>
                     <div id='likes'>
                     <i className="fa-regular fa-thumbs-up" id='thumb-up-icon'/>
                     <span id='num-of-likes'>{video?.num_likes}</span>
@@ -87,12 +87,12 @@ function VideoPage () {
                     <div id='dislikes'>
                     <i className="fa-regular fa-thumbs-down" id='thumb-down-icon'/>
                     </div>
-                </div> */}
+                </div>
             </div>
             <div className='video-page-description'>
                 <div className='video-page-description-inner-wrapper'>
                     <div id='video-description-header'>
-                        <span id='video-description-header-num-views'>{video?.num_views} views</span>
+                        <span id='video-description-header-num-views'>2M views</span>
                         <span id='video-description-header-date'>{getDate(date)}</span>
                     </div>
                     <p id='video-description'>{video?.description}</p>

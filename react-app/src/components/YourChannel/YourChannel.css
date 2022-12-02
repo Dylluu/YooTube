@@ -135,6 +135,7 @@
 #your-channel-user-video-card-thumbnail {
     width: 246px;
     border-radius: 10px;
+    object-fit: cover;
     cursor: pointer;
 }
 

@@ -5,6 +5,7 @@ import logo from '../../assets/logo.png';
 import { logout } from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import UploadVideoModal from '../UploadVideoModal';
+import crossCircle from '../../assets/circleCross.png';
 
 function TopNavigation() {
 
@@ -41,6 +42,7 @@ function TopNavigation() {
                     </div>
                     <NavLink to='/' id='logo-nav'>
                     <img alt='logo' src={logo} id='logo'/>
+                    <img alt='crossCircle' src={crossCircle} id='crossCircle'/>
                     </NavLink>
                 </div>
                 {!user && <NavLink to='/login' className='signin-button'>

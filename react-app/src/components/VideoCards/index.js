@@ -29,7 +29,7 @@ function VideoCards({video}) {
                         {videoUser?.username}
                     </div>
                     <div className='video-card-views-and-date'>
-                        <span>{video?.num_views} views</span>
+                        <span>2M views</span>
                     </div>
                 </div>
             </div>
