@@ -19,25 +19,6 @@
 
 YooTube is a video streaming application based on YouTube. All users can view videos posted on the website, and upon signing up, can also leave comments on videos, as well as post their own videos for others to see. Comments and videos can be edited and deleted.  
 
-Upon first entering our site, you can navigate to either the Sign Up or Log In pages using the button in the top right-hand corner to be able to post their own comments or videos.  You may either create your own account, or utilize the Demo User's account with the Demo User Button.
-
-<img width="946" alt="yootube-splash" src="https://yootubetest.s3.amazonaws.com/Screen+Shot+2022-12-01+at+7.20.49+PM.png">
-
-After logging in, you can upload videos, and navigate to the Your Channel page to modify or delete your uploaded videos.
-
-<img width="945" alt="yootube-channel" src="https://yootubetest.s3.amazonaws.com/Screen+Shot+2022-12-01+at+7.21.12+PM.png">
-
-Users can click on any of the video cards on either the splash page or the Your Channel page to access the video. There, users can watch videos, and comment on them if they are logged in.
-
-<img width="949" alt="yootube-video" src="https://yootubetest.s3.amazonaws.com/Screen+Shot+2022-12-01+at+7.22.38+PM.png">
-
-<img width="949" alt="yootube-comments" src="https://yootubetest.s3.amazonaws.com/Screen+Shot+2022-12-01+at+7.22.54+PM.png">
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 ### Built With
 
 Frameworks, Platforms, and Libraries
@@ -58,6 +39,24 @@ Database
 Cloud Application Hosting
 
 [![Render][Render.render]][Render-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+Upon first entering our site, you can navigate to either the Sign Up or Log In pages using the button in the top right-hand corner to be able to post their own comments or videos.  You may either create your own account, or utilize the Demo User's account with the Demo User Button.
+
+<img width="946" alt="yootube-splash" src="https://yootubetest.s3.amazonaws.com/Screen+Shot+2022-12-01+at+7.20.49+PM.png">
+
+After logging in, you can upload videos, and navigate to the Your Channel page to modify or delete your uploaded videos.
+
+<img width="945" alt="yootube-channel" src="https://yootubetest.s3.amazonaws.com/Screen+Shot+2022-12-01+at+7.21.12+PM.png">
+
+Users can click on any of the video cards on either the splash page or the Your Channel page to access the video. There, users can watch videos, and comment on them if they are logged in.
+
+<img width="949" alt="yootube-video" src="https://yootubetest.s3.amazonaws.com/Screen+Shot+2022-12-01+at+7.22.38+PM.png">
+
+<img width="949" alt="yootube-comments" src="https://yootubetest.s3.amazonaws.com/Screen+Shot+2022-12-01+at+7.22.54+PM.png">
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
