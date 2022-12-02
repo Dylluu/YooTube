@@ -41,6 +41,7 @@
     justify-content: space-between;
     height: 13px;
     cursor: pointer;
+    visibility: hidden;
 }
 
 #menu-bars {
@@ -55,13 +56,13 @@
     width: 41px;
     margin-left: -11.25775px;
     border-radius: 75%;
-    cursor: not-allowed;
+    cursor: default;
     /* border: solid 1px red; */
 }
 
-#menu-hover:hover {
+/* #menu-hover:hover {
     background-color: rgba(255, 255, 255, 0.165);
-}
+} */
 
 #logo {
     height: 25px;
@@ -164,7 +165,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 105px;
+    /* height: 105px; */
+    height: 85px;
     width: 100%;
     border-bottom: solid 1px #3E3E3E;
 }

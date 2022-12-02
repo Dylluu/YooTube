@@ -106,11 +106,11 @@ function CommentCards({ comment }) {
                     </span>
                 </div>
                 <p className='comment-comment-div'>{comment.comment}</p>
-                <div className='comments-likes-dislikes'>
+                {/* <div className='comments-likes-dislikes'>
                     <i className="fa-regular fa-thumbs-up" id='comments-thumb-up-icon' />
                     <span id='comments-num-likes'>{comment?.num_likes}</span>
                     <i className="fa-regular fa-thumbs-down" id='comments-thumb-down-icon' />
-                </div>
+                </div> */}
             </div>}
             {editOpen && <div className='create-comment-input-div'>
                 <textarea className='create-comment-input-field' id='edit-comment-input-field' autoFocus maxLength='255' value={editedComment} onChange={updateEditedComment}
