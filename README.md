@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Dylluu/YooTube">
-    <img width="280" alt="YooTube" src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ftoppng.com%2Fyoutube-logo-full-color-button-icon-PNG-free-PNG-Images_474250&psig=AOvVaw34Zob9YrDSm6KTZRhfRpW8&ust=1670027163015000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCKiV-pTW2fsCFQAAAAAdAAAAABAD.png">
+    <img width="280" alt="YooTube" src="https://yootubetest.s3.amazonaws.com/favicon16x16.png">
   </a>
 
 <h3 align="center">YooTube</h3>
