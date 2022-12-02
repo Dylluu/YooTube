@@ -1,6 +1,65 @@
-# Flask React Project
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/Dylluu/YooTube">
+    <img width="280" alt="YooTube" src="https://yootubetest.s3.amazonaws.com/favicon16x16.png">
+  </a>
 
-This is the starter for the Flask React project.
+<h3 align="center">YooTube</h3>
+
+  <p align="center">
+    YouTube clone
+    <br />
+  </p>
+</div>
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+YooTube is a video streaming application based on YouTube. All users can view videos posted on the website, and upon signing up, can also leave comments on videos, as well as post their own videos for others to see. Comments and videos can be edited and deleted.  
+
+### Built With
+
+Frameworks, Platforms, and Libraries
+
+[![JavaScript][JavaScript.js]][JavaScript-url]
+[![React][React.js]][React-url]
+[![Redux][Redux.js]][Redux-url]
+[![Python][Python.py]][Python-url]
+[![Flask][Flask.py]][Flask-url]
+![HTML5][HTML.html]
+![CSS3][CSS.css]
+![AWS-url]
+
+Database
+
+[![SQLite][SQLite.sq]][SQLite-url]
+
+Cloud Application Hosting
+
+[![Render][Render.render]][Render-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+Upon first entering our site, you can navigate to either the Sign Up or Log In pages using the button in the top right-hand corner to be able to post their own comments or videos.  You may either create your own account, or utilize the Demo User's account with the Demo User Button.
+
+<img width="946" alt="yootube-splash" src="https://yootubetest.s3.amazonaws.com/Screen+Shot+2022-12-01+at+7.20.49+PM.png">
+
+After logging in, you can upload videos, and navigate to the Your Channel page to modify or delete your uploaded videos.
+
+<img width="945" alt="yootube-channel" src="https://yootubetest.s3.amazonaws.com/Screen+Shot+2022-12-01+at+7.21.12+PM.png">
+
+Users can click on any of the video cards on either the splash page or the Your Channel page to access the video. There, users can watch videos, and comment on them if they are logged in.
+
+<img width="949" alt="yootube-video" src="https://yootubetest.s3.amazonaws.com/Screen+Shot+2022-12-01+at+7.22.38+PM.png">
+
+<img width="949" alt="yootube-comments" src="https://yootubetest.s3.amazonaws.com/Screen+Shot+2022-12-01+at+7.22.54+PM.png">
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 ## Getting started
 1. Clone this repository (only this branch)
@@ -42,107 +101,22 @@ This is the starter for the Flask React project.
 7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
 
-## Deployment through Render.com
-
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
-
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
-
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
-
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
-
-### Part A: Configure the Start and Build Commands
-
-Start by giving your application a name.
-
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
-
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
-
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
-
-For your Flask project, enter the following command into the Build field, all in
-one line:
-
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
-
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
-
-Now, add your start command in the Start field:
-
-```shell
-# start script
-gunicorn app:app
-```
-
-_If you are using websockets, use the following start command instead for increased performance:_
-
-`gunicorn --worker-class eventlet -w 1 app:app`
-
-### Part B: Add the Environment Variables
-
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
-
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
-
-Add the following keys and values in the Render GUI form:
-
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
-
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
-
-Add the following keys and values:
-
-- DATABASE_URL (copy value from Internal Database URL field)
-
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
-
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
-
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
-
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[JavaScript.js]: https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E
+[JavaScript-url]: https://www.javascript.com/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Redux.js]: https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white
+[Redux-url]: https://redux.js.org/
+[Python.py]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
+[Python-url]: https://www.python.org/
+[Flask.py]: https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white
+[Flask-url]: https://flask.palletsprojects.com/en/2.2.x/
+[SQLite.sq]: https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white
+[SQLite-url]: https://www.sqlite.org/index.html
+[HTML.html]: https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white
+[CSS.css]: https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white
+[Render.render]: https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white
+[Render-url]: https://render.com/
+[AWS-url]: https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white
