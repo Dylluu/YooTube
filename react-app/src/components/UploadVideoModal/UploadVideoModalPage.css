@@ -138,7 +138,7 @@ input[type="file"] {
 
 .upload-video-page-bottom {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     position: absolute;
     bottom: 40px;
     color: #AAAAAA;
