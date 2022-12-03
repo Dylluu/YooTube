@@ -153,7 +153,7 @@ function UploadVideoModalPage({setShowModal}) {
                         <span id='dont-have-video'>Don't have a video? Download a demo video</span>
                         <a href='http://drive.google.com/uc?export=download&id=1_zx-0eNmdwbpKGSl3VhQ23ofHBLdGY-N' target='_blank' download><span id='download-demo-here'>here</span></a>
                         </div>
-                        <span id='dont-have-video'>Please copy the link above and open it in a new tab</span>
+                        <span id='dont-have-video'>Please copy the link address above and open it in a new tab</span>
                     </div>
                 </div>
                 <div className='upload-video-details-form'>
