@@ -138,11 +138,20 @@ input[type="file"] {
 
 .upload-video-page-bottom {
     display: flex;
+    flex-direction: column;
     position: absolute;
     bottom: 40px;
     color: #AAAAAA;
     font-size: 12px;
 }
+
+.dont-have-video-and-link {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
 
 #download-demo-here {
     color: #3EA6FF;
