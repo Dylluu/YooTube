@@ -29,7 +29,7 @@ function YourVideosCards({ userVid }) {
             <img alt={userVid.title} src={userVid.thumbnail} id='your-channel-user-video-card-thumbnail'
                 onError={({ currentTarget }) => {
                     currentTarget.onerror = null;
-                    currentTarget.src = "https://assets.entrepreneur.com/content/3x2/2000/20180117155526-youtube.jpeg?crop=16:9";
+                    currentTarget.src = "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg";
                 }}
                 onClick={() => history.push(`/videos/${userVid.id}`)}
             />
@@ -61,6 +61,7 @@ function YourVideosCards({ userVid }) {
                                         await dispatch(deleteVideoThunk(userVid.id))
                                         await dispatch(getUserVideosThunk())
                                         await dispatch(getVideosThunk())
+                                        setMenuOpen(false);
                                     }}
                                 ><i className="fa-solid fa-trash" id='comment-trash-icon' /> Delete</span>
                             </div>

@@ -19,7 +19,7 @@ function RightVideoCards({video}) {
             <img alt={video.title} src={video.thumbnail} id='right-video-cards-thumbnail'
             onError={({ currentTarget }) => {
                 currentTarget.onerror = null;
-                currentTarget.src="https://assets.entrepreneur.com/content/3x2/2000/20180117155526-youtube.jpeg?crop=16:9";
+                currentTarget.src="https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg";
               }}
             />
             <div className='right-video-cards-details'>

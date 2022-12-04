@@ -3,7 +3,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 import './UploadVideoModalPage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import loadingCircle from '../../assets/loadingCircle.gif';
-import { getVideosThunk } from '../../store/videos';
+import { getUserVideosThunk, getVideosThunk } from '../../store/videos';
 
 function UploadVideoModalPage({setShowModal}) {
     const history = useHistory();
@@ -67,6 +67,7 @@ function UploadVideoModalPage({setShowModal}) {
             if (res.ok) {
                 await res.json();
                 await dispatch(getVideosThunk());
+                await dispatch(getUserVideosThunk());
                 setShowModal(false);
                 history.push('/')
                 // history.go(0);
