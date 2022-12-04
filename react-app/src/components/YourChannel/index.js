@@ -24,7 +24,7 @@ function YourChannel() {
         window.scrollTo(0, 0)
       }, [])
 
-    if (!userVideos) return <div className='video-page-container'></div>;
+    if (!userVideos) return <div className='empty-container'></div>;
 
     return (
         <div className='your-channel-container'>

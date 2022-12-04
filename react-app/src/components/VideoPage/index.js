@@ -58,7 +58,7 @@ function VideoPage () {
     }
 
     if(!Object.values(video).length) return (
-        <div className='video-page-container'></div>
+        <div className='empty-container'></div>
     )
 
     return (
