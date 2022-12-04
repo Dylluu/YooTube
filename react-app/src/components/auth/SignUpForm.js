@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './SignUpForm.css';
-import googleLogo from '../../assets/googleLogo.png';
+import googleLogo from '../../assets/newGoogle.png';
 import circleCross from '../../assets/circleCross.png';
 
 const SignUpForm = () => {
@@ -177,7 +177,7 @@ const SignUpForm = () => {
     <form className='signup-form-wrapper' onSubmit={onSignUp}>
     <div className='signup-form-header'>
       <img alt='googleLogo' src={googleLogo} id='google-logo'/>
-      <img alt='circleCross' src={circleCross} id='circleCross'/>
+      {/* <img alt='circleCross' src={circleCross} id='circleCross'/> */}
       <span id='create-your-google-text'>Create your Google Account</span>
       <span id='to-continue-to-text'>to continue to YooTube</span>
     </div>
