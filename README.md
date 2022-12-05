@@ -60,6 +60,16 @@ Users can click on any of the video cards on either the splash page or the Your 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## MVP Features
+1. Videos (Create, Read, Update, Delete)
+2. Comments (Create, Read, Update, Delete)
+
+## Future Goals
+1. Search/Filter Videos
+2. Video Likes and Comment Likes
+3. Subscriptions
+4. Playlists
+
 
 ## Getting started
 1. Clone this repository (only this branch)
