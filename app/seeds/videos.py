@@ -55,7 +55,7 @@ def seed_videos():
     db.session.add(kong)
     db.session.add(baby_driver)
     db.session.add(sushi)
-    db.session.add(drake)
+    # db.session.add(drake)
     db.session.add(avatar)
     db.session.commit()
 
