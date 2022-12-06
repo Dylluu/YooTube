@@ -43,6 +43,9 @@ def seed_videos():
     baby_driver = Video(
         user_id=4, title='Baby Driver Opening Scene (2017)', description='Baby Driver Opening Scene (2017): Check out the new clip starring Ansel Elgort, Jon Hamm, and Eiza González! Be the first to watch, comment, and share clips and behind the scenes dropping @MovieclipsComingSoon.', category='Movies', url='https://yootubetest.s3.amazonaws.com/Baby+Driver+Opening+Scene+(2017)+_+Movieclips+Coming+Soon-7ARFyrM6gVs.mp4', thumbnail='https://i3.ytimg.com/vi/7ARFyrM6gVs/maxresdefault.jpg'
     )
+    kyrie = Video(
+        user_id=5, title='Nets vs. Raptors Highlights | 2022 Season', description='The Nets take on the Raptors. TJ Warren has his debut as a Brooklyn Net.', category='Sports', url='https://yootubetest.s3.amazonaws.com/TJ+Warren+Nets+Debut!+Kyrie+Irving+27+Pts+vs+Raptors!+2022-23+NBA+Season-YOhAFAuBl3U.mp4', thumbnail='https://i3.ytimg.com/vi/YOhAFAuBl3U/maxresdefault.jpg'
+    )
 
 
     db.session.add(first_video)
@@ -54,9 +57,10 @@ def seed_videos():
     db.session.add(batb)
     db.session.add(kong)
     db.session.add(baby_driver)
+    db.session.add(drake)
     db.session.add(sushi)
-    # db.session.add(drake)
     db.session.add(avatar)
+    db.session.add(kyrie)
     db.session.commit()
 
 def undo_videos():
