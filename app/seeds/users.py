@@ -14,7 +14,7 @@ def seed_users():
     espn = User(
         first_name='ESPN', last_name='Sports', username='ESPN', email='espn@aa.io', profile_pic='https://yt3.ggpht.com/ytc/AMLnZu85lWboVPtYPEZESVzB-KeDb_CntR9GxPYBBdwn7f8=s176-c-k-c0x00ffffff-no-rj', password='password')
     drake = User(
-        first_name='Aubrey', last_name='Graham', username='Drake', email='drake@aa.io', profile_pic='https://yt3.ggpht.com/ytc/AMLnZu8TWIuJybUZnyXmXQk_5XlPmXtxDCSKVsJgN70u7rk=s176-c-k-c0x00ffffff-no-rj', password='password')
+        first_name='Aubrey', last_name='Graham', username='Drake', email='drake@aa.io', profile_pic='https://yt3.googleusercontent.com/ytc/AMLnZu-musTUE_hAHrqW4gyXo2MO0o3jDplfaUBROqU6Pw=s176-c-k-c0x00ffffff-no-rj-mo', password='password')
     nfl = User(
         first_name='NFL', last_name='Official', username='NFL', email='nfl@aa.io', profile_pic='https://yt3.ggpht.com/ytc/AMLnZu8tOlovKPswBTvH6bT6UGVCwCsEZhxK2nJatGKKY9g=s176-c-k-c0x00ffffff-no-rj', password='password')
     avatar = User(
