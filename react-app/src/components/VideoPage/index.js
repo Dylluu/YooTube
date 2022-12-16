@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import './VideoPage.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearVideoAction, getVideosThunk } from '../../store/videos';
+import { addLikeThunk, clearVideoAction, getVideosThunk } from '../../store/videos';
 import { getUsersThunk } from '../../store/session';
 import { getCommentsThunk } from '../../store/comments';
 import { postCommentThunk } from '../../store/comments';
@@ -57,6 +57,11 @@ function VideoPage () {
         setCommentText(e.target.value)
     }
 
+    const handleLike = async () => {
+        await dispatch(addLikeThunk(videoId));
+        await dispatch(getOneVideoThunk(videoId));
+    }
+
     if(!Object.values(video).length) return (
         <div className='empty-container'></div>
     )
@@ -79,7 +84,9 @@ function VideoPage () {
                     </div>
                 </div>
                 <div className='likes-and-dislikes'>
-                    <div id='likes'>
+                    <div id='likes'
+                    onClick={handleLike}
+                    >
                     <i className="fa-regular fa-thumbs-up" id='thumb-up-icon'/>
                     <span id='num-of-likes'>{video?.num_likes}</span>
                     </div>

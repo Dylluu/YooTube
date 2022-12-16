@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Video, Comment, db
+from app.models import Video, Comment, UserLike, db
 from app.forms import CommentForm, VideoForm
 from flask_login import current_user, login_required
 from app.aws_upload import (
@@ -7,6 +7,28 @@ from app.aws_upload import (
 )
 
 video_routes = Blueprint('videos', __name__)
+
+@video_routes.route('/<int:id>/likes/new', methods=['POST'])
+@login_required
+def add_like(id):
+    """Likes video"""
+    currUserId = current_user.id
+    like = UserLike(
+        user_id=currUserId,
+        video_id=id
+    )
+    db.session.add(like)
+    db.session.commit()
+    return like.to_dict()
+
+@video_routes.route('/<int:id>/numlikes', methods=['PUT'])
+@login_required
+def edit_num_likes(id):
+    """Adds num likes for video"""
+    video = Video.query.get(id)
+    video.num_likes = video.num_likes + 1
+    db.session.commit()
+    return video.to_dict()
 
 @video_routes.route('/<int:id>/comments/new', methods=['POST'])
 @login_required

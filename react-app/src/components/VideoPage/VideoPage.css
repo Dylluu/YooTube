@@ -120,7 +120,7 @@
     height: 36px;
     background-color: #272727;
     border-radius: 18px;
-    cursor: not-allowed;
+    cursor: pointer;
     /* border: solid 1px blue; */
 }
 
@@ -135,7 +135,7 @@
     padding-right: 5px;
     border-bottom-left-radius: 18px;
     border-top-left-radius: 18px;
-    background-color: #272727
+    background-color: #272727;
     /* border: solid 1px red; */
 }
 

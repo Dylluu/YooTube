@@ -22,6 +22,23 @@ const getUserVideos = (payload) => ({
     payload
 })
 
+export const addLikeThunk = (videoId) => async (dispatch) => {
+    await fetch(`/api/videos/${videoId}/likes/new`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(videoId)
+    });
+    await fetch(`/api/videos/${videoId}/numlikes`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(videoId)
+    });
+}
+
 export const editVideoThunk = (data) => async (dispatch) => {
     await fetch(`/api/videos/${data.id}`, {
         method: 'PUT',
