@@ -2,6 +2,7 @@ const GET_VIDEOS = 'videos/GET_VIDEOS';
 const GET_ONE_VIDEO = 'videos/GET_ONE_VIDEO';
 const CLEAR_VIDEO = 'videos/CLEAR_VIDEO';
 const GET_USER_VIDEOS = 'videos/GET_USER_VIDEOS';
+const GET_USER_LIKES = 'videos/GET_USER_LIKES';
 
 export const clearVideoAction = () => ({
     type: CLEAR_VIDEO
@@ -21,6 +22,20 @@ const getUserVideos = (payload) => ({
     type: GET_USER_VIDEOS,
     payload
 })
+
+const getUserLikes = (payload) => ({
+    type: GET_USER_LIKES,
+    payload
+})
+
+export const getUserLikesThunk = () => async (dispatch) => {
+    const response = await fetch(`/api/users/likes`)
+
+    if(response.ok) {
+        const userLikes = await response.json();
+        dispatch(getUserLikes(userLikes))
+    }
+}
 
 export const addLikeThunk = (videoId) => async (dispatch) => {
     await fetch(`/api/videos/${videoId}/likes/new`, {
@@ -102,6 +117,9 @@ const videos = (state = initialState, action) => {
             return newState
         case GET_USER_VIDEOS:
             newState.userVideos = action.payload
+            return newState
+        case GET_USER_LIKES:
+            newState.userLikes = action.payload
             return newState
         default:
             return state
