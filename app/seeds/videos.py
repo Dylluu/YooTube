@@ -46,6 +46,9 @@ def seed_videos():
     kyrie = Video(
         user_id=5, title='Nets vs. Raptors Highlights | 2022 Season', description='The Nets take on the Raptors. TJ Warren has his debut as a Brooklyn Net.', category='Sports', url='https://yootubetest.s3.amazonaws.com/TJ+Warren+Nets+Debut!+Kyrie+Irving+27+Pts+vs+Raptors!+2022-23+NBA+Season-YOhAFAuBl3U.mp4', thumbnail='https://i3.ytimg.com/vi/YOhAFAuBl3U/maxresdefault.jpg'
     )
+    pole = Video(
+        user_id=2, title="Max Verstappen's Pole Lap | 2022 Abu Dhabi Grand Prix | Pirelli", description='It was only fitting that the champion should take pole position in the final round! And Max Verstappen did exactly that at Yas Marina thanks to this storming lap', category='Cars', url="https://yootubetest.s3.amazonaws.com/Max+Verstappen's+Pole+Lap+_+2022+Abu+Dhabi+Grand+Prix+_+Pirelli-R-90ZTKNTTo.mp4", thumbnail='https://i3.ytimg.com/vi/R-90ZTKNTTo/maxresdefault.jpg'
+    )
 
 
     db.session.add(first_video)
@@ -61,6 +64,7 @@ def seed_videos():
     db.session.add(sushi)
     db.session.add(avatar)
     db.session.add(kyrie)
+    db.session.add(pole)
     db.session.commit()
 
 def undo_videos():
