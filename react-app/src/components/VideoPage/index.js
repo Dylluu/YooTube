@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import './VideoPage.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDislikeThunk, addLikeThunk, clearVideoAction, getUserDislikesThunk, getUserLikesThunk, getVideosThunk, removeLikeThunk } from '../../store/videos';
+import { addDislikeThunk, addLikeThunk, clearVideoAction, getUserDislikesThunk, getUserLikesThunk, getVideosThunk, removeDislikeThunk, removeLikeThunk } from '../../store/videos';
 import { getUsersThunk } from '../../store/session';
 import { getCommentsThunk } from '../../store/comments';
 import { postCommentThunk } from '../../store/comments';
@@ -22,11 +22,12 @@ function VideoPage () {
     const videoPoster = users?.find(user => user.id == video?.user_id);
     const currUser = useSelector(state => state.session.user);
     const date = new Date(video?.created_at);
-    const [commentText, setCommentText] = useState('');
     const userLikes = useSelector(state => state.videos.userLikes.user_likes);
-    const [isLiked, setIsLiked] = useState(false);
     const userDislikes = useSelector(state => state.videos.userDislikes.user_dislikes);
-    const [isDisliked, setIsDisliked] = useState(false);
+    const [commentText, setCommentText] = useState('');
+    const [likeStatus, setLikeStatus] = useState('Blank');
+    const [thumbIcon, setThumbIcon] = useState('fa-regular fa-thumbs-up');
+    const [thumbDownIcon, setThumbDownIcon] = useState('fa-regular fa-thumbs-down');
 
     function getDate(date) {
         const split = `${date}`.split(' ');
@@ -40,20 +41,33 @@ function VideoPage () {
         await dispatch(getUsersThunk());
         await dispatch(getUserLikesThunk(videoId));
         await dispatch(getUserDislikesThunk(videoId));
-        // await dispatch(getCommentsThunk(videoId));
     }, [dispatch, videoId])
 
     useEffect(async () => {
         if(userLikes && userLikes.length) {
-            setIsLiked(true);
+            setLikeStatus('Liked');
         }
     }, [userLikes])
 
     useEffect(async () => {
         if(userDislikes && userDislikes.length) {
-            setIsDisliked(true);
+            setLikeStatus('Disliked')
         }
-    })
+    }, [userDislikes])
+
+    useEffect(() => {
+        if(likeStatus == 'Liked') {
+            setThumbIcon('fa-solid fa-thumbs-up');
+            setThumbDownIcon('fa-regular fa-thumbs-down');
+        }
+        if(likeStatus == 'Disliked') {
+            setThumbIcon('fa-regular fa-thumbs-up');
+            setThumbDownIcon('fa-solid fa-thumbs-down');
+        } else if (likeStatus == 'Blank') {
+            setThumbIcon('fa-regular fa-thumbs-up');
+            setThumbDownIcon('fa-regular fa-thumbs-down');
+        }
+    }, [likeStatus])
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -76,26 +90,37 @@ function VideoPage () {
     }
 
     const handleLike = async () => {
-        if(!isLiked){
+        if(likeStatus == 'Blank'){
             await dispatch(addLikeThunk(videoId));
-            await dispatch(getOneVideoThunk(videoId));
-            await dispatch(getUserLikesThunk(videoId));
-            setIsLiked(true);
-        } else {
+            setLikeStatus('Liked');
+        } else if(likeStatus == 'Disliked') {
+            await dispatch(removeDislikeThunk(videoId));
+            await dispatch(addLikeThunk(videoId));
+            setLikeStatus('Liked')
+        } else if(likeStatus == 'Liked') {
             await dispatch(removeLikeThunk(videoId));
-            await dispatch(getOneVideoThunk(videoId));
-            await dispatch(getUserLikesThunk(videoId));
-            setIsLiked(false);
+            setLikeStatus('Blank')
         }
+        await dispatch(getOneVideoThunk(videoId));
+        await dispatch(getUserLikesThunk(videoId));
+        await dispatch(getUserDislikesThunk(videoId));
     }
 
     const handleDislike = async () => {
-        if(isLiked) {
-        await dispatch(removeLikeThunk(videoId));
+        if(likeStatus == 'Liked') {
+            await dispatch(removeLikeThunk(videoId));
+            await dispatch(addDislikeThunk(videoId));
+            setLikeStatus('Disliked');
+        } else if(likeStatus == 'Blank') {
+            await dispatch(addDislikeThunk(videoId));
+            setLikeStatus('Disliked');
+        } else if(likeStatus == 'Disliked') {
+            await dispatch(removeDislikeThunk(videoId));
+            setLikeStatus('Blank');
+        }
         await dispatch(getOneVideoThunk(videoId));
         await dispatch(getUserLikesThunk(videoId));
-        setIsLiked(false);
-        }
+        await dispatch(getUserDislikesThunk(videoId));
     }
 
     if(!Object.values(video).length) return (
@@ -123,21 +148,21 @@ function VideoPage () {
                     <div id='likes'
                     onClick={handleLike}
                     >
-                    <i className="fa-regular fa-thumbs-up" id='thumb-up-icon'/>
+                    <i className={thumbIcon} id='thumb-up-icon'/>
                     <span id='num-of-likes'>{video?.num_likes}</span>
                     </div>
                     <div id='likes-dislikes-spacer'></div>
                     <div id='dislikes'
                     onClick={handleDislike}
                     >
-                    <i className="fa-regular fa-thumbs-down" id='thumb-down-icon'/>
+                    <i className={thumbDownIcon} id='thumb-down-icon'/>
                     </div>
                 </div>
             </div>
             <div className='video-page-description'>
                 <div className='video-page-description-inner-wrapper'>
                     <div id='video-description-header'>
-                        <span id='video-description-header-num-views'>2M views</span>
+                        <span id='video-description-header-num-views'>{video?.num_views} views</span>
                         <span id='video-description-header-date'>{getDate(date)}</span>
                     </div>
                     <p id='video-description'>{video?.description}</p>

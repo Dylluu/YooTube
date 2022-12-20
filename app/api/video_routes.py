@@ -24,7 +24,7 @@ def add_like(id):
 @video_routes.route('/<int:id>/dislikes/new', methods=['POST'])
 @login_required
 def add_dislike(id):
-    """Likes video"""
+    """Dislikes video"""
     currUserId = current_user.id
     dislike = UserDislike(
         user_id=currUserId,
@@ -47,6 +47,17 @@ def remove_like(id):
         video.num_likes = video.num_likes - 1
         db.session.commit()
         return dict(message = 'Like removed')
+
+@video_routes.route('/<int:id>/dislikes/delete', methods=['DELETE'])
+@login_required
+def remove_dislike(id):
+    """Removes dislike from video"""
+    currUserId = current_user.id
+    dislike = UserDislike.query.filter_by(user_id = currUserId, video_id = id).first()
+    if dislike:
+        db.session.delete(dislike)
+        db.session.commit()
+        return dict(message = 'Dislike removed')
 
 @video_routes.route('/<int:id>/numlikes', methods=['PUT'])
 @login_required

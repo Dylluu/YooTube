@@ -84,6 +84,12 @@ export const removeLikeThunk = (videoId) => async (dispatch) => {
     })
 }
 
+export const removeDislikeThunk = (videoId) => async (dispatch) => {
+    await fetch(`/api/videos/${videoId}/dislikes/delete`, {
+        method: 'DELETE'
+    })
+}
+
 export const editVideoThunk = (data) => async (dispatch) => {
     await fetch(`/api/videos/${data.id}`, {
         method: 'PUT',
