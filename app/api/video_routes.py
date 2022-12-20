@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Video, Comment, UserLike, db
+from app.models import Video, Comment, UserLike, UserDislike, db
 from app.forms import CommentForm, VideoForm
 from flask_login import current_user, login_required
 from app.aws_upload import (
@@ -20,6 +20,33 @@ def add_like(id):
     db.session.add(like)
     db.session.commit()
     return like.to_dict()
+
+@video_routes.route('/<int:id>/dislikes/new', methods=['POST'])
+@login_required
+def add_dislike(id):
+    """Likes video"""
+    currUserId = current_user.id
+    dislike = UserDislike(
+        user_id=currUserId,
+        video_id=id
+    )
+    db.session.add(dislike)
+    db.session.commit()
+    return like.to_dict()
+
+@video_routes.route('/<int:id>/likes/delete', methods=['DELETE'])
+@login_required
+def remove_like(id):
+    """Removes like from video"""
+    currUserId = current_user.id
+    like = UserLike.query.filter_by(user_id = currUserId, video_id = id).first()
+    if like:
+        db.session.delete(like)
+        db.session.commit()
+        video = Video.query.get(id)
+        video.num_likes = video.num_likes - 1
+        db.session.commit()
+        return dict(message = 'Like removed')
 
 @video_routes.route('/<int:id>/numlikes', methods=['PUT'])
 @login_required

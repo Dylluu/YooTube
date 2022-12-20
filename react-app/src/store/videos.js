@@ -3,6 +3,7 @@ const GET_ONE_VIDEO = 'videos/GET_ONE_VIDEO';
 const CLEAR_VIDEO = 'videos/CLEAR_VIDEO';
 const GET_USER_VIDEOS = 'videos/GET_USER_VIDEOS';
 const GET_USER_LIKES = 'videos/GET_USER_LIKES';
+const GET_USER_DISLIKES = 'videos/GET_USER_DISLIKES';
 
 export const clearVideoAction = () => ({
     type: CLEAR_VIDEO
@@ -28,12 +29,25 @@ const getUserLikes = (payload) => ({
     payload
 })
 
-export const getUserLikesThunk = () => async (dispatch) => {
-    const response = await fetch(`/api/users/likes`)
+const getUserDislikes = (payload) => ({
+    type: GET_USER_DISLIKES,
+    payload
+})
+
+export const getUserLikesThunk = (videoId) => async (dispatch) => {
+    const response = await fetch(`/api/users/likes/${videoId}`)
 
     if(response.ok) {
         const userLikes = await response.json();
         dispatch(getUserLikes(userLikes))
+    }
+}
+
+export const getUserDislikesThunk = (videoId) => async (dispatch) => {
+    const response = await fetch(`/api/users/dislikes/${videoId}`)
+    if(response.ok) {
+        const userDislikes = await response.json();
+        dispatch(getUserDislikes(userDislikes))
     }
 }
 
@@ -52,6 +66,22 @@ export const addLikeThunk = (videoId) => async (dispatch) => {
         },
         body: JSON.stringify(videoId)
     });
+}
+
+export const addDislikeThunk = (videoId) => async (dispatch) => {
+    await fetch(`/api/videos/${videoId}/dislikes/new`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(videoId)
+    })
+}
+
+export const removeLikeThunk = (videoId) => async (dispatch) => {
+    await fetch(`/api/videos/${videoId}/likes/delete`, {
+        method: 'DELETE'
+    })
 }
 
 export const editVideoThunk = (data) => async (dispatch) => {
@@ -100,7 +130,9 @@ export const getVideosThunk = () => async (dispatch) => {
 const initialState = {
     allVideos: {},
     oneVideo: {},
-    userVideos: {}
+    userVideos: {},
+    userLikes: {},
+    userDislikes: {}
 }
 
 const videos = (state = initialState, action) => {
@@ -120,6 +152,9 @@ const videos = (state = initialState, action) => {
             return newState
         case GET_USER_LIKES:
             newState.userLikes = action.payload
+            return newState
+        case GET_USER_DISLIKES:
+            newState.userDislikes = action.payload
             return newState
         default:
             return state

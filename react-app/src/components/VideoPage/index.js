@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import './VideoPage.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addLikeThunk, clearVideoAction, getVideosThunk } from '../../store/videos';
+import { addDislikeThunk, addLikeThunk, clearVideoAction, getUserDislikesThunk, getUserLikesThunk, getVideosThunk, removeLikeThunk } from '../../store/videos';
 import { getUsersThunk } from '../../store/session';
 import { getCommentsThunk } from '../../store/comments';
 import { postCommentThunk } from '../../store/comments';
@@ -23,6 +23,10 @@ function VideoPage () {
     const currUser = useSelector(state => state.session.user);
     const date = new Date(video?.created_at);
     const [commentText, setCommentText] = useState('');
+    const userLikes = useSelector(state => state.videos.userLikes.user_likes);
+    const [isLiked, setIsLiked] = useState(false);
+    const userDislikes = useSelector(state => state.videos.userDislikes.user_dislikes);
+    const [isDisliked, setIsDisliked] = useState(false);
 
     function getDate(date) {
         const split = `${date}`.split(' ');
@@ -34,8 +38,22 @@ function VideoPage () {
         await dispatch(getOneVideoThunk(videoId));
         await dispatch(getVideosThunk());
         await dispatch(getUsersThunk());
+        await dispatch(getUserLikesThunk(videoId));
+        await dispatch(getUserDislikesThunk(videoId));
         // await dispatch(getCommentsThunk(videoId));
     }, [dispatch, videoId])
+
+    useEffect(async () => {
+        if(userLikes && userLikes.length) {
+            setIsLiked(true);
+        }
+    }, [userLikes])
+
+    useEffect(async () => {
+        if(userDislikes && userDislikes.length) {
+            setIsDisliked(true);
+        }
+    })
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -58,8 +76,26 @@ function VideoPage () {
     }
 
     const handleLike = async () => {
-        await dispatch(addLikeThunk(videoId));
+        if(!isLiked){
+            await dispatch(addLikeThunk(videoId));
+            await dispatch(getOneVideoThunk(videoId));
+            await dispatch(getUserLikesThunk(videoId));
+            setIsLiked(true);
+        } else {
+            await dispatch(removeLikeThunk(videoId));
+            await dispatch(getOneVideoThunk(videoId));
+            await dispatch(getUserLikesThunk(videoId));
+            setIsLiked(false);
+        }
+    }
+
+    const handleDislike = async () => {
+        if(isLiked) {
+        await dispatch(removeLikeThunk(videoId));
         await dispatch(getOneVideoThunk(videoId));
+        await dispatch(getUserLikesThunk(videoId));
+        setIsLiked(false);
+        }
     }
 
     if(!Object.values(video).length) return (
@@ -91,7 +127,9 @@ function VideoPage () {
                     <span id='num-of-likes'>{video?.num_likes}</span>
                     </div>
                     <div id='likes-dislikes-spacer'></div>
-                    <div id='dislikes'>
+                    <div id='dislikes'
+                    onClick={handleDislike}
+                    >
                     <i className="fa-regular fa-thumbs-down" id='thumb-down-icon'/>
                     </div>
                 </div>
