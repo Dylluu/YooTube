@@ -64,8 +64,6 @@ def dislike_comment(id):
         comment_id=id
     )
     db.session.add(dislike)
-    comment = Comment.query.get(id)
-    comment.num_likes = comment.num_likes - 1
     db.session.commit()
     return dislike.to_dict()
 
