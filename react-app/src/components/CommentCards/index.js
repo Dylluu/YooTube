@@ -2,21 +2,33 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import './CommentCards.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteCommentThunk, editCommentsThunk } from '../../store/comments';
+import { deleteCommentThunk, editCommentsThunk, likeCommentThunk } from '../../store/comments';
 import { getCommentsThunk } from '../../store/comments';
 import { getOneVideoThunk } from '../../store/videos';
 
 function CommentCards({ comment }) {
 
+    const dispatch = useDispatch();
+    const { videoId } = useParams()
     const currUser = useSelector(state => state.session.user);
     const users = useSelector(state => state.session.allUsers);
-    const { videoId } = useParams()
+    const userCommentLikes = useSelector(state => state.comments.user_comment_likes.user_comment_likes);
     const commentor = users?.find(user => user.id == comment.user_id);
     const [menuOpen, setMenuOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
     const [editedComment, setEditedComment] = useState(comment.comment);
     const [ogComment, setOgComment] = useState(comment.comment);
-    const dispatch = useDispatch();
+    const [likeStatus, setLikeStatus] = useState('Blank');
+
+    useEffect(() => {
+        if(userCommentLikes && userCommentLikes.length) {
+            for(let commentLike in userCommentLikes) {
+                if(commentLike.comment_id == comment.id) {
+                    setLikeStatus('Liked');
+                }
+            }
+        }
+    }, [userCommentLikes])
 
     useEffect(() => {
         const saveButton = document.getElementById('edit-submit-button');
@@ -72,6 +84,14 @@ function CommentCards({ comment }) {
         }
     }
 
+    async function handleLikeComment() {
+        if(likeStatus == 'Blank') {
+            await dispatch(likeCommentThunk(comment.id));
+            setLikeStatus('Liked');
+        }
+        await dispatch(getOneVideoThunk(videoId));
+    }
+
     return (
         <div key={comment?.id} className='comment-cards'>
             {commentor?.profile_pic && (
@@ -107,7 +127,9 @@ function CommentCards({ comment }) {
                 </div>
                 <p className='comment-comment-div'>{comment.comment}</p>
                 <div className='comments-likes-dislikes'>
-                    <i className="fa-regular fa-thumbs-up" id='comments-thumb-up-icon' />
+                    <i className="fa-regular fa-thumbs-up" id='comments-thumb-up-icon'
+                    onClick={handleLikeComment}
+                    />
                     <span id='comments-num-likes'>{comment?.num_likes}</span>
                     <i className="fa-regular fa-thumbs-down" id='comments-thumb-down-icon' />
                 </div>

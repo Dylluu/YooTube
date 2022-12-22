@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db, Comment
+from app.models import User, db, Comment, CommentLike
 from app.forms import CommentForm
 from flask_login import current_user, login_required
 
@@ -27,6 +27,33 @@ comments_routes = Blueprint('comments', __name__)
 #         db.session.add(comment)
 #         db.session.commit()
 #         return comment.to_dict()
+@comments_routes.route('/<int:id>/likes/new', methods=['POST'])
+@login_required
+def like_comment(id):
+    """adds like to comment"""
+    currUserId = current_user.id
+    like = CommentLike(
+        user_id=currUserId,
+        comment_id=id
+    )
+    db.session.add(like)
+    comment = Comment.query.get(id)
+    comment.num_likes = comment.num_likes + 1
+    db.session.commit()
+    return like.to_dict()
+
+@comments_routes.route('/<int:id>/likes/delete', methods=['DELETE'])
+@login_required
+def delete_comment_like(id):
+    """removes like from comment"""
+    currUserId = current_user.id
+    like = CommentLike.query.filter_by(user_id = currUserId, comment_id = id).first()
+    db.session.delete(like)
+    comment = Comment.query.get(id)
+    comment.num_likes = comment.num_likes - 1
+    db.session.commit()
+    return dict(message = 'Like removed')
+
 @comments_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def edit_comment(id):

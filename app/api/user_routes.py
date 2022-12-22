@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
-from app.models import User, Video, UserLike, UserDislike
+from app.models import User, Video, UserLike, UserDislike, CommentLike
 
 user_routes = Blueprint('users', __name__)
 
@@ -25,6 +25,13 @@ def get_user_dislikes(videoId):
     """Query for all dislikes made by user"""
     dislikes = UserDislike.query.filter_by(user_id = (current_user.id), video_id = videoId)
     return {'user_dislikes': [dislike.to_dict() for dislike in dislikes]}
+
+@user_routes.route('/commentlikes')
+@login_required
+def get_user_comment_likes():
+    """Query for user comment likes"""
+    likes = CommentLike.query.filter_by(user_id = (current_user.id))
+    return {'user_comment_likes': [like.to_dict() for like in likes]}
 
 @user_routes.route('/videos')
 @login_required

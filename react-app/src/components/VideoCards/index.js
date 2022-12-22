@@ -8,6 +8,8 @@ function VideoCards({video}) {
     const users = useSelector(state => state.session.allUsers);
     const videoUser = users?.find(user => user.id == video.user_id);
 
+    if(!videoUser) return null;
+
     return (
         <div className='video-cards-container'>
             <div className='video-card-thumbnail'>

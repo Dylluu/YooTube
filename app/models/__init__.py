@@ -4,4 +4,5 @@ from .videos import Video
 from .comments import Comment
 from .user_likes import UserLike
 from .user_dislikes import UserDislike
+from .comment_likes import CommentLike
 from .db import environment, SCHEMA

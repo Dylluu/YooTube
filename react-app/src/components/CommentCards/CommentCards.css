@@ -57,7 +57,7 @@
     padding: 7px;
     border-radius: 75%;
     /* border: solid 1px blue; */
-    cursor: not-allowed;
+    cursor: pointer;
 }
 
 #comments-thumb-up-icon:hover {
@@ -70,7 +70,7 @@
     padding: 7px;
     border-radius: 75%;
     /* border: solid 1px blue; */
-    cursor: not-allowed;
+    cursor: pointer;
 }
 
 #comments-thumb-down-icon:hover {
