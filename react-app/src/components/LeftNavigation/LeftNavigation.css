@@ -3,7 +3,7 @@
     align-items: center;
     flex-direction: column;
     position: fixed;
-    padding-top: 56px;
+    padding-top: 58.65px;
     top: 0;
     left: 0;
     height: 100vh;
@@ -15,8 +15,9 @@
     display: flex;
     /* margin-top: 56px; */
     flex-direction: column;
-    width: 90%;
+    width: 88.2%;
     height: 100%;
+    margin-right: 5px;
     /* border: solid 1px red; */
 }
 

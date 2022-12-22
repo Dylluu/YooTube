@@ -13,6 +13,7 @@ import LeftNavigation from './components/LeftNavigation';
 import Dashboard from './components/Dashboard';
 import VideoPage from './components/VideoPage';
 import YourChannel from './components/YourChannel';
+import SearchResults from './components/SearchResults';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -57,6 +58,11 @@ function App() {
           <TopNavigation />
           <LeftNavigation />
           <Dashboard />
+        </Route>
+        <Route path='/search/:params' exact={true}>
+          <TopNavigation />
+          <LeftNavigation />
+          <SearchResults />
         </Route>
       </Switch>
     </BrowserRouter>

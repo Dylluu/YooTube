@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
 import './TopNavigation.css';
 import logo from '../../assets/logo.png';
 import { logout } from '../../store/session';
@@ -9,9 +9,13 @@ import crossCircle from '../../assets/circleCross.png';
 
 function TopNavigation() {
 
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const params = useParams();
     const user = useSelector(state => state.session.user);
     const [accountMenuOpen, setAccountMenuOpen] = useState(false);
-    const dispatch = useDispatch();
+    const [search, setSearch] = useState('');
+    const [searchOpen, setSearchOpen] = useState(false);
 
     function handleAccountMenuOpen(e){
         e.stopPropagation()
@@ -30,6 +34,11 @@ function TopNavigation() {
         await dispatch(logout());
       };
 
+    function handleSearch(e) {
+        e.preventDefault();
+        history.push(`/search/${search}`);
+    }
+
     return (
         <div className='top-nav-container'>
             <div className='top-nav-inner-wrapper'>
@@ -45,6 +54,20 @@ function TopNavigation() {
                     <img alt='crossCircle' src={crossCircle} id='crossCircle'/>
                     </NavLink>
                 </div>
+                <form className='search-bar-container'
+                onSubmit={handleSearch}
+                >
+                    <div className='search-bar-input-div'>
+                        <input className='search-bar-input'
+                        placeholder='Search'
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        ></input>
+                    </div>
+                    <button type='submit' className='search-bar-search-button'>
+                        <i className='fa-solid fa-magnifying-glass' id='search-bar-search-button-icon'/>
+                    </button>
+                </form>
                 {!user && <NavLink to='/login' className='signin-button'>
                     <div className='signin-button-inner'>
                         <i className="fa-regular fa-user" id='user-icon'/>
