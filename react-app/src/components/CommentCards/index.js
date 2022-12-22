@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import './CommentCards.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteCommentThunk, editCommentsThunk, likeCommentThunk } from '../../store/comments';
+import { deleteCommentThunk, editCommentsThunk, getUserCommentLikesThunk, likeCommentThunk } from '../../store/comments';
 import { getCommentsThunk } from '../../store/comments';
 import { getOneVideoThunk } from '../../store/videos';
 
@@ -19,16 +19,23 @@ function CommentCards({ comment }) {
     const [editedComment, setEditedComment] = useState(comment.comment);
     const [ogComment, setOgComment] = useState(comment.comment);
     const [likeStatus, setLikeStatus] = useState('Blank');
+    const [thumbUpIcon, setThumbUpIcon] = useState('fa-regular fa-thumbs-up');
 
-    useEffect(() => {
+    useEffect(async () => {
         if(userCommentLikes && userCommentLikes.length) {
-            for(let commentLike in userCommentLikes) {
+            for(let commentLike of userCommentLikes) {
                 if(commentLike.comment_id == comment.id) {
                     setLikeStatus('Liked');
                 }
             }
         }
     }, [userCommentLikes])
+
+    useEffect(() => {
+        if(likeStatus == 'Liked') {
+            setThumbUpIcon('fa-solid fa-thumbs-up');
+        }
+    }, [likeStatus])
 
     useEffect(() => {
         const saveButton = document.getElementById('edit-submit-button');
@@ -127,7 +134,7 @@ function CommentCards({ comment }) {
                 </div>
                 <p className='comment-comment-div'>{comment.comment}</p>
                 <div className='comments-likes-dislikes'>
-                    <i className="fa-regular fa-thumbs-up" id='comments-thumb-up-icon'
+                    <i className={thumbUpIcon} id='comments-thumb-up-icon'
                     onClick={handleLikeComment}
                     />
                     <span id='comments-num-likes'>{comment?.num_likes}</span>
