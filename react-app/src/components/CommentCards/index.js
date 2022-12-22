@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import './CommentCards.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteCommentThunk, editCommentsThunk, getUserCommentLikesThunk, likeCommentThunk } from '../../store/comments';
+import { deleteCommentThunk, dislikeCommentThunk, editCommentsThunk, getUserCommentLikesThunk, likeCommentThunk, removeCommentLikeThunk, removeDislikeCommentThunk } from '../../store/comments';
 import { getCommentsThunk } from '../../store/comments';
 import { getOneVideoThunk } from '../../store/videos';
 
@@ -13,6 +13,7 @@ function CommentCards({ comment }) {
     const currUser = useSelector(state => state.session.user);
     const users = useSelector(state => state.session.allUsers);
     const userCommentLikes = useSelector(state => state.comments.user_comment_likes.user_comment_likes);
+    const userCommentDislikes = useSelector(state => state.comments.user_comment_dislikes.user_comment_dislikes);
     const commentor = users?.find(user => user.id == comment.user_id);
     const [menuOpen, setMenuOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
@@ -20,6 +21,7 @@ function CommentCards({ comment }) {
     const [ogComment, setOgComment] = useState(comment.comment);
     const [likeStatus, setLikeStatus] = useState('Blank');
     const [thumbUpIcon, setThumbUpIcon] = useState('fa-regular fa-thumbs-up');
+    const [thumbDownIcon, setThumbDownIcon] = useState('fa-regular fa-thumbs-down');
 
     useEffect(async () => {
         if(userCommentLikes && userCommentLikes.length) {
@@ -29,11 +31,27 @@ function CommentCards({ comment }) {
                 }
             }
         }
-    }, [userCommentLikes])
+        if(userCommentDislikes && userCommentDislikes.length) {
+            for(let commentDislike of userCommentDislikes) {
+                if(commentDislike.comment_id == comment.id) {
+                    setLikeStatus('Disliked');
+                }
+            }
+        }
+    }, [userCommentLikes, userCommentDislikes])
 
     useEffect(() => {
         if(likeStatus == 'Liked') {
             setThumbUpIcon('fa-solid fa-thumbs-up');
+            setThumbDownIcon('fa-regular fa-thumbs-down');
+        }
+        if(likeStatus == 'Blank') {
+            setThumbUpIcon('fa-regular fa-thumbs-up');
+            setThumbDownIcon('fa-regular fa-thumbs-down');
+        }
+        if(likeStatus == 'Disliked') {
+            setThumbUpIcon('fa-regular fa-thumbs-up');
+            setThumbDownIcon('fa-solid fa-thumbs-down');
         }
     }, [likeStatus])
 
@@ -43,6 +61,40 @@ function CommentCards({ comment }) {
             saveButton?.classList.remove('enabled-save');
         }
     }, [editedComment])
+
+    async function handleLikeComment() {
+        if(likeStatus == 'Blank') {
+            await dispatch(likeCommentThunk(comment.id));
+            setLikeStatus('Liked');
+        }
+        if(likeStatus == 'Liked') {
+            await dispatch(removeCommentLikeThunk(comment.id));
+            setLikeStatus('Blank');
+        }
+        if(likeStatus == 'Disliked') {
+            await dispatch(removeDislikeCommentThunk(comment.id));
+            await dispatch(likeCommentThunk(comment.id));
+            setLikeStatus('Liked');
+        }
+        await dispatch(getOneVideoThunk(videoId));
+    }
+
+    async function handleDislikeComment() {
+        if(likeStatus == 'Blank') {
+            await dispatch(dislikeCommentThunk(comment.id));
+            setLikeStatus('Disliked');
+        }
+        if(likeStatus == 'Liked') {
+            await dispatch(removeCommentLikeThunk(comment.id));
+            await dispatch(dislikeCommentThunk(comment.id));
+            setLikeStatus('Disliked');
+        }
+        if(likeStatus == 'Disliked') {
+            await dispatch(removeDislikeCommentThunk(comment.id));
+            setLikeStatus('Blank');
+        }
+        await dispatch(getOneVideoThunk(videoId));
+    }
 
     function handleMenuOpen() {
         if (!menuOpen) {
@@ -91,14 +143,6 @@ function CommentCards({ comment }) {
         }
     }
 
-    async function handleLikeComment() {
-        if(likeStatus == 'Blank') {
-            await dispatch(likeCommentThunk(comment.id));
-            setLikeStatus('Liked');
-        }
-        await dispatch(getOneVideoThunk(videoId));
-    }
-
     return (
         <div key={comment?.id} className='comment-cards'>
             {commentor?.profile_pic && (
@@ -138,7 +182,9 @@ function CommentCards({ comment }) {
                     onClick={handleLikeComment}
                     />
                     <span id='comments-num-likes'>{comment?.num_likes}</span>
-                    <i className="fa-regular fa-thumbs-down" id='comments-thumb-down-icon' />
+                    <i className={thumbDownIcon} id='comments-thumb-down-icon'
+                    onClick={handleDislikeComment}
+                    />
                 </div>
             </div>}
             {editOpen && <div className='create-comment-input-div'>

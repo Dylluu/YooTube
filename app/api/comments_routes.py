@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db, Comment, CommentLike
+from app.models import User, db, Comment, CommentLike, CommentDislike
 from app.forms import CommentForm
 from flask_login import current_user, login_required
 
@@ -53,6 +53,31 @@ def delete_comment_like(id):
     comment.num_likes = comment.num_likes - 1
     db.session.commit()
     return dict(message = 'Like removed')
+
+@comments_routes.route('/<int:id>/dislikes/new', methods=['POST'])
+@login_required
+def dislike_comment(id):
+    """adds dislike to comment"""
+    currUserId = current_user.id
+    dislike = CommentDislike(
+        user_id=currUserId,
+        comment_id=id
+    )
+    db.session.add(dislike)
+    comment = Comment.query.get(id)
+    comment.num_likes = comment.num_likes - 1
+    db.session.commit()
+    return dislike.to_dict()
+
+@comments_routes.route('/<int:id>/dislikes/delete', methods=['DELETE'])
+@login_required
+def delete_comment_dislike(id):
+    """removes dislike from comment"""
+    currUserId = current_user.id
+    dislike = CommentDislike.query.filter_by(user_id = currUserId, comment_id = id).first()
+    db.session.delete(dislike)
+    db.session.commit()
+    return dict(message = 'Dislike removed')
 
 @comments_routes.route('/<int:id>', methods=['PUT'])
 @login_required

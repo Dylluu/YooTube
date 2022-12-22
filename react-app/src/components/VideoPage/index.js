@@ -4,7 +4,7 @@ import './VideoPage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addDislikeThunk, addLikeThunk, clearVideoAction, getUserDislikesThunk, getUserLikesThunk, getVideosThunk, removeDislikeThunk, removeLikeThunk } from '../../store/videos';
 import { getUsersThunk } from '../../store/session';
-import { getCommentsThunk, getUserCommentLikesThunk } from '../../store/comments';
+import { getCommentsThunk, getUserCommentDislikesThunk, getUserCommentLikesThunk } from '../../store/comments';
 import { postCommentThunk } from '../../store/comments';
 import { getOneVideoThunk } from '../../store/videos';
 import CommentCards from '../CommentCards';
@@ -42,6 +42,7 @@ function VideoPage () {
         await dispatch(getUserLikesThunk(videoId));
         await dispatch(getUserDislikesThunk(videoId));
         await dispatch(getUserCommentLikesThunk());
+        await dispatch(getUserCommentDislikesThunk());
     }, [dispatch, videoId])
 
     useEffect(async () => {

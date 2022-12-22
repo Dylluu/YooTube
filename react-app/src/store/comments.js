@@ -1,5 +1,6 @@
 const GET_COMMENTS = 'comments/GET_COMMENTS';
 const GET_COMMENT_LIKES = 'comments/GET_COMMENT_LIKES';
+const GET_COMMENT_DISLIKES = 'comments/GET_COMMENT_DISLIKES';
 
 const getCommentsAction = (payload) => ({
     type: GET_COMMENTS,
@@ -10,6 +11,35 @@ const getCommentLikesAction = (payload) => ({
     type: GET_COMMENT_LIKES,
     payload
 })
+
+const getCommentDislikesAction = (payload) => ({
+    type: GET_COMMENT_DISLIKES,
+    payload
+})
+
+export const getUserCommentDislikesThunk = () => async (dispatch) => {
+    const response = await fetch(`/api/users/commentdislikes`);
+    if(response.ok) {
+        const userCommentDislikes = await response.json();
+        await dispatch(getCommentDislikesAction(userCommentDislikes));
+    }
+}
+
+export const dislikeCommentThunk = (commentId) => async (dispatch) => {
+    await fetch(`/api/comments/${commentId}/dislikes/new`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(commentId)
+    })
+}
+
+export const removeDislikeCommentThunk = (commentId) => async (dispatch) => {
+    await fetch(`/api/comments/${commentId}/dislikes/delete`, {
+        method: 'DELETE'
+    })
+}
 
 export const getUserCommentLikesThunk = () => async (dispatch) => {
     const response = await fetch(`/api/users/commentlikes`);
@@ -75,7 +105,8 @@ export const editCommentsThunk = (data) => async (dispatch) => {
 
 const initialState = {
     comments: {},
-    user_comment_likes: {}
+    user_comment_likes: {},
+    user_comment_dislikes: {}
 }
 
 const comments = (state = initialState, action) => {
@@ -86,6 +117,9 @@ const comments = (state = initialState, action) => {
             return newState
         case GET_COMMENT_LIKES:
             newState.user_comment_likes = action.payload
+            return newState
+        case GET_COMMENT_DISLIKES:
+            newState.user_comment_dislikes = action.payload
             return newState
         default:
             return state
