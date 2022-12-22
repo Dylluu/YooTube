@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import './VideoPage.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDislikeThunk, addLikeThunk, clearVideoAction, getUserDislikesThunk, getUserLikesThunk, getVideosThunk, removeDislikeThunk, removeLikeThunk } from '../../store/videos';
+import { addDislikeThunk, addLikeThunk, clearLikesAction, clearVideoAction, getUserDislikesThunk, getUserLikesThunk, getVideosThunk, removeDislikeThunk, removeLikeThunk } from '../../store/videos';
 import { getUsersThunk } from '../../store/session';
 import { getCommentsThunk, getUserCommentDislikesThunk, getUserCommentLikesThunk } from '../../store/comments';
 import { postCommentThunk } from '../../store/comments';
@@ -35,7 +35,9 @@ function VideoPage () {
     }
 
     useEffect(async () => {
+        await dispatch(clearLikesAction());
         await dispatch(clearVideoAction());
+        setLikeStatus('Blank');
         await dispatch(getOneVideoThunk(videoId));
         await dispatch(getVideosThunk());
         await dispatch(getUsersThunk());
@@ -49,13 +51,13 @@ function VideoPage () {
         if(userLikes && userLikes.length) {
             setLikeStatus('Liked');
         }
-    }, [userLikes])
+    }, [userLikes, video])
 
     useEffect(async () => {
         if(userDislikes && userDislikes.length) {
             setLikeStatus('Disliked')
         }
-    }, [userDislikes])
+    }, [userDislikes, video])
 
     useEffect(() => {
         if(likeStatus == 'Liked') {
@@ -65,7 +67,8 @@ function VideoPage () {
         if(likeStatus == 'Disliked') {
             setThumbIcon('fa-regular fa-thumbs-up');
             setThumbDownIcon('fa-solid fa-thumbs-down');
-        } else if (likeStatus == 'Blank') {
+        }
+        if (likeStatus == 'Blank') {
             setThumbIcon('fa-regular fa-thumbs-up');
             setThumbDownIcon('fa-regular fa-thumbs-down');
         }

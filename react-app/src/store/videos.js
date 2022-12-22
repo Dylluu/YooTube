@@ -4,9 +4,14 @@ const CLEAR_VIDEO = 'videos/CLEAR_VIDEO';
 const GET_USER_VIDEOS = 'videos/GET_USER_VIDEOS';
 const GET_USER_LIKES = 'videos/GET_USER_LIKES';
 const GET_USER_DISLIKES = 'videos/GET_USER_DISLIKES';
+const CLEAR_USER_LIKES = 'videos/CLEAR_USER_LIKES';
 
 export const clearVideoAction = () => ({
     type: CLEAR_VIDEO
+})
+
+export const clearLikesAction = () => ({
+    type: CLEAR_USER_LIKES
 })
 
 const getVideosAction = (payload) => ({
@@ -161,6 +166,10 @@ const videos = (state = initialState, action) => {
             return newState
         case GET_USER_DISLIKES:
             newState.userDislikes = action.payload
+            return newState
+        case CLEAR_USER_LIKES:
+            newState.userLikes = {}
+            newState.userDislikes = {}
             return newState
         default:
             return state
