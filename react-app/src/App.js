@@ -14,6 +14,7 @@ import Dashboard from './components/Dashboard';
 import VideoPage from './components/VideoPage';
 import YourChannel from './components/YourChannel';
 import SearchResults from './components/SearchResults';
+import ChannelsPage from './components/ChannelsPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -63,6 +64,11 @@ function App() {
           <TopNavigation />
           <LeftNavigation />
           <SearchResults />
+        </Route>
+        <Route path='/channels/:username' exact={true}>
+          <TopNavigation />
+          <LeftNavigation />
+          <ChannelsPage />
         </Route>
       </Switch>
     </BrowserRouter>

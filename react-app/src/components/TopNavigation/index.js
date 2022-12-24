@@ -36,7 +36,9 @@ function TopNavigation() {
 
     function handleSearch(e) {
         e.preventDefault();
-        history.push(`/search/${search}`);
+        if(search.length) {
+            history.push(`/search/${search}`);
+        }
     }
 
     return (
