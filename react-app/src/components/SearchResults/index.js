@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
 import './SearchResults.css';
 import { useDispatch, useSelector } from 'react-redux';
 
 function SearchResults() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const {params} = useParams();
     const allVideos = useSelector(state => state.videos.allVideos.videos);
     const allUsers = useSelector(state => state.session.allUsers);
@@ -32,8 +33,6 @@ function SearchResults() {
         setUserMatches(matchedUsers);
     }, [params])
 
-    console.log(videoMatches, 'VIDEO MATCHES');
-    console.log(userMatches, 'USER MATCHES');
     return (
         <div className='search-results-outer-container'>
             <div className='search-results-container'>
@@ -57,6 +56,33 @@ function SearchResults() {
                                         </span>
                                     </div>
                                 </NavLink>
+                            ))}
+                        </div>
+                    )}
+                    {videoMatches.length > 0 && (
+                        <div className='your-channel-user-videos-container' id='search-results-videos-container'>
+                            {videoMatches.map(userVid => (
+                                <div className='your-channel-user-video-card' id='search-results-video-cards' key={userVid.id} onClick={() => history.push(`/videos/${userVid.id}`)}
+                                style={{cursor: 'pointer', width: 'fit-content'}}
+                                >
+                                <img alt={userVid.title} src={userVid.thumbnail} id='your-channel-user-video-card-thumbnail'
+                                    onError={({ currentTarget }) => {
+                                        currentTarget.onerror = null;
+                                        currentTarget.src = "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg";
+                                    }}
+                                    className='search-results-video-thumbnail'
+                                />
+                                <div className='your-channel-user-video-card-details'>
+                                    <span id='your-channel-user-video-card-details-title'>{userVid.title}
+                                    </span>
+                                    <span id='your-channel-user-video-card-details-views'
+                                    style={{marginTop: '5px'}}
+                                    >{userVid.num_views} views</span>
+                                    <p id='your-channel-user-video-card-details-views'
+                                    style={{marginTop: '5px'}}
+                                    >{userVid.description}</p>
+                                </div>
+                            </div>
                             ))}
                         </div>
                     )}

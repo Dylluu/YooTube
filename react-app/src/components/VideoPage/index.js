@@ -51,13 +51,13 @@ function VideoPage () {
         if(userLikes && userLikes.length) {
             setLikeStatus('Liked');
         }
-    }, [userLikes, video])
+    }, [dispatch, userDislikes])
 
     useEffect(async () => {
         if(userDislikes && userDislikes.length) {
             setLikeStatus('Disliked')
         }
-    }, [userDislikes, video])
+    }, [dispatch, userDislikes])
 
     useEffect(() => {
         if(likeStatus == 'Liked') {

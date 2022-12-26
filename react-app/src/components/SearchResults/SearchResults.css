@@ -17,17 +17,20 @@
 
 .search-results-inner-container {
     display: flex;
+    flex-direction: column;
     width: 100%;
     border-top: solid 1px #272727;
+    padding-bottom: 30px;
 }
 
 .user-matches-container {
     display: flex;
+    flex-direction: column;
     width: 100%;
     height: fit-content;
-    padding-top: 26px;
-    padding-bottom: 26px;
-    border-bottom: solid 1px #272727;
+    /* padding-top: 26px; */
+    /* padding-bottom: 26px; */
+    /* border-bottom: solid 1px #272727; */
     /* border: solid 1px red; */
 }
 
@@ -38,6 +41,7 @@
     height: 136px;
     width: 100%;
     padding-left: 112px;
+    margin-top: 26px;
     cursor: pointer;
 }
 
@@ -75,4 +79,18 @@
 .user-matches-info-other {
     font-size: 12px;
     color: #AAAAAA;
+}
+
+#search-results-videos-container {
+    margin-top: -24px;
+    padding-top: 0px;
+}
+
+.search-results-video-thumbnail {
+    min-width: 348px;
+    height: 195px;
+}
+
+#search-results-video-cards {
+    margin-top: 50px;
 }

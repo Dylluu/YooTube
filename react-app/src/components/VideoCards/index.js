@@ -19,17 +19,20 @@ function VideoCards({video}) {
                 }}/>
             </div>
             <div className='video-card-info'>
-                <div className='video-card-profile-pic'>
-                    {videoUser?.profile_pic && <img alt={videoUser?.username} src={videoUser?.profile_pic} className='video-card-profile-pic-image'/>}
+                    {videoUser?.profile_pic && (
+                    <NavLink to={`/channels/${videoUser?.username}`} className='video-card-profile-pic'>
+                    <img alt={videoUser?.username} src={videoUser?.profile_pic} className='video-card-profile-pic-image'/>
+                    </NavLink>)}
                     {!videoUser?.profile_pic && (
+                        <NavLink to={`/channels/${videoUser?.username}`} className='video-card-profile-pic'>
                         <span>{videoUser?.username[0]}</span>
+                        </NavLink>
                     )}
-                </div>
                 <div className='video-card-title-and-info'>
                     <div className='video-card-title'>{video?.title}</div>
-                    <div className='video-card-poster'>
+                    <NavLink to={`/channels/${videoUser?.username}`} className='video-card-poster'>
                         {videoUser?.username}
-                    </div>
+                    </NavLink>
                     <div className='video-card-views-and-date'>
                         <span>2M views</span>
                     </div>
