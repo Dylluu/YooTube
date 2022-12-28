@@ -1,5 +1,6 @@
 .search-results-outer-container {
     min-height: 100vh;
+    min-width: fit-content;
     background-color: #0F0F0F;
 }
 
@@ -93,4 +94,41 @@
 
 #search-results-video-cards {
     margin-top: 50px;
+}
+
+.search-results-cards-profile-pic-and-username {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+}
+
+#search-results-cards-profile-pic-img {
+    height: 24px;
+    width: 24px;
+    border-radius: 75%;
+}
+
+.search-results-cards-no-profile-pic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    width: 24px;
+    border-radius: 75%;
+    background-color: blueviolet;
+    font-size: 13px;
+    color: white;
+}
+
+.search-results-cards-username {
+    display: flex;
+    align-items: center;
+    margin-left: 7px;
+    color: #AAAAAA;
+    font-size: 12px;
+}
+
+#no-matches-found {
+    color: white;
+    margin-top: 26px;
 }

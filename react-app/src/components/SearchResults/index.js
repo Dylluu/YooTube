@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import './SearchResults.css';
 import { useDispatch, useSelector } from 'react-redux';
+import SearchResultCards from '../SearchResultCards';
 
 function SearchResults() {
     const dispatch = useDispatch();
@@ -11,6 +12,7 @@ function SearchResults() {
     const allUsers = useSelector(state => state.session.allUsers);
     const [videoMatches, setVideoMatches] = useState([]);
     const [userMatches, setUserMatches] = useState([]);
+    const [userMatchesVideos, setUserMatchesVideos] = useState([]);
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -31,12 +33,26 @@ function SearchResults() {
             }
         }
         setUserMatches(matchedUsers);
+        let matchedUserVideos = [];
+        for(let video of allVideos) {
+            for(let user of matchedUsers) {
+                if(video.user_id == user.id) {
+                    if(!matchedVideos.includes(video)) {
+                        matchedUserVideos.push(video);
+                    }
+                }
+            }
+        }
+        setUserMatchesVideos(matchedUserVideos);
     }, [params])
 
     return (
         <div className='search-results-outer-container'>
             <div className='search-results-container'>
                 <div className='search-results-inner-container'>
+                    {userMatches.length == 0 && videoMatches.length == 0 && (
+                        <span id='no-matches-found'>No matches found for "{params}"</span>
+                    )}
                     {userMatches.length > 0 && (
                         <div className='user-matches-container'>
                             {userMatches.map(user => (
@@ -60,29 +76,18 @@ function SearchResults() {
                         </div>
                     )}
                     {videoMatches.length > 0 && (
+                    <div className='your-channel-user-videos-container' id='search-results-videos-container'
+                    style={{marginBottom: '25px'}}
+                    >
+                    {videoMatches.map(userVid => (
+                        <SearchResultCards userVid={userVid} />
+                    ))}
+                    </div>
+                    )}
+                    {userMatchesVideos.length > 0 && (
                         <div className='your-channel-user-videos-container' id='search-results-videos-container'>
-                            {videoMatches.map(userVid => (
-                                <div className='your-channel-user-video-card' id='search-results-video-cards' key={userVid.id} onClick={() => history.push(`/videos/${userVid.id}`)}
-                                style={{cursor: 'pointer', width: 'fit-content'}}
-                                >
-                                <img alt={userVid.title} src={userVid.thumbnail} id='your-channel-user-video-card-thumbnail'
-                                    onError={({ currentTarget }) => {
-                                        currentTarget.onerror = null;
-                                        currentTarget.src = "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg";
-                                    }}
-                                    className='search-results-video-thumbnail'
-                                />
-                                <div className='your-channel-user-video-card-details'>
-                                    <span id='your-channel-user-video-card-details-title'>{userVid.title}
-                                    </span>
-                                    <span id='your-channel-user-video-card-details-views'
-                                    style={{marginTop: '5px'}}
-                                    >{userVid.num_views} views</span>
-                                    <p id='your-channel-user-video-card-details-views'
-                                    style={{marginTop: '5px'}}
-                                    >{userVid.description}</p>
-                                </div>
-                            </div>
+                            {userMatchesVideos.map(userVid => (
+                                <SearchResultCards userVid={userVid} />
                             ))}
                         </div>
                     )}
