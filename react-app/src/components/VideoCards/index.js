@@ -34,7 +34,7 @@ function VideoCards({video}) {
                         {videoUser?.username}
                     </NavLink>
                     <div className='video-card-views-and-date'>
-                        <span>2M views</span>
+                        <span>{video?.num_views} {video?.num_views == 1 ? 'view' : 'views'}</span>
                     </div>
                 </div>
             </div>

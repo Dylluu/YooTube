@@ -92,11 +92,12 @@ def get_comments_for_video(id):
     comments = Comment.query.filter_by(video_id = (id))
     return {'comments': [comment.to_dict() for comment in comments]}
 
-
 @video_routes.route('/<int:id>')
 def get_one_video(id):
-    """Query for one video"""
+    """Query for one video and adds num view"""
     video = Video.query.get(id)
+    video.num_views = video.num_views + 1
+    db.session.commit()
     return video.to_dict()
 
 @video_routes.route('/<int:id>', methods=['PUT'])
