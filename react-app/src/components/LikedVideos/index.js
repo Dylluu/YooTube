@@ -42,6 +42,9 @@ function LikedVideos() {
                             ))}
                         </div>
                     )}
+                    {likedVideos.length == 0 && (
+                        <span id='no-matches-found'>No liked videos</span>
+                    )}
                 </div>
             </div>
         </div>
