@@ -167,7 +167,7 @@ function VideoPage () {
             <div className='video-page-description'>
                 <div className='video-page-description-inner-wrapper'>
                     <div id='video-description-header'>
-                        <span id='video-description-header-num-views'>{video?.num_views} views</span>
+                        <span id='video-description-header-num-views'>{video?.num_views} {video?.num_views == 1 ? 'view' : 'views'}</span>
                         <span id='video-description-header-date'>{getDate(date)}</span>
                     </div>
                     <p id='video-description'>{video?.description}</p>

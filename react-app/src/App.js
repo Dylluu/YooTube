@@ -15,6 +15,7 @@ import VideoPage from './components/VideoPage';
 import YourChannel from './components/YourChannel';
 import SearchResults from './components/SearchResults';
 import ChannelsPage from './components/ChannelsPage';
+import LikedVideos from './components/LikedVideos';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -69,6 +70,11 @@ function App() {
           <TopNavigation />
           <LeftNavigation />
           <ChannelsPage />
+        </Route>
+        <Route path='/liked-videos' exact={true}>
+          <TopNavigation />
+          <LeftNavigation />
+          <LikedVideos />
         </Route>
       </Switch>
     </BrowserRouter>

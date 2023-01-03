@@ -2,6 +2,21 @@
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 const GET_USERS = 'session/GET_USERS';
+const GET_LIKES = 'session/GET_LIKES';
+
+const getLikes = (payload) => ({
+  type: GET_LIKES,
+  payload
+})
+
+export const getLikesThunk = () => async (dispatch) => {
+  const response = await fetch('/api/users/likes');
+
+  if(response.ok) {
+    const data = await response.json()
+    dispatch(getLikes(data))
+  }
+}
 
 export const getUsersThunk = () => async (dispatch) => {
   const response = await fetch ('/api/users');
@@ -125,6 +140,9 @@ export default function reducer(state = initialState, action) {
       return newState
     case GET_USERS:
       newState.allUsers = action.payload.users
+      return newState
+    case GET_LIKES:
+      newState.allLikes = action.payload
       return newState
     default:
       return state;

@@ -24,6 +24,14 @@ function YourChannel() {
         window.scrollTo(0, 0)
       }, [])
 
+    useEffect(() => {
+        const likedVideosButton = document.getElementsByClassName('left-nav-current');
+        if(likedVideosButton[0]) {
+            likedVideosButton[0].setAttribute('id', 'left-nav-liked');
+            likedVideosButton[0].classList.remove('left-nav-current');
+        }
+    }, [])
+
     if (!userVideos) return <div className='empty-container'></div>;
 
     return (

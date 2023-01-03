@@ -35,6 +35,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    font-weight: 300;
     width: 96.5%;
     height: 40px;
     border-radius: 10px;
@@ -46,7 +47,7 @@
     filter: brightness(1.75);
 }
 
-#left-nav-home, #left-nav-shorts, #left-nav-subs {
+#left-nav-home, #left-nav-shorts, #left-nav-subs, #left-nav-liked {
     cursor: pointer;
 }
 
@@ -68,8 +69,17 @@
     filter: brightness(1.75);
 }
 
-#left-nav-subs, #left-nav-shorts {
+#left-nav-subs, #left-nav-shorts, #left-nav-liked {
     background-color: transparent;
+}
+
+#left-nav-liked:hover {
+    background-color: #272727;
+    filter: brightness(1);
+}
+
+#left-nav-liked:active {
+    filter: brightness(1.75);
 }
 
 .left-nav-home-icons {
@@ -103,4 +113,8 @@
 #nav-left-linkedin-icon {
     color: white;
     font-size: 20px;
+}
+
+#left-nav-home-headers-thin {
+    font-weight: 300;
 }

@@ -17,6 +17,14 @@ function Dashboard() {
     }, [dispatch])
 
     useEffect(() => {
+        const likedVideosButton = document.getElementsByClassName('left-nav-current');
+        if(likedVideosButton[0]) {
+            likedVideosButton[0].setAttribute('id', 'left-nav-liked');
+            likedVideosButton[0].classList.remove('left-nav-current');
+        }
+    }, [])
+
+    useEffect(() => {
         window.scrollTo(0, 0)
       }, [])
 

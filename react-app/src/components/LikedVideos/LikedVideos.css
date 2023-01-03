@@ -1,0 +1,14 @@
+.left-nav-current {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 96.5%;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #272727;
+    cursor: pointer;
+}
+
+.left-nav-current:hover {
+    filter: brightness(1.75);
+}
