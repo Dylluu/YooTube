@@ -15,7 +15,7 @@ class Video(db.Model):
     num_views = db.Column(db.Integer, default=0)
     num_likes = db.Column(db.Integer, default=0)
     url = db.Column(db.String(255), nullable=False)
-    thumbnail = db.Column(db.String(255), nullable=False)
+    thumbnail = db.Column(db.String(), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 

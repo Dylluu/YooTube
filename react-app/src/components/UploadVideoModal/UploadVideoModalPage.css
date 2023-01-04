@@ -206,6 +206,10 @@ input[type="file"] {
     border: solid 1px #8F8F8F;
 }
 
+.upload-video-details-title-input:focus-within {
+    border: solid 1px #8F8F8F;
+}
+
 .upload-video-details-input-labels {
     font-size: 12px;
     color: #AAAAAA;
@@ -258,6 +262,10 @@ input[type="file"] {
     border: solid 1px #8F8F8F;
 }
 
+.upload-video-details-description-input:focus-within {
+    border: solid 1px #8F8F8F;
+}
+
 #upload-video-details-description-textarea-field {
     display: flex;
     align-items: flex-start;
@@ -303,6 +311,10 @@ input[type="file"] {
 }
 
 #upload-video-details-thumbnail-input-field:hover {
+    border: solid 1px #8F8F8F;
+}
+
+#upload-video-details-thumbnail-input-field:focus-within {
     border: solid 1px #8F8F8F;
 }
 

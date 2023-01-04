@@ -197,16 +197,16 @@ function UploadVideoModalPage({setShowModal}) {
                             value={thumbnail}
                             name='thumbnail'
                             onChange={handleUpdateThumbnail}
-                            maxLength='255'
+                            // maxLength='255'
                             // placeholder='Add a thumbnail...'
                             ></input>
                             <div id='thumbnail-cc-and-errors'>
                                 {!thumbnailErrors && <div></div>}
                                 {thumbnailErrors && <span className='upload-form-thumbnail-errors'>
                                 <i className="fa-solid fa-circle-exclamation" id='error-exclaimation'/>{thumbnailErrors}</span>}
-                                {thumbnail.length > 0 && (
+                                {/* {thumbnail.length > 0 && (
                                     <span className='upload-video-form-character-count' id='thumbnail-cc'>characters: {thumbnail.length}/255</span>
-                                )}
+                                )} */}
                                 </div>
                         </div>
                         <div className='upload-video-details-form-footer'>
