@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Dashboard.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getVideosThunk } from '../../store/videos';
+import { getUserHistoryThunk, getVideosThunk } from '../../store/videos';
 import { getUsersThunk } from '../../store/session';
 import VideoCards from '../VideoCards';
 
@@ -14,6 +14,7 @@ function Dashboard() {
     useEffect(async () => {
         await dispatch(getVideosThunk())
         await dispatch(getUsersThunk())
+        await dispatch(getUserHistoryThunk());
     }, [dispatch])
 
     useEffect(() => {

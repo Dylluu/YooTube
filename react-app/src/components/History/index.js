@@ -4,16 +4,20 @@ import './History.css';
 import { useDispatch, useSelector } from 'react-redux';
 import SearchResultCards from '../SearchResultCards';
 import { getUsersThunk } from '../../store/session';
-import { getVideosThunk } from '../../store/videos';
+import { getUserHistoryThunk, getVideosThunk } from '../../store/videos';
 
 function History () {
 
     const dispatch = useDispatch();
     const history = useHistory();
+    const watchedVideos = useSelector(state => state.videos.history?.watched_videos);
+    const allVideos = useSelector(state => state.videos.allVideos?.videos);
+    const watchedVideosArray = allVideos?.filter(video => watchedVideos?.includes(video.id));
 
-    useEffect(() => {
-        dispatch(getUsersThunk());
-        dispatch(getVideosThunk());
+    useEffect(async () => {
+        await dispatch(getUsersThunk());
+        await dispatch(getVideosThunk());
+        await dispatch(getUserHistoryThunk());
     }, [dispatch])
 
     useEffect(() => {
@@ -28,11 +32,22 @@ function History () {
         if(likedButton) likedButton.classList.add('liked-videos-inactive');
     }, [])
 
+    if(!watchedVideos || !allVideos) return null;
+
     return (
         <div className='search-results-outer-container' id='history-container'>
             <div className='search-results-container'>
                 <div className='search-results-inner-container'>
-
+                    {watchedVideosArray.length > 0 && (
+                        <div className='your-channel-user-videos-container' id='search-results-videos-container'>
+                            {watchedVideosArray.reverse().map(vid => (
+                                <SearchResultCards userVid={vid} />
+                            ))}
+                        </div>
+                    )}
+                    {watchedVideosArray.length == 0 && (
+                        <span id='no-matches-found'>No videos watched</span>
+                    )}
                 </div>
             </div>
         </div>

@@ -6,4 +6,5 @@ from .user_likes import UserLike
 from .user_dislikes import UserDislike
 from .comment_likes import CommentLike
 from .comment_dislikes import CommentDislike
+from .history import History
 from .db import environment, SCHEMA

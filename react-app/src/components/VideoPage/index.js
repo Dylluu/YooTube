@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import './VideoPage.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDislikeThunk, addLikeThunk, addNumViewThunk, clearLikesAction, clearVideoAction, getUserDislikesThunk, getUserLikesThunk, getVideosThunk, removeDislikeThunk, removeLikeThunk } from '../../store/videos';
+import { addDislikeThunk, addLikeThunk, addNumViewThunk, clearLikesAction, clearVideoAction, getUserDislikesThunk, getUserLikesThunk, getVideosThunk, postUserHistoryThunk, removeDislikeThunk, removeLikeThunk } from '../../store/videos';
 import { getUsersThunk } from '../../store/session';
 import { getCommentsThunk, getUserCommentDislikesThunk, getUserCommentLikesThunk } from '../../store/comments';
 import { postCommentThunk } from '../../store/comments';
@@ -45,6 +45,7 @@ function VideoPage () {
         await dispatch(getUserDislikesThunk(videoId));
         await dispatch(getUserCommentLikesThunk());
         await dispatch(getUserCommentDislikesThunk());
+        await dispatch(postUserHistoryThunk(videoId));
     }, [dispatch, videoId])
 
     useEffect(async () => {

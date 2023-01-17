@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
-from app.models import User, Video, UserLike, UserDislike, CommentLike, CommentDislike
+from app.models import db, User, Video, UserLike, UserDislike, CommentLike, CommentDislike, History
 
 user_routes = Blueprint('users', __name__)
 
@@ -64,3 +64,21 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+@user_routes.route('/history/new/<int:videoId>', methods=['POST'])
+@login_required
+def add_to_history(videoId):
+    """Adds video to watch history"""
+    new_video = History(user_id=current_user.id, video_id=videoId)
+    db.session.add(new_video)
+    db.session.commit()
+    return new_video.to_dict()
+
+@user_routes.route('/history')
+@login_required
+def get_history():
+    """Gets all videos in watch history"""
+    watched_videos = History.query.filter_by(user_id=current_user.id)
+    if not watched_videos:
+        return {'watched_videos': []}
+    return {'watched_videos': [video.video_id for video in watched_videos]}
