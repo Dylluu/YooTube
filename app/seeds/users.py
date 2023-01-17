@@ -6,7 +6,7 @@ def seed_users():
     demo = User(
         first_name='Demo', last_name='User', username='Demo', email='demo@aa.io', password='password')
     formula_1 = User(
-        first_name='Formula', last_name='One', username='FORMULA 1', email='f1@aa.io', profile_pic='https://yt3.ggpht.com/PVF4vIcVEtapRrU5SnmbKwK4hTy7n6x_Sfas6ruR_62ZbF2sc5ydQQ0IBPTHvphxcgdBgMcuc_M=s176-c-k-c0x00ffffff-no-rj', password='password')
+        first_name='Formula', last_name='One', username='FORMULA 1', email='f1@aa.io', profile_pic='https://yt3.ggpht.com/tyLW5LsJGwr4ViM30OeYbuLcu_MXfpRzP8y-X9_aKfTNJeMFHmnNbPyxxhaFDA9NRgwEu9mT-g=s176-c-k-c0x00ffffff-no-rj', password='password')
     gordon = User(
         first_name='Gordon', last_name='Ramsay', username='Gordon Ramsay', email='gordon@aa.io', profile_pic='https://yt3.ggpht.com/bFpwiiOB_NLCVsIcVQ9UcwBjb1RzipnMmtNfLSWpeIaHboyGkBCq4KBitmovRbStk9WvIWIZOyo=s176-c-k-c0x00ffffff-no-rj', password='password')
     rotten = User(
