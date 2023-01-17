@@ -10,7 +10,7 @@ function VideoCards({video}) {
     const users = useSelector(state => state.session.allUsers);
     const videoUser = users?.find(user => user.id == video.user_id);
     const [isLoaded, setIsLoaded] = useState(false)
-    setTimeout(() => setIsLoaded(true), 225)
+    setTimeout(() => setIsLoaded(true), 350)
 
     if(!videoUser) return null;
 
