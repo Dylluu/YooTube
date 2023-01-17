@@ -22,6 +22,8 @@ function Dashboard() {
             likedVideosButton[0].setAttribute('id', 'left-nav-liked');
             likedVideosButton[0].classList.remove('left-nav-current');
         }
+        const historyCurrent = document.getElementsByClassName('history-current')[0];
+        if(historyCurrent) historyCurrent.classList.remove('history-current');
     }, [])
 
     useEffect(() => {
@@ -30,7 +32,9 @@ function Dashboard() {
 
     useEffect(() => {
         const homeButton = document.getElementById('left-nav-home');
+        const historyButton = document.getElementById('left-nav-history');
         if(homeButton) homeButton.classList.remove('your-channel-left-nav-home');
+        if(historyButton) historyButton.classList.add('your-channel-left-nav-home');
     }, [])
 
     return (

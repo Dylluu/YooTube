@@ -18,10 +18,17 @@ function LikedVideos() {
         const homeButton = document.getElementById('left-nav-home');
         if(homeButton) homeButton.classList.add('your-channel-left-nav-home');
         const likedVideosButton = document.getElementById('left-nav-liked');
-        console.log(likedVideosButton);
         if(likedVideosButton) {
             likedVideosButton.classList.add('left-nav-current');
             likedVideosButton.removeAttribute('id');
+            likedVideosButton.classList.remove('liked-videos-inactive');
+        }
+        const likedVideosInactive = document.getElementsByClassName('liked-videos-inactive')[0];
+        if(likedVideosInactive) likedVideosInactive.classList.remove('liked-videos-inactive');
+        const historyButton = document.getElementById('left-nav-history');
+        if(historyButton) {
+            historyButton.classList.add('your-channel-left-nav-home');
+            historyButton.classList.remove('history-current');
         }
     }, [])
 

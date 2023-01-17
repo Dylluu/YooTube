@@ -8,7 +8,14 @@
     left: 0;
     height: 100vh;
     width: 240px;
+    overflow: auto;
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
     /* border: solid 1px blue; */
+}
+
+.left-navigation-container::-webkit-scrollbar {
+    display: none;
 }
 
 .left-navigation-wrapper {
@@ -172,4 +179,13 @@
     text-overflow: ellipsis;
     max-height: 16.5px;
     max-width: 133px;
+}
+
+.left-nav-liked-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+#left-nav-history {
+    cursor: pointer;
 }

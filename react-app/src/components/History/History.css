@@ -1,0 +1,20 @@
+.history-current {
+    background-color: #272727;
+}
+
+.history-current:hover {
+    filter: brightness(1.75);
+}
+
+.liked-videos-inactive {
+    background-color: transparent !important;
+}
+
+.liked-videos-inactive:hover {
+    background-color: #272727 !important;
+    filter: brightness(1) !important;
+}
+
+.liked-videos-inactive:active {
+    filter: brightness(1.75) !important;
+}

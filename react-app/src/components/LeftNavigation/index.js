@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import './LeftNavigation.css';
 import { useSelector } from 'react-redux';
@@ -45,6 +45,14 @@ function LeftNavigation() {
                                 <i className="fa-regular fa-thumbs-up" id='nav-left-house-icon' />
                             </div>
                             <div className='left-nav-home-headers'>Liked Videos</div>
+                        </div>
+                        <div className='left-nav-home' id='left-nav-history'
+                        onClick={() => history.push('/history')}
+                        >
+                            <div className='left-nav-home-icons'>
+                                <i className="fa-solid fa-clock-rotate-left" id='nav-left-house-icon' />
+                            </div>
+                            <div className='left-nav-home-headers'>History</div>
                         </div>
                     </div>
                 )}

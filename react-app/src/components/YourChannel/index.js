@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './YourChannel.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserVideosThunk } from '../../store/videos';
+import { getUserVideosThunk, getVideosThunk } from '../../store/videos';
 import YourVideosCards from '../YourVideosCards';
+import { getUsersThunk } from '../../store/session';
 
 function YourChannel() {
     const dispatch = useDispatch();
@@ -14,10 +15,18 @@ function YourChannel() {
     useEffect(() => {
         const homeButton = document.getElementById('left-nav-home');
         if(homeButton) homeButton.classList.add('your-channel-left-nav-home');
+        const historyButton = document.getElementById('left-nav-history');
+        if(historyButton) {
+            historyButton.classList.add('your-channel-left-nav-home');
+        }
+        const historyCurrent = document.getElementsByClassName('history-current')[0];
+        if(historyCurrent) historyCurrent.classList.remove('history-current');
     }, [])
 
     useEffect(async () => {
         await dispatch(getUserVideosThunk());
+        dispatch(getUsersThunk());
+        dispatch(getVideosThunk());
     }, [dispatch])
 
     useEffect(() => {

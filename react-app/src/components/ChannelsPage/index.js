@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { getUsersThunk } from '../../store/session';
+import { getVideosThunk } from '../../store/videos';
 
 function ChannelsPage() {
     const dispatch = useDispatch();
@@ -15,11 +17,27 @@ function ChannelsPage() {
     useEffect(() => {
         const homeButton = document.getElementById('left-nav-home');
         if(homeButton) homeButton.classList.add('your-channel-left-nav-home');
+        const likedVideosButton = document.getElementsByClassName('left-nav-current');
+        if(likedVideosButton[0]) {
+            likedVideosButton[0].setAttribute('id', 'left-nav-liked');
+            likedVideosButton[0].classList.remove('left-nav-current');
+        }
+        const historyButton = document.getElementById('left-nav-history');
+        if(historyButton) {
+            historyButton.classList.add('your-channel-left-nav-home');
+        }
+        const historyCurrent = document.getElementsByClassName('history-current')[0];
+        if(historyCurrent) historyCurrent.classList.remove('history-current');
     }, [])
 
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [])
+
+    useEffect(() => {
+        dispatch(getUsersThunk());
+        dispatch(getVideosThunk());
+    }, [dispatch])
 
     if (!userVideos) return <div className='empty-container'></div>;
 

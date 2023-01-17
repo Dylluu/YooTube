@@ -16,6 +16,7 @@ import YourChannel from './components/YourChannel';
 import SearchResults from './components/SearchResults';
 import ChannelsPage from './components/ChannelsPage';
 import LikedVideos from './components/LikedVideos';
+import History from './components/History';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -75,6 +76,11 @@ function App() {
           <TopNavigation />
           <LeftNavigation />
           <LikedVideos />
+        </Route>
+        <Route path='/history' exact={true}>
+          <TopNavigation />
+          <LeftNavigation />
+          <History />
         </Route>
       </Switch>
     </BrowserRouter>
